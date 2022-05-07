@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+/////////////////////////////////////////////////////////////////////////////////////////////
+//custom material theme 
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$dogschool-crm-primary: mat.define-palette(mat.$cyan-palette);
+$dogschool-crm-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+
+$dogschool-crm-warn: mat.define-palette(mat.$red-palette);
+
+$dogschool-crm-theme: mat.define-light-theme((color: (primary: $dogschool-crm-primary,
+        accent: $dogschool-crm-accent,
+        warn: $dogschool-crm-warn,
+      )));
+
+$dogschool-crm-theme: mat.define-dark-theme((color: (primary: $dogschool-crm-primary,
+        accent: $dogschool-crm-accent,
+        warn: $dogschool-crm-warn,
+      )));
+
+@include mat.all-component-themes($dogschool-crm-theme);
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height:100vh;
+  max-height: 100%;
+}
+
+@import '~material-icons-font/sass/variables';
+@import '~material-icons-font/sass/mixins';
+$MaterialIcons_FontPath: "~material-icons-font/fonts";
+@import '~material-icons-font/sass/main';
+@import '~material-icons-font/sass/Regular';
