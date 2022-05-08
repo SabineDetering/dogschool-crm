@@ -18,9 +18,9 @@ export class Client{
         this.zipCode = obj ? obj.zipCode : '';
         this.city = obj ? obj.city : '';
         this.email = obj ? obj.email : '';
-        this.landlinePhone = obj ? obj.landlinePhone : '';
-        this.mobilePhone = obj ? obj.mobilePhone : '';
-        this.whatsApp = obj ? obj.whatsApp : '';
+        this.landlinePhone = obj ? obj.landlinePhone : { areaCode: '', number: '' };
+        this.mobilePhone = obj ? obj.mobilePhone : { areaCode: '', number: '' };
+        this.whatsApp = obj ? obj.whatsApp : false;
         this.dogs = obj ? obj.dogs : '';
     }
 

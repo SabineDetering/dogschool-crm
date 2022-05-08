@@ -104,6 +104,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "dogschool-crm:build:production",
+            "firebaseProject": "dogschool-crm",
+            "firebaseHostingSite": "dogschool-crm"
+          }
         }
       }
     }

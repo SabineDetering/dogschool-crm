@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dogschool-crm": {
+      "hosting": {
+        "dogschool-crm": [
+          "dogschool-crm"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dogschool-crm"
+  }
+}
