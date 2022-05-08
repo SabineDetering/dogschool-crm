@@ -11,13 +11,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
+import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientOverviewComponent
+    ClientOverviewComponent,
+    DialogAddClientComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { ClientOverviewComponent } from './client-overview/client-overview.compo
     MatIconModule,
     MatButtonToggleModule,
     MatListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
