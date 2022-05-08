@@ -7,10 +7,27 @@
     height: 48px;
     padding: 8px 8px 8px 16px;
 }
-.search{
+
+.search {
     display: flex;
 }
+.mode-toggle{
+    display: flex;
+    align-items: center;
+    gap:4px;
+}
 
-mat-sidenav-container{
-    height: 100vh;
+mat-sidenav-container {
+    height:calc(100% - 64px) ;
+   
+
+    img {
+        width: 28px;
+        height: 32px;
+        padding:4px;
+    }
+}
+
+mat-sidenav-content{
+    display: flex;
 }

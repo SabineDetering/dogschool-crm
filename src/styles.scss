@@ -1,4 +1,3 @@
-
 /////////////////////////////////////////////////////////////////////////////////////////////
 //custom material theme 
 @use '@angular/material' as mat;
@@ -31,6 +30,7 @@ $dogschool-crm-dark-theme: mat.define-dark-theme((color: (primary: $dogschool-cr
 .dark-mode {
   @include mat.all-component-colors($dogschool-crm-dark-theme);
 }
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -41,7 +41,13 @@ html {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  height:100vh;
+  height: 100vh;
+  width:100vw;
+  max-width: 100%;
 }
 
-
+.dark-mode {
+  .svg-icon {
+   filter:invert(1);
+  }
+}

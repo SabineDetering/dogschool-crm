@@ -10,15 +10,28 @@
         <input type="text">
     </div>
     <span class="spacer"></span>
-
+    <!-- 
     <button mat-icon-button (click)="toggleMode()">
         <img [src]="'assets/img/'+mode+'_mode_white.svg'" [title]="'switch to '+mode+' mode'">
-    </button>
+    </button> -->
+
+    <div class="mode-toggle">
+        <img src="assets/img/light_mode_white.svg" title="light mode">
+        <mat-slide-toggle class="example-margin" aria-label="switch between light and dark mode" [checked]="darkMode"
+            (change)="toggleMode($event)">
+
+        </mat-slide-toggle>
+        <img src="assets/img/dark_mode_white.svg" title="dark mode">
+    </div>
 </mat-toolbar>
 
 <mat-sidenav-container hasBackdrop="false">
     <mat-sidenav #drawer mode="side" opened>
         <mat-nav-list>
+            <mat-list-item>
+                <mat-icon matListIcon> dashboard </mat-icon>
+                <span> Dashboard </span>
+            </mat-list-item>
             <mat-list-item [routerLink]="'/clients'">
                 <mat-icon matListIcon> person </mat-icon>
                 <span> Clients </span>
@@ -27,13 +40,29 @@
                 <mat-icon matListIcon> pets </mat-icon>
                 <span> Dogs </span>
             </mat-list-item>
+            <mat-list-item>
+                <img class="svg-icon" src="assets/img/group.svg">
+                <span> Groups </span>
+            </mat-list-item>
+            <mat-list-item>
+                <img class="svg-icon" src="assets/img/training.svg">
+                <span> Trainings </span>
+            </mat-list-item>
+            <mat-list-item>
+                <mat-icon matListIcon> receipt_long </mat-icon>
+                <span> Legal </span>
+            </mat-list-item>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
 
-        <div class="router-container">
+        <div id="main" class="main router-container">
+            main
             <router-outlet></router-outlet>
         </div>
-
+        <div class="resizer" id="dragMe"></div>
+        <div id="side" class="side">
+            side
+        </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

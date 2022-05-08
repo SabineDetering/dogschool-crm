@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 
 @NgModule({
@@ -26,7 +28,8 @@ import { ClientOverviewComponent } from './client-overview/client-overview.compo
     MatToolbarModule,
     MatIconModule,
     MatButtonToggleModule,
-    MatListModule
+    MatListModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
