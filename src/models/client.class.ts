@@ -8,7 +8,7 @@ export class Client{
     landlinePhone: { areaCode: string, number: string };
     mobilePhone: { areaCode: string, number: string };
     whatsApp: boolean;
-    dogs: Dog[];
+    dogs: string[];
 
 
     constructor(obj?: any) {
