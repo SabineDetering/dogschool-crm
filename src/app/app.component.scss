@@ -11,23 +11,36 @@
 .search {
     display: flex;
 }
-.mode-toggle{
+
+.mode-toggle {
     display: flex;
     align-items: center;
-    gap:4px;
+    gap: 4px;
 }
 
 mat-sidenav-container {
-    height:calc(100% - 64px) ;
-   
+    height: calc(100% - 64px);
+
 
     img {
         width: 28px;
         height: 32px;
-        padding:4px;
+        padding: 4px;
     }
 }
 
-mat-sidenav-content{
-    display: flex;
+mat-sidenav-content {
+
+    .main {
+        width: 100%;
+    }
+
+    .resizer {
+        border: 1px solid;
+    }
+
+    .side {
+        width: 100%;
+        flex: 1 1 auto;
+    }
 }
