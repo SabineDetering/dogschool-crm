@@ -1,6 +1,13 @@
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 //custom material theme 
 @use '@angular/material' as mat;
+
+@import '~material-icons-font/sass/variables';
+@import '~material-icons-font/sass/mixins';
+$MaterialIcons_FontPath: "~material-icons-font/fonts";
+@import '~material-icons-font/sass/main';
+@import '~material-icons-font/sass/Regular';
 
 @include mat.core();
 
@@ -14,16 +21,20 @@ $dogschool-crm-theme: mat.define-light-theme((color: (primary: $dogschool-crm-pr
         warn: $dogschool-crm-warn,
       )));
 
-$dogschool-crm-theme: mat.define-dark-theme((color: (primary: $dogschool-crm-primary,
+$dogschool-crm-dark-theme: mat.define-dark-theme((color: (primary: $dogschool-crm-primary,
         accent: $dogschool-crm-accent,
         warn: $dogschool-crm-warn,
       )));
 
 @include mat.all-component-themes($dogschool-crm-theme);
+
+.dark-mode {
+  @include mat.all-component-colors($dogschool-crm-dark-theme);
+}
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-html,
-body {
+
+html {
   height: 100%;
 }
 
@@ -31,11 +42,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   height:100vh;
-  max-height: 100%;
 }
 
-@import '~material-icons-font/sass/variables';
-@import '~material-icons-font/sass/mixins';
-$MaterialIcons_FontPath: "~material-icons-font/fonts";
-@import '~material-icons-font/sass/main';
-@import '~material-icons-font/sass/Regular';
+
