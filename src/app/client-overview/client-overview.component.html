@@ -5,8 +5,43 @@
     </button>
 </div>
 
-<table>
-    <tr>
+<table mat-table matSort [dataSource]="clients$" class="mat-elevation-z8 full-width">
+
+    <ng-container matColumnDef="clientNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>No. </th>
+        <td mat-cell *matCellDef="let client"> {{client.clientNumber}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Firstname </th>
+        <td mat-cell *matCellDef="let client"> {{client.firstName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Lastname </th>
+        <td mat-cell *matCellDef="let client"> {{client.lastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Phone </th>
+        <td mat-cell *matCellDef="let client">
+            {{(client.mobilePhone.number? client.mobilePhone.areaCode+'/'+ client.mobilePhone.number :
+            (client.landlinePhone.number? client.landlinePhone.areaCode+'/'+ client.landlinePhone.number :''))}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="whatsApp">
+        <th mat-header-cell *matHeaderCellDef>WhatsApp </th>
+        <td mat-cell *matCellDef="let client">
+            <mat-checkbox color="primary" [checked]="client.whatsApp"></mat-checkbox>
+        </td>
+    </ng-container>
+
+    <mat-text-column name="email"></mat-text-column>
+
+    <tr mat-header-row *matHeaderRowDef="tableColumns"></tr>
+    <tr mat-row (click)="showRow(row)" *matRowDef="let row; columns:tableColumns;"></tr>
+    <!-- <tr>
         <th>Firstname</th>
         <th>Lasttname</th>
         <th>Phone</th>
@@ -16,10 +51,10 @@
         <td>{{ client.firstName }}</td>
         <td>{{ client.lastName }}</td>
         <td *ngIf="client.mobilePhone.number">{{ client.mobilePhone.areaCode }} / {{ client.mobilePhone.number }}</td>
-        <td *ngIf="!client.mobilePhone.number">{{ client.landlinePhone.areaCode }} / {{ client.landlinePhone.number }}
+        <td *ngIf="!client.mobilePhone.number && client.landlinePhone.number">{{ client.landlinePhone.areaCode }} / {{ client.landlinePhone.number }}
         </td>
         <td><button mat-icon-button>
                 <mat-icon>arrow_right</mat-icon>
             </button></td>
-    </tr>
+    </tr> -->
 </table>

@@ -10,17 +10,17 @@ import { doc, setDoc } from 'firebase/firestore';
   templateUrl: './dialog-add-client.component.html',
   styleUrls: ['./dialog-add-client.component.scss']
 })
-  
+
 
 export class DialogAddClientComponent implements OnInit {
 
-  client = new Client;
+  static numberOfClients = 0;
+  public client = new Client();
 
-
-
-  constructor(private firestore: Firestore, public addClientDialogRef: MatDialogRef<DialogAddClientComponent>) {
-    const coll:any = collection(firestore, 'clients');
-     }
+  constructor(private firestore: Firestore, public addClientDialogRef: MatDialogRef<DialogAddClientComponent>) { 
+    DialogAddClientComponent.numberOfClients++;
+    this.client.clientNumber = DialogAddClientComponent.numberOfClients;
+  }
 
   onNoClick(): void {
     this.addClientDialogRef.close();
@@ -28,10 +28,10 @@ export class DialogAddClientComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveClient(value:any) {
+  saveClient(value: any) {
     console.log(value);
     const coll: any = collection(this.firestore, 'clients');
-    setDoc(doc(coll), this.client.toJSON());    
+    setDoc(doc(coll), this.client.toJSON());
   }
 
 }

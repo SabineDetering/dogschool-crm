@@ -14,6 +14,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 
 import { FormsModule } from '@angular/forms';
@@ -46,6 +48,8 @@ import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.
     MatDialogModule,
     MatInputModule,
     MatCheckboxModule,
+    MatTableModule,
+    MatSortModule,
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideAuth(() => getAuth()),

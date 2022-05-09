@@ -1,4 +1,5 @@
 export class Client{
+    clientNumber: number;
     firstName: string;
     lastName: string ;
     street: string;
@@ -12,6 +13,7 @@ export class Client{
 
 
     constructor(obj?: any) {
+        this.clientNumber = obj ? obj.clientNumber : '';
         this.firstName = obj ? obj.firstName : '';
         this.lastName = obj ? obj.lastName : '';
         this.street = obj ? obj.street : '';
@@ -26,6 +28,7 @@ export class Client{
 
     toJSON() {
         return {
+            clientNumber: this.clientNumber,
             firstName: this.firstName,
             lastName: this.lastName,
             street: this.street,

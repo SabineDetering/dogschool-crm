@@ -15,6 +15,7 @@ export class ClientOverviewComponent implements OnInit {
   client = new Client;
 
   clients$: Observable<any[]>;
+  tableColumns = ['clientNumber','firstName', 'lastName', 'phone', 'whatsApp','email'];
 
   constructor(firestore: Firestore, public dialog: MatDialog) {
     const coll: any = collection(firestore, 'clients');
@@ -54,5 +55,11 @@ export class ClientOverviewComponent implements OnInit {
       this.client = result;
     });
   }
+
+
+  showRow(row: any) {
+    console.log(row);
+  }
+
 }
 
