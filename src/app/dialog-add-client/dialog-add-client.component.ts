@@ -28,8 +28,8 @@ export class DialogAddClientComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveClient(form: NgForm) {
-    console.log(form.value);
+  saveClient(value:any) {
+    console.log(value);
     const coll: any = collection(this.firestore, 'clients');
     setDoc(doc(coll), this.client.toJSON());    
   }

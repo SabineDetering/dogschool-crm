@@ -106,10 +106,8 @@
 
     <mat-dialog-actions>
         <button mat-button mat-dialog-close>Cancel</button>
-        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-        <button mat-button (click)="saveClient(addClientForm)" [disabled]="!addClientForm.valid" >Save</button>
+        <button mat-button mat-dialog-close (click)="saveClient(addClientForm.value)" [disabled]="!addClientForm.valid" >Save</button>
     </mat-dialog-actions>
 
 
 </mat-dialog-content>
-<!-- [disabled]="!addClientForm.valid" -->

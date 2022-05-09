@@ -4,3 +4,22 @@
         <mat-icon>add</mat-icon>
     </button>
 </div>
+
+<table>
+    <tr>
+        <th>Firstname</th>
+        <th>Lasttname</th>
+        <th>Phone</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let client of clients$|async">
+        <td>{{ client.firstName }}</td>
+        <td>{{ client.lastName }}</td>
+        <td *ngIf="client.mobilePhone.number">{{ client.mobilePhone.areaCode }} / {{ client.mobilePhone.number }}</td>
+        <td *ngIf="!client.mobilePhone.number">{{ client.landlinePhone.areaCode }} / {{ client.landlinePhone.number }}
+        </td>
+        <td><button mat-icon-button>
+                <mat-icon>arrow_right</mat-icon>
+            </button></td>
+    </tr>
+</table>
