@@ -10,10 +10,7 @@
         <input type="text">
     </div>
     <span class="spacer"></span>
-    <!-- 
-    <button mat-icon-button (click)="toggleMode()">
-        <img [src]="'assets/img/'+mode+'_mode_white.svg'" [title]="'switch to '+mode+' mode'">
-    </button> -->
+   
 
     <div class="mode-toggle">
         <img src="assets/img/light_mode_white.svg" title="light mode">
@@ -56,12 +53,12 @@
     </mat-sidenav>
     <mat-sidenav-content class="d-flex">
 
-        <div id="main" class="main router-container">
+        <div id="main" class="main p-16 router-container">
             <router-outlet></router-outlet>
         </div>
-        <div class="resizer" id="dragMe"></div>
+        <!-- <div class="resizer" id="dragMe"></div>
         <div id="side" class="side">
             side
-        </div>
+        </div> -->
     </mat-sidenav-content>
 </mat-sidenav-container>

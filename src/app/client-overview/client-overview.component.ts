@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/models/client.class';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogAddClientComponent } from '../dialog-add-client/dialog-add-client.component';
-import { Firestore, collectionData, collection, getDocs, query, where } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+
+export interface Item { id: string; client: Client; }
 
 @Component({
   selector: 'app-client-overview',
@@ -14,17 +16,27 @@ export class ClientOverviewComponent implements OnInit {
 
   client = new Client;
 
-  clients$: Observable<any[]>;
-  tableColumns = ['clientNumber','firstName', 'lastName', 'phone', 'whatsApp','email'];
+  private itemsCollection: AngularFirestoreCollection<Item>;
+  clients$: Observable<Item[]>;
 
-  constructor(firestore: Firestore, public dialog: MatDialog) {
-    const coll: any = collection(firestore, 'clients');
-    this.clients$ = collectionData(coll);
-    this.clients$.subscribe((clients) => {
-      clients.forEach((client)=>{
-        console.log('updated clients', client, 'id', client.idField); //id undefined
-      }
-   )});
+  constructor(private readonly firestore: AngularFirestore, public dialog: MatDialog) {
+
+    this.itemsCollection = this.firestore.collection<Item>('clients');
+    this.clients$ = this.itemsCollection.valueChanges({ idField: 'clientID' });
+  }
+
+  
+  tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email'];
+  
+  // clients$: Observable<any[]>;
+  // constructor(firestore: Firestore, public dialog: MatDialog) {
+  //   const coll: any = collection(firestore, 'clients');
+  //   this.clients$ = collectionData(coll);
+  //   this.clients$.subscribe((clients) => {
+  //     clients.forEach((client)=>{
+  //       console.log('updated clients', client, 'id', client.idField); //id undefined
+  //     }
+  //  )});
 
 
     // const querySnapshot = await getDocs(collection(db, "cities"));
@@ -38,9 +50,6 @@ export class ClientOverviewComponent implements OnInit {
     //   console.log('updated clients', querySnapshot);
     //   this.clients = clients;
     // });
-
-  }
-
 
 
   ngOnInit(): void {
