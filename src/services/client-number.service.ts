@@ -20,8 +20,8 @@ export class ClientNumberService {
     this.availableNumber$ = this.itemCollection.doc('available-number').valueChanges();  
   }
   
-  incrementNumber() {
-    
+  saveNumber(number) {
+    this.itemCollection.doc('available-number').set({ availableNumber: number });  
   }
 
 }

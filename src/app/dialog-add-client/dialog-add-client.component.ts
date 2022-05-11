@@ -37,8 +37,8 @@ export class DialogAddClientComponent implements OnInit {
 
   saveClient() {
     this.client.clientNumber = this.availableNumber;
-    this.availableClientNumber.incrementNumber();
-    this.clientData.saveClient(this.client);
+    this.availableClientNumber.saveNumber(this.availableNumber+1);
+    this.clientData.saveClient(this.client.toJSON());
   }
 
 }

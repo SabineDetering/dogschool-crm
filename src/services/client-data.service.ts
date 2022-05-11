@@ -20,7 +20,7 @@ export class ClientDataService {
   }
 
   saveClient(client) {
-    this.itemsCollection.add(client);
+    this.itemsCollection.doc().set(client);
   }
   
 }

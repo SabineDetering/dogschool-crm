@@ -1,0 +1,13 @@
+.header {
+    flex: 0 1 auto;
+}
+
+.table-container {
+    flex: 1 1 auto;
+    overflow: auto;
+    height: 100%;
+}
+
+table {
+    max-height: 100%;
+}
