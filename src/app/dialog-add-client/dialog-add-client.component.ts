@@ -3,6 +3,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { Client } from 'src/models/client.class';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { ClientNumberService } from 'src/services/client-number.service';
+import { ClientDataService } from 'src/services/client-data.service';
 
 @Component({
   selector: 'app-dialog-add-client',
@@ -13,26 +15,30 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 
 export class DialogAddClientComponent implements OnInit {
 
-  // numberOfClients is incremented with every new client to create clientNumber
-  static numberOfClients = 0;
-  public client = new Client();
-  private ItemsCollection: AngularFirestoreCollection;
 
-  constructor(private firestore: AngularFirestore,
-    public addClientDialogRef: MatDialogRef<DialogAddClientComponent>) {
-    DialogAddClientComponent.numberOfClients++;
-    this.client.clientNumber = DialogAddClientComponent.numberOfClients;
-  }
+  public client = new Client();
+  availableNumber: number;
+
+  constructor(
+    public addClientDialogRef: MatDialogRef<DialogAddClientComponent>,
+    private clientData: ClientDataService,
+    private availableClientNumber: ClientNumberService
+  ) { }
+
 
   onNoClick(): void {
     this.addClientDialogRef.close();
   }
   ngOnInit(): void {
+    this.availableClientNumber.availableNumber$.subscribe(changes => {
+      this.availableNumber = changes.availableNumber;
+    });
   }
 
   saveClient() {
-    this.ItemsCollection = this.firestore.collection('clients');
-    this.ItemsCollection.doc().set(this.client.toJSON());
+    this.client.clientNumber = this.availableNumber;
+    this.availableClientNumber.incrementNumber();
+    this.clientData.saveClient(this.client);
   }
 
 }

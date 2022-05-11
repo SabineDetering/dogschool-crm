@@ -5,7 +5,8 @@
     </button>
 </div>
 
-<table mat-table matSort [dataSource]="clients$" class="mat-elevation-z8 full-width">
+<table mat-table matSort (matSortChange)="generateTableData($event,'')" [dataSource]="tableClients"
+    class="mat-elevation-z8 mt-16 full-width">
 
     <ng-container matColumnDef="clientNumber">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>No. </th>

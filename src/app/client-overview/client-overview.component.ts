@@ -1,33 +1,59 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from 'src/models/client.class';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogAddClientComponent } from '../dialog-add-client/dialog-add-client.component';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
+import { ClientDataService } from 'src/services/client-data.service';
+import { Sort } from '@angular/material/sort';
+import { MatTable } from '@angular/material/table';
 
-export interface Item { id: string; client: Client; }
 
 @Component({
   selector: 'app-client-overview',
   templateUrl: './client-overview.component.html',
   styleUrls: ['./client-overview.component.scss']
 })
+  
+
 export class ClientOverviewComponent implements OnInit {
 
+  @ViewChild(MatTable) table: MatTable<any>;
+
   client = new Client;
+  clients: any[];
+  tableClients = [];
 
-  private itemsCollection: AngularFirestoreCollection<Item>;
-  clients$: Observable<Item[]>;
+  tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email'];
 
-  constructor(private readonly firestore: AngularFirestore, public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public clientData: ClientDataService) { }
 
-    this.itemsCollection = this.firestore.collection<Item>('clients');
-    this.clients$ = this.itemsCollection.valueChanges({ idField: 'clientID' });
+
+  ngOnInit(): void {
+    this.clientData.clients$.subscribe(changes => {
+      this.clients = changes;
+      //by default clients are displayed with descending client numbers -> newest client on top
+      this.generateTableData({ active: 'clientNumber', direction: 'desc' },'');
+    });
+  }
+
+  generateTableData(sorting: Sort, filter: string) {
+    this.tableClients = this.clients;
+    if (sorting) {
+      this.tableClients = this.sortClients(sorting);
+      this.table.renderRows();
+    }
   }
 
   
-  tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email'];
-  
+  sortClients(sortState: Sort) {
+    let prop = sortState.active;
+    let direction = sortState.direction;
+    return this.clients.sort((a, b) => {
+      return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
+    });
+  }
+
+
   // clients$: Observable<any[]>;
   // constructor(firestore: Firestore, public dialog: MatDialog) {
   //   const coll: any = collection(firestore, 'clients');
@@ -39,35 +65,24 @@ export class ClientOverviewComponent implements OnInit {
   //  )});
 
 
-    // const querySnapshot = await getDocs(collection(db, "cities"));
-    // querySnapshot.forEach((doc) => {
-    //   // doc.data() is never undefined for query doc snapshots
-    //   console.log(doc.id, " => ", doc.data());
-    // });
-
-    // const q = query(collection(firestore, "clients"));
-    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    //   console.log('updated clients', querySnapshot);
-    //   this.clients = clients;
-    // });
-
-
-  ngOnInit(): void {
-  }
-
 
   openAddClientDialog(): void {
     const addClientDialog = this.dialog.open(DialogAddClientComponent);
 
-    addClientDialog.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.client = result;
-    });
+    // addClientDialog.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.client = result;
+    // });
   }
 
 
+  /**
+  * show detailed data for selected row
+  * @param row 
+  */
   showRow(row: any) {
     console.log(row);
+    // to be completed
   }
 
 }
