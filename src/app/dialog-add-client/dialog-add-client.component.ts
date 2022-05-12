@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Client } from 'src/models/client.class';
-import { FormControl, NgForm, Validators } from '@angular/forms';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { ClientNumberService } from 'src/services/client-number.service';
 import { ClientDataService } from 'src/services/client-data.service';
 

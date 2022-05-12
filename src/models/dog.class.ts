@@ -1,5 +1,3 @@
-import { Client } from "./client.class";
-
 export class Dog{
     name: string;
     birthDate: number;

@@ -28,13 +28,17 @@ import { AngularFireModule } from '@angular/fire/compat';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.component';
+import { DialogAddDogComponent } from './dialog-add-dog/dialog-add-dog.component';
+import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 // import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientOverviewComponent,
-    DialogAddClientComponent
+    DialogAddClientComponent,
+    DialogAddDogComponent,
+    DogOverviewComponent
   ],
   imports: [
     BrowserModule,

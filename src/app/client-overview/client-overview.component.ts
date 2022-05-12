@@ -54,25 +54,8 @@ export class ClientOverviewComponent implements OnInit {
   }
 
 
-  // clients$: Observable<any[]>;
-  // constructor(firestore: Firestore, public dialog: MatDialog) {
-  //   const coll: any = collection(firestore, 'clients');
-  //   this.clients$ = collectionData(coll);
-  //   this.clients$.subscribe((clients) => {
-  //     clients.forEach((client)=>{
-  //       console.log('updated clients', client, 'id', client.idField); //id undefined
-  //     }
-  //  )});
-
-
-
   openAddClientDialog(): void {
     const addClientDialog = this.dialog.open(DialogAddClientComponent);
-
-    // addClientDialog.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.client = result;
-    // });
   }
 
 
