@@ -30,14 +30,15 @@ mat-sidenav-container {
 }
 
 mat-sidenav-content {
+    height: calc(100vh - 64px);
+    overflow: hidden;
 
     .main {
         width: 100%;
-        height: calc(100vh - 64px);
+        max-height: 100%;
         display: flex;
         flex-direction: column;
-        flex-flow: column;
-        // overflow: hidden;
+        // flex-flow: column;
     }
 
     // .resizer {

@@ -1,13 +1,17 @@
 .header {
-    flex: 0 1 auto;
+    flex: none;
 }
 
 .table-container {
-    flex: 1 1 auto;
+    // padding:16px 0px;
+    display: block;
+    border:1px solid transparent;
+    height: calc(100vh - 64px - 48px - 3 * 16px);
     overflow: auto;
-    height: 100%;
 }
 
 table {
-    max-height: 100%;
+    // display:block;
+    // max-height: calc(100vh - 64px - 48px - 3 * 16px);
+    // overflow: auto;
 }
