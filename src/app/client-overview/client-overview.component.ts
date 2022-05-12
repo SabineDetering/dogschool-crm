@@ -32,7 +32,9 @@ export class ClientOverviewComponent implements OnInit {
     this.clientData.clients$.subscribe(changes => {
       this.clients = changes;
       //by default clients are displayed with descending client numbers -> newest client on top
-      this.generateTableData({ active: 'clientNumber', direction: 'desc' },'');
+      if (this.clients.length > 0) {
+        this.generateTableData({ active: 'clientNumber', direction: 'desc' }, '');
+      }
     });
   }
 

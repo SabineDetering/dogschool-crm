@@ -1,1 +1,116 @@
-<p>dialog-add-dog works!</p>
+<h2 mat-dialog-title>Add new dog</h2>
+
+<mat-dialog-content>
+    <form #addDogForm="ngForm">
+        <div class="dialog-container form-group">
+
+            <!-- name & birthdate -->
+            <div class="full-width d-flex g-16 ">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input [(ngModel)]="dog.name" name="name" #name="ngModel" matInput required>
+                    <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+                        Please enter a name
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Birthdate</mat-label>
+                    <input [matDatepicker]="picker" [(ngModel)]="dog.birthDate" name="birthDate" #birthDate="ngModel"
+                        matInput [max]="today">
+                    <mat-hint>MM/DD/YYYY (estimate if unknown)</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+            <!-- breed -->
+            <div>
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Breed</mat-label>
+                    <input matInput [(ngModel)]="dog.breed" name="breed" #breed="ngModel" required>
+                    <mat-error *ngIf="breed.invalid && (breed.dirty || breed.touched)">
+                        Please enter a breed (or mix)
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- color& chip number -->
+            <div class="full-width d-flex g-16 justify-between mb-16">
+                <div>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Color</mat-label>
+                        <input matInput [(ngModel)]="dog.color" name="color" #color="ngModel">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Chip-Number</mat-label>
+                        <input matInput pattern="\d{15}" [(ngModel)]="dog.chipNumber" name="chipNumber"
+                            #chipNumber="ngModel">
+                        <mat-error *ngIf="chipNumber.invalid && (chipNumber.dirty || chipNumber.touched)">
+                            Chip number must consist of 15 digits
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <!-- gender & castration -->
+            <div class="full-width d-flex g-16 justify-between mb-16">
+                <div class="d-flex flex-column">
+                    <mat-label id="gender-label">Gender</mat-label>
+                    <mat-radio-group aria-labelledby="gender-label" [(ngModel)]="dog.gender" name="gender"
+                        #gender="ngModel" required>
+                        <mat-radio-button>male</mat-radio-button>
+                        <mat-radio-button>female</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="d-flex flex-column">
+                    <mat-label>Castration</mat-label>
+                    <mat-radio-group [(ngModel)]="dog.castrated" name="castrated" #castrated="ngModel">
+                        <mat-radio-button value="false">intact</mat-radio-button>
+                        <mat-radio-button value="true">castrated</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+
+            <!-- owner -->
+            <mat-form-field appearance="fill">
+                <mat-label>Owner</mat-label>
+                <mat-select [(ngModel)]="owner1" name="owner">
+                    <input (keyup)="applyFilter($event)">
+                    <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
+                        {{client.firstName}} {{client.lastName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button *ngIf="!twoOwners" mat-mini-fab color="primary" title="Add 2. owner" (click)="addOwner2()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <mat-form-field *ngIf="twoOwners" appearance="fill">
+                <mat-label>Second owner</mat-label>
+                <mat-select [(ngModel)]="owner2" name="owner">
+                    <input (keyup)="applyFilter($event)">
+                    <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
+                        {{client.firstName}} {{client.lastName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- notes -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Notes</mat-label>
+                <textarea matInput class="form-control" [(ngModel)]="dog.notes" name="notes" #notes="ngModel"
+                    cdkTextareaAutosize placeholder="Notes on health topics, major issues, legal conditions,...">
+                </textarea>
+            </mat-form-field>
+
+        </div>
+    </form>
+
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button mat-dialog-close (click)="saveDog()">Save</button>
+    </mat-dialog-actions>
+
+
+</mat-dialog-content>

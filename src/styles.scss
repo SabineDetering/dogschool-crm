@@ -58,6 +58,9 @@ body {
 .d-flex {
   display: flex !important;
 }
+.flex-column{
+  flex-direction: column;
+}
 
 .justify-between {
   justify-content: space-between;

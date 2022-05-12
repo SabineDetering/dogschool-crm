@@ -5,7 +5,7 @@
     </button>
 </div>
 
-<div class="table-container mat-elevation-z8 mt-16 mb-16  ">
+<div *ngIf="tableClients.length>0" class="table-container mat-elevation-z8 mt-16 mb-16  ">
     <table mat-table matSort (matSortChange)="generateTableData($event,'')" [dataSource]="tableClients"
         class="full-width">
 

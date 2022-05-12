@@ -4,6 +4,7 @@
     <form #addClientForm="ngForm">
         <div class="dialog-container form-group">
 
+            <!-- names -->
             <div class="full-width d-flex g-16 ">
                 <mat-form-field appearance="outline">
                     <mat-label>Firstname</mat-label>
@@ -21,6 +22,7 @@
                 </mat-form-field>
             </div>
 
+            <!-- mobile phone number & whatsApp -->
             <div class="d-flex g-16 align-center">
                 <p class="mt-8">Mobile Phone Number</p>
                 <mat-checkbox [(ngModel)]="client.whatsApp" name="whatsApp">uses WhatsApp</mat-checkbox>
@@ -47,6 +49,7 @@
                 </mat-form-field>
             </div>
 
+            <!-- landline phone number -->
             <p class="mt-8">Landline Phone Number</p>
             <div class="full-width d-flex g-16 align-center ">
                 <mat-form-field style="width: 100px;" appearance="outline">
@@ -70,7 +73,7 @@
                 </mat-form-field>
             </div>
 
-
+            <!-- email   -->
             <div>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Email</mat-label>
@@ -81,7 +84,8 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-
+            
+            <!-- address -->
             <div>
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Street + House Number</mat-label>
@@ -106,7 +110,7 @@
 
     <mat-dialog-actions>
         <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button mat-dialog-close (click)="saveClient()" [disabled]="!addClientForm.valid" >Save</button>
+        <button mat-button mat-dialog-close (click)="saveClient()" [disabled]="!addClientForm.valid">Save</button>
     </mat-dialog-actions>
 
 

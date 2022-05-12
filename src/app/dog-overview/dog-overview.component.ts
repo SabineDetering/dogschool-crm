@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { toUnicode } from 'punycode';
 import { Dog } from 'src/models/dog.class';
 import { DogDataService } from 'src/services/dog-data.service';
 import { DialogAddDogComponent } from '../dialog-add-dog/dialog-add-dog.component';
@@ -18,6 +19,7 @@ export class DogOverviewComponent implements OnInit {
   dog = new Dog;
   dogs: any[];
   tableDogs = [];
+  today = new Date();
 
   tableColumns = ['name', 'breed', 'age', 'owner'];
 
@@ -26,8 +28,11 @@ export class DogOverviewComponent implements OnInit {
   ngOnInit(): void {
     this.dogData.dogs$.subscribe(changes => {
       this.dogs = changes;
+      this.dogs.forEach((dog: any) => dog.age = this.today.getTime() - this.dog.birthDate.getTime())
       //by default clients are displayed with descending client numbers -> newest client on top
-      this.generateTableData({ active: 'name', direction: 'asc' }, '');
+      if (this.dogs.length > 0) {
+        this.generateTableData({ active: 'name', direction: 'asc' }, '');
+      }
     });
   }
 

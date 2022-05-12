@@ -1,0 +1,5 @@
+.table-container {
+    border: 1px solid transparent;
+    max-height: calc(100vh - 64px - 48px - 3 * 16px);
+    overflow: auto;
+}
