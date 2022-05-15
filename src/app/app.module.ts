@@ -18,7 +18,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
@@ -35,6 +34,7 @@ import { ClientOverviewComponent } from './client-overview/client-overview.compo
 import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.component';
 import { DialogAddDogComponent } from './dialog-add-dog/dialog-add-dog.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [

@@ -19,7 +19,6 @@ export class DogOverviewComponent implements OnInit {
   dog = new Dog;
   dogs: any[];
   tableDogs = [];
-  today = new Date();
 
   tableColumns = ['name', 'breed', 'age', 'owner'];
 
@@ -28,8 +27,13 @@ export class DogOverviewComponent implements OnInit {
   ngOnInit(): void {
     this.dogData.dogs$.subscribe(changes => {
       this.dogs = changes;
-      this.dogs.forEach((dog: any) => dog.age = this.today.getTime() - this.dog.birthDate.getTime())
-      //by default clients are displayed with descending client numbers -> newest client on top
+      for (let i = 0; i < this.dogs.length; i++) {
+        const dog = this.dogs[i];
+        console.log('now', Date.now(), 'birthDate', dog.birthDate);
+        // let birthDate = new Date('2022-04-09');
+        dog.age = Math.round((Date.now() - dog.birthDate.getTime()) / 1000 / 60 / 60 / 24 / 365.25 * 10) / 10;
+      }
+      //by default dogs are displayed with ascending dog names
       if (this.dogs.length > 0) {
         this.generateTableData({ active: 'name', direction: 'asc' }, '');
       }

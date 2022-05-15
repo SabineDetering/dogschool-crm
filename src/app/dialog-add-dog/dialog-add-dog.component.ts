@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Dog } from 'src/models/dog.class';
 import { ClientDataService } from 'src/services/client-data.service';
 import { DogDataService } from 'src/services/dog-data.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-add-dog',
@@ -13,6 +14,7 @@ import { DogDataService } from 'src/services/dog-data.service';
 export class DialogAddDogComponent implements OnInit {
 
   public dog = new Dog();
+  public birthDate: Date;
   public owner1: string;
   public owner2: string;
   public twoOwners = false;
@@ -43,6 +45,10 @@ export class DialogAddDogComponent implements OnInit {
 
 
   saveDog() {
+    console.log(this.birthDate);
+    // if (this.birthDate) {
+    //   this.dog.birthDate = this.birthDate.getTime();
+    // }
     if (this.owner1) {
       this.dog.owners.push(this.owner1);
     }
@@ -50,6 +56,7 @@ export class DialogAddDogComponent implements OnInit {
       this.dog.owners.push(this.owner2);
     }
     this.dogData.saveDog(this.dog.toJSON());
+    console.log(this.dog);
   }
 
 
