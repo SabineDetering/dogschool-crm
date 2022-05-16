@@ -38,6 +38,7 @@ import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.
 import { DialogAddDogComponent } from './dialog-add-dog/dialog-add-dog.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.componen
     DialogAddClientComponent,
     DialogAddDogComponent,
     DogOverviewComponent,
-    PrivacyNoticeComponent
+    PrivacyNoticeComponent,
+    LegalNoticeComponent
   ],
   imports: [
     BrowserModule,
