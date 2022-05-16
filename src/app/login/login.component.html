@@ -1,0 +1,22 @@
+<div *ngIf="myAuth.auth.user | async as user; else showLogin">
+    <h1>Hello {{ user }}!</h1>
+    <button (click)="logout()">Logout</button>
+</div>
+<ng-template #showLogin>
+    <p>Please login.</p>
+   <form  #loginForm="ngForm">
+        <input type="email" autocomplete="username" name="email" id="loginEmail" [(ngModel)]="email">
+        <input type="password"  autocomplete="current-password" name="password" id="loginPassword" [(ngModel)]="password">
+        <button (click)="login()">Login </button>
+    </form>
+    <p>Please register.</p>
+    <form #signupForm="ngForm">
+        <input type="email"  autocomplete="username" name="email" id="signinEmail" [(ngModel)]="email">
+        <input type="password"   autocomplete="new-password" name="password" id="signinPassword" [(ngModel)]="password">
+        <button (click)="signup()">Register </button>
+    </form>
+
+    <label>Login as guest</label>
+    <input type="checkbox" name="guest" id="guestLogin">
+    <button (click)="guestLogin()">Signin as guest </button>
+</ng-template>

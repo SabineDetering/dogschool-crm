@@ -49,7 +49,12 @@
                 <mat-icon matListIcon> receipt_long </mat-icon>
                 <span> Legal </span>
             </mat-list-item>
-        </mat-nav-list>
+            <mat-divider></mat-divider>
+            <mat-list-item (click)="logout()">
+                <mat-icon matListIcon> logout </mat-icon>
+                <span> Logout </span>
+            </mat-list-item>
+        </mat-nav-list>  
     </mat-sidenav>
     <mat-sidenav-content class="d-flex">
 

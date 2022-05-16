@@ -23,6 +23,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -30,8 +31,9 @@ import { environment } from '../environments/environment';
 // import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
-// import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
+// import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.component';
@@ -39,6 +41,7 @@ import { DialogAddDogComponent } from './dialog-add-dog/dialog-add-dog.component
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
     DialogAddDogComponent,
     DogOverviewComponent,
     PrivacyNoticeComponent,
-    LegalNoticeComponent
+    LegalNoticeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -72,14 +76,23 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
     MatFormFieldModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatDividerModule,
+    
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
     // AngularFireAuth,
-    // provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase())
-    // provideStorage(() => getStorage()),
+    provideDatabase(() => getDatabase()),
+    provideAuth(() => getAuth()),
+    // NgxAuthFirebaseUIModule.forRoot({
+    //   apiKey: 'AIzaSyDQ0ZYkHfJIVpKqY4vcA8vSkH7FDmXwFY0',
+    //   authDomain: 'dogschool-crm.firebaseapp.com',
+    //   databaseURL: 'https://dogschool-crm-default-rtdb.europe-west1.firebasedatabase.app',
+    //   projectId: 'dogschool-crm',
+    //   storageBucket: 'dogschool-crm.appspot.com',
+    //   messagingSenderId: '760137668035'
+    // })
   ],
   providers: [],
   bootstrap: [AppComponent]

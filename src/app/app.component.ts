@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { AuthenticationService } from 'src/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +13,8 @@ export class AppComponent {
 
   darkMode = false;
 
+  constructor(public myAuth:AuthenticationService){}
 
-  // toggleMode() {
-  //   if (this.mode == 'dark') {
-  //     this.mode = 'light';
-  //     document.body.classList.add('dark-mode');
-  //   } else {
-  //     this.mode = 'dark';
-  //     document.body.classList.remove('dark-mode');
-  //   }
-  // }
   toggleMode(state: MatSlideToggleChange) {
     if (state.checked) {
       this.darkMode = true;
@@ -30,5 +23,10 @@ export class AppComponent {
       this.darkMode = false;
       document.body.classList.remove('dark-mode');
    }
+  }
+
+
+  logout() {
+    this.myAuth.logout();
   }
 }
