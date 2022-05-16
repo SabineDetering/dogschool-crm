@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class DialogAddDogComponent implements OnInit {
 
   public dog = new Dog();
-  public birthDate: Date;
+  public birthDateInput: Date;
   public owner1: string;
   public owner2: string;
   public twoOwners = false;
@@ -45,10 +45,10 @@ export class DialogAddDogComponent implements OnInit {
 
 
   saveDog() {
-    console.log(this.birthDate);
-    // if (this.birthDate) {
-    //   this.dog.birthDate = this.birthDate.getTime();
-    // }
+    console.log(this.birthDateInput);
+    if (this.birthDateInput) {
+      this.dog.birthDate = this.birthDateInput.getTime();
+    }
     if (this.owner1) {
       this.dog.owners.push(this.owner1);
     }

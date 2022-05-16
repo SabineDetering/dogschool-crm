@@ -15,7 +15,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Birthdate</mat-label>
-                    <input [matDatepicker]="picker" [(ngModel)]="dog.birthDate" name="birthDate" #birthDate="ngModel" matInput
+                    <input [matDatepicker]="picker" [(ngModel)]="birthDateInput" name="birthDate" #birthDate="ngModel" matInput
                         [max]="today">
                     <mat-hint>MM/DD/YYYY (estimate if unknown)</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

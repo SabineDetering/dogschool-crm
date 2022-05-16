@@ -22,19 +22,22 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-// import { provideAuth, getAuth } from '@angular/fire/auth';
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
+// import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.component';
 import { DialogAddDogComponent } from './dialog-add-dog/dialog-add-dog.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ClientOverviewComponent,
     DialogAddClientComponent,
     DialogAddDogComponent,
-    DogOverviewComponent
+    DogOverviewComponent,
+    PrivacyNoticeComponent
   ],
   imports: [
     BrowserModule,
@@ -70,8 +74,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireAuth,
     // provideAuth(() => getAuth()),
-    // provideDatabase(() => getDatabase()),
+    provideDatabase(() => getDatabase())
     // provideStorage(() => getStorage()),
   ],
   providers: [],

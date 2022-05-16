@@ -1,6 +1,6 @@
 export class Dog{
     name: string;
-    birthDate: Date;
+    birthDate: number;
     chipNumber: string;
     color: string;
     gender: string;

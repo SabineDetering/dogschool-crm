@@ -30,8 +30,7 @@ export class DogOverviewComponent implements OnInit {
       for (let i = 0; i < this.dogs.length; i++) {
         const dog = this.dogs[i];
         console.log('now', Date.now(), 'birthDate', dog.birthDate);
-        // let birthDate = new Date('2022-04-09');
-        dog.age = Math.round((Date.now() - dog.birthDate.getTime()) / 1000 / 60 / 60 / 24 / 365.25 * 10) / 10;
+        dog.age = Math.round((Date.now() - dog.birthDate) / 1000 / 60 / 60 / 24 / 365.25 * 10) / 10;
       }
       //by default dogs are displayed with ascending dog names
       if (this.dogs.length > 0) {
