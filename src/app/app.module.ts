@@ -44,6 +44,7 @@ import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from 'src/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { LoginComponent } from './login/login.component';
     // })
   ],
   providers: [
-    { provide: PERSISTENCE, useValue: 'session' }
+    { provide: PERSISTENCE, useValue: 'session' },
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

@@ -9,12 +9,12 @@ import firebase from 'firebase/compat/app';
 })
 export class AuthenticationService  {
 
-  constructor(public auth: AngularFireAuth, private route: Router) { }
+  constructor(public auth: AngularFireAuth, private router: Router) { }
 
 
   signup(email, password) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => { this.route.navigate(['/clients']); })
+      .then(() => { this.router.navigate(['/clients']); })
       .catch((error)=> {
         // Handle Errors here.
         let errorCode = error.code;
@@ -32,7 +32,7 @@ export class AuthenticationService  {
 
   login(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => { this.route.navigate(['/clients']); })
+      .then(() => { this.router.navigate(['/clients']); })
       .catch(function (error) {
         // Handle Errors here.
         let errorCode = error.code;
@@ -49,7 +49,7 @@ export class AuthenticationService  {
 
   guestLogin() {
     firebase.auth().signInAnonymously()
-      .then(() => { this.route.navigate(['/clients']); });
+      .then(() => { this.router.navigate(['/clients']); });
   }
 
   logout() {

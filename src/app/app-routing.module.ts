@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from 'src/services/auth-guard.service';
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
@@ -9,8 +10,8 @@ import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.componen
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'clients', component: ClientOverviewComponent },
-  { path: 'dogs', component: DogOverviewComponent },
+  { path: 'clients', component: ClientOverviewComponent, canActivate: [AuthGuardService] },
+  { path: 'dogs', component: DogOverviewComponent, canActivate: [AuthGuardService] },
 
   { path: 'legal-notice', component: LegalNoticeComponent },
   { path: 'privacy-notice', component: PrivacyNoticeComponent }
