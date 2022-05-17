@@ -20,7 +20,8 @@ export class DialogAddDogComponent implements OnInit {
   public twoOwners = false;
   public today = new Date();
   public clients: any[];
-  public filteredClients: any[];
+  public filteredClients_1: any[];
+  public filteredClients_2: any[];
 
 
   constructor(public addDogDialogRef: MatDialogRef<DialogAddDogComponent>,
@@ -29,13 +30,14 @@ export class DialogAddDogComponent implements OnInit {
   ngOnInit(): void {
     this.clientData.clients$.subscribe(changes => {
       this.clients = changes;
-      this.filteredClients = this.clients;
+      this.filteredClients_1 = this.clients;
+      this.filteredClients_2 = this.clients;
     });
   }
 
-  applyFilter(event: Event) {
+  applyFilter(index,event: Event) {
     let filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.filteredClients = this.clients.filter(client =>
+    this['filteredClients_'+index] = this.clients.filter(client =>
       (client.firstName.toLowerCase().startsWith(filter)) || (client.lastName.toLowerCase().startsWith(filter)));
   }
 

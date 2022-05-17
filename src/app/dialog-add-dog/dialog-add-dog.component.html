@@ -15,8 +15,8 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                     <mat-label>Birthdate</mat-label>
-                    <input [matDatepicker]="picker" [(ngModel)]="birthDateInput" name="birthDate" #birthDate="ngModel" matInput
-                        [max]="today">
+                    <input [matDatepicker]="picker" [(ngModel)]="birthDateInput" name="birthDate" #birthDate="ngModel"
+                        matInput [max]="today">
                     <mat-hint>MM/DD/YYYY (estimate if unknown)</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker startView="year"></mat-datepicker>
@@ -31,6 +31,33 @@
                     <mat-error *ngIf="breed.invalid && (breed.dirty || breed.touched)">
                         Please enter a breed (or mix)
                     </mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- owner -->
+            <div class="full-width d-flex g-16  mb-16" [class.justify-between]="twoOwners">
+                <mat-form-field appearance="fill">
+                    <mat-label>Owner</mat-label>
+                    <mat-select [(ngModel)]="owner1" name="owner" required>
+                        <input class="full-width p-16" (keyup)="applyFilter(1,$event)">
+                        <mat-option *ngFor="let client of filteredClients_1" [value]="client.clientID">
+                            {{client.firstName}} {{client.lastName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button *ngIf="!twoOwners" mat-mini-fab color="primary" title="Add 2. owner" (click)="addOwner2()">
+                    <mat-icon>add</mat-icon>
+                </button>
+
+                <mat-form-field *ngIf="twoOwners" appearance="fill">
+                    <mat-label>Second owner</mat-label>
+                    <mat-select [(ngModel)]="owner2" name="owner2">
+                        <input  class="full-width p-16" (keyup)="applyFilter(2,$event)">
+                        <mat-option *ngFor="let client of filteredClients_2" [value]="client.clientID">
+                            {{client.firstName}} {{client.lastName}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
 
@@ -73,28 +100,8 @@
                 </div>
             </div>
 
-            <!-- owner -->
-            <mat-form-field appearance="fill">
-                <mat-label>Owner</mat-label>
-                <mat-select [(ngModel)]="owner1" name="owner">
-                    <input (keyup)="applyFilter($event)">
-                    <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
-                        {{client.firstName}} {{client.lastName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-            <button *ngIf="!twoOwners" mat-mini-fab color="primary" title="Add 2. owner" (click)="addOwner2()">
-                <mat-icon>add</mat-icon>
-            </button>
-            <mat-form-field *ngIf="twoOwners" appearance="fill">
-                <mat-label>Second owner</mat-label>
-                <mat-select [(ngModel)]="owner2" name="owner">
-                    <input (keyup)="applyFilter($event)">
-                    <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
-                        {{client.firstName}} {{client.lastName}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+
+
 
             <!-- notes -->
             <mat-form-field appearance="outline" class="full-width">
@@ -109,7 +116,7 @@
 
     <mat-dialog-actions>
         <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button mat-dialog-close (click)="saveDog()">Save</button>
+        <button mat-button mat-dialog-close [disabled]="!addDogForm.valid" (click)="saveDog()">Save</button>
     </mat-dialog-actions>
 
 
