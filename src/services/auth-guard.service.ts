@@ -11,8 +11,8 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.myAuth.auth.user) {
-      console.log('access allowed');
+    if (this.myAuth.userID) {
+      console.log('access allowed',this.myAuth.userID);
       return true;
     } else {
       console.log('access denied');

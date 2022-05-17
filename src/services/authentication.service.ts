@@ -7,15 +7,20 @@ import firebase from 'firebase/compat/app';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService  {
+export class AuthenticationService {
+
+  userID: string;
 
   constructor(public auth: AngularFireAuth, private router: Router) { }
 
 
   signup(email, password) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(() => { this.router.navigate(['/clients']); })
-      .catch((error)=> {
+      .then((user) => {
+        this.router.navigate(['/clients']);
+        this.userID = user.user.uid;
+      })
+      .catch((error) => {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
@@ -25,35 +30,43 @@ export class AuthenticationService  {
           alert(errorMessage);
         }
         console.log(error);
-      });   
+      })
+      ;
 
   }
 
 
   login(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(() => { this.router.navigate(['/clients']); })
-      .catch(function (error) {
-        // Handle Errors here.
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        if (errorCode === 'auth/wrong-password') {
-          alert('Wrong password.');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
+      .then((user) => {
+        this.router.navigate(['/clients']);
+        this.userID = user.user.uid;
       })
+      .catch (function (error) {
+          // Handle Errors here.
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+        })
   }
 
 
   guestLogin() {
     firebase.auth().signInAnonymously()
-      .then(() => { this.router.navigate(['/clients']); });
+      .then((user) => {
+        this.router.navigate(['/clients']);
+        this.userID = user.user.uid;
+      });
   }
 
   logout() {
     this.auth.signOut();
+    this.userID = '';
   }
 
 }
