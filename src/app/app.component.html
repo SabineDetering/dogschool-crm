@@ -60,10 +60,9 @@
                 </mat-list-item>
             </ng-container>
 
-
-
             <mat-divider></mat-divider>
-            <mat-list-item (click)="logout()">
+
+            <mat-list-item (click)="logout()" [routerLink]="'/login'">
                 <mat-icon matListIcon> logout </mat-icon>
                 <span> Logout </span>
             </mat-list-item>

@@ -8,6 +8,7 @@ import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.componen
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'clients', component: ClientOverviewComponent },
   { path: 'dogs', component: DogOverviewComponent },
 

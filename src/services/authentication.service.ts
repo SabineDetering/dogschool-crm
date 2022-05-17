@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
@@ -6,15 +7,15 @@ import firebase from 'firebase/compat/app';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService  {
 
+  constructor(public auth: AngularFireAuth, private route: Router) { }
 
-  constructor(public auth: AngularFireAuth) {
-  }
 
   signup(email, password) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .catch(function (error) {
+      .then(() => { this.route.navigate(['/clients']); })
+      .catch((error)=> {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
@@ -24,22 +25,31 @@ export class AuthenticationService {
           alert(errorMessage);
         }
         console.log(error);
-      });
+      });   
+
   }
 
 
-  login(email,password) {
+  login(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(() => { this.route.navigate(['/clients']); })
       .catch(function (error) {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
+        if (errorCode === 'auth/wrong-password') {
+          alert('Wrong password.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
       })
   }
 
 
   guestLogin() {
-    firebase.auth().signInAnonymously();
+    firebase.auth().signInAnonymously()
+      .then(() => { this.route.navigate(['/clients']); });
   }
 
   logout() {

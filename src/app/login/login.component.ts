@@ -11,27 +11,31 @@ export class LoginComponent implements OnInit {
 
   email: string;
   password: string;
+  userID: string;
 
   constructor(public myAuth:AuthenticationService) {
   }
 
 
   ngOnInit(): void {
+    
   }
-
 
 
   login() {
-    this.myAuth.login(this.email,this.password)
+    this.myAuth.login(this.email, this.password);    
   }
+
 
   signup() {
-    this.myAuth.signup(this.email, this.password)
+    this.myAuth.signup(this.email, this.password);
   }
 
+
   guestLogin() {
-    this.myAuth.guestLogin()
+    this.myAuth.guestLogin();
   }
+
 
   logout() {
     this.myAuth.logout();

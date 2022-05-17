@@ -35,6 +35,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 // import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
+import { PERSISTENCE } from '@angular/fire/compat/auth';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.component';
@@ -96,7 +97,9 @@ import { LoginComponent } from './login/login.component';
     //   messagingSenderId: '760137668035'
     // })
   ],
-  providers: [],
+  providers: [
+    { provide: PERSISTENCE, useValue: 'session' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
