@@ -10,6 +10,7 @@ import { AuthenticationService } from 'src/services/authentication.service';
 export class AppComponent {
   title = 'dogschool-crm';
   mode: string = 'dark';
+  subItems = false;
 
   darkMode = false;
 
@@ -23,6 +24,10 @@ export class AppComponent {
       this.darkMode = false;
       document.body.classList.remove('dark-mode');
    }
+  }
+
+  toggleSubItems() {
+    this.subItems = !this.subItems;
   }
 
 
