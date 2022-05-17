@@ -34,7 +34,8 @@ export class DogOverviewComponent implements OnInit {
       }
       //by default dogs are displayed with ascending dog names
       if (this.dogs.length > 0) {
-        this.generateTableData({ active: 'name', direction: 'asc' }, '');
+        // not possible to use generateTableData because renderRows is not accepted onInit
+        this.tableDogs = this.sortDogs({ active: 'name', direction: 'asc' });
       }
     });
   }

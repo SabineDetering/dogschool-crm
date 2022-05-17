@@ -13,7 +13,7 @@ import { MatTable } from '@angular/material/table';
   templateUrl: './client-overview.component.html',
   styleUrls: ['./client-overview.component.scss']
 })
-  
+
 
 export class ClientOverviewComponent implements OnInit {
 
@@ -25,7 +25,9 @@ export class ClientOverviewComponent implements OnInit {
 
   tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email'];
 
-  constructor(public dialog: MatDialog, public clientData: ClientDataService) { }
+  constructor(public dialog: MatDialog, public clientData: ClientDataService) {
+
+  }
 
 
   ngOnInit(): void {
@@ -33,20 +35,27 @@ export class ClientOverviewComponent implements OnInit {
       this.clients = changes;
       //by default clients are displayed with descending client numbers -> newest client on top
       if (this.clients.length > 0) {
-        this.generateTableData({ active: 'clientNumber', direction: 'desc' }, '');
+        // not possible to use generateTableData because renderRows is not accepted onInit
+        this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
       }
     });
   }
 
+
+  ngAfterViewInit(): void {
+  }
+
+
   generateTableData(sorting: Sort, filter: string) {
-    this.tableClients = this.clients;
     if (sorting) {
       this.tableClients = this.sortClients(sorting);
       this.table.renderRows();
+    } else {
+      this.tableClients = this.clients;
     }
   }
 
-  
+
   sortClients(sortState: Sort) {
     let prop = sortState.active;
     let direction = sortState.direction;
