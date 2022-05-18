@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { toUnicode } from 'punycode';
 import { Dog } from 'src/models/dog.class';
+import { ClientDataService } from 'src/services/client-data.service';
 import { DogDataService } from 'src/services/dog-data.service';
 import { DialogAddDogComponent } from '../dialog-add-dog/dialog-add-dog.component';
 
@@ -16,21 +16,32 @@ export class DogOverviewComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
 
-  dog = new Dog;
+  dog :Dog;
   dogs: any[];
+  clients: any[];
   tableDogs = [];
 
-  tableColumns = ['name', 'breed', 'age', 'owner'];
+  tableColumns = ['name', 'breed', 'age', 'owner1', 'owner2'];
 
-  constructor(public dialog: MatDialog, public dogData: DogDataService) { }
+  constructor(public dialog: MatDialog, public dogData: DogDataService, public clientData:ClientDataService) { }
 
   ngOnInit(): void {
+    this.clientData.clients$.subscribe(changes => {
+      this.clients = changes;
+      console.log(this.clients);
+    });
+
     this.dogData.dogs$.subscribe(changes => {
       this.dogs = changes;
       for (let i = 0; i < this.dogs.length; i++) {
         const dog = this.dogs[i];
-        console.log('now', Date.now(), 'birthDate', dog.birthDate);
-        dog.age = Math.round((Date.now() - dog.birthDate) / 1000 / 60 / 60 / 24 / 365.25 * 10) / 10;
+        //calculate age in years
+        if (dog.birthDate) {
+          dog.age = Math.round((Date.now() - dog.birthDate) / 1000 / 60 / 60 / 24 / 365.25 * 10) / 10;
+        }
+        dog.ownerData1 = this.clients.find(client => client.clientID == dog.owners[0]);
+        dog.ownerData2 = this.clients.find(client => client.clientID == dog.owners[1]);
+        console.log(dog);
       }
       //by default dogs are displayed with ascending dog names
       if (this.dogs.length > 0) {

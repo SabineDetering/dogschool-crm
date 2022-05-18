@@ -1,6 +1,7 @@
 export class Dog{
     name: string;
     birthDate: number;
+    age: number;
     chipNumber: string;
     color: string;
     gender: string;
@@ -13,6 +14,7 @@ export class Dog{
     constructor(obj?: any) {
         this.name = obj ? obj.name : '';
         this.birthDate = obj ? obj.birthDate : '';
+        this.age = obj ? obj.age : '';
         this.chipNumber = obj ? obj.chipNumber : '';
         this.color = obj ? obj.color : '';
         this.gender = obj ? obj.gender : '';
@@ -26,6 +28,7 @@ export class Dog{
         return {
             name: this.name,
             birthDate: this.birthDate,
+            age:this.age,
             chipNumber: this.chipNumber,
             color: this.color,
             gender: this.gender,

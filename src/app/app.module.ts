@@ -101,7 +101,7 @@ import { AuthGuardService } from 'src/services/auth-guard.service';
     // })
   ],
   providers: [
-    { provide: PERSISTENCE, useValue: 'session' },
+    { provide: PERSISTENCE, useValue: 'local' },
     AuthGuardService
   ],
   bootstrap: [AppComponent]
