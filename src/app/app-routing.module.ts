@@ -10,8 +10,8 @@ import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.componen
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'clients', component: ClientOverviewComponent, canActivate: [AuthGuardService] },
-  { path: 'dogs', component: DogOverviewComponent, canActivate: [AuthGuardService] },
+  { path: 'clients', component: ClientOverviewComponent, /*canActivate: [AuthGuardService] */},
+{ path: 'dogs', component: DogOverviewComponent, /*canActivate: [AuthGuardService]*/ },
 
   { path: 'legal-notice', component: LegalNoticeComponent },
   { path: 'privacy-notice', component: PrivacyNoticeComponent }

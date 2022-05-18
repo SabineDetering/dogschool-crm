@@ -1,3 +1,5 @@
+import { Dog } from "./dog.class";
+
 export class Client{
     clientNumber: number;
     firstName: string;
@@ -9,7 +11,9 @@ export class Client{
     landlinePhone: { areaCode: string, number: string };
     mobilePhone: { areaCode: string, number: string };
     whatsApp: boolean;
-    dogs: string[];
+    dogIds: string[];
+    dogData: Dog[];
+    clientID: string;
 
 
     constructor(obj?: any) {
@@ -23,7 +27,7 @@ export class Client{
         this.landlinePhone = obj ? obj.landlinePhone : { areaCode: '', number: '' };
         this.mobilePhone = obj ? obj.mobilePhone : { areaCode: '', number: '' };
         this.whatsApp = obj ? obj.whatsApp : false;
-        this.dogs = obj ? obj.dogs : '';
+        this.dogIds = obj ? obj.dogIds : '';
     }
 
     toJSON() {
@@ -38,7 +42,7 @@ export class Client{
             landlinePhone: this.landlinePhone,
             mobilePhone: this.mobilePhone,
             whatsApp: this.whatsApp,
-            dogs: this.dogs
+            dogIds: this.dogIds
         }
     }
 

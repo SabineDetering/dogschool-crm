@@ -7,6 +7,10 @@ import { ClientDataService } from 'src/services/client-data.service';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 
+class ClientWithId extends Client {
+  clientId: string;
+}
+
 
 @Component({
   selector: 'app-client-overview',
@@ -14,44 +18,36 @@ import { MatTable } from '@angular/material/table';
   styleUrls: ['./client-overview.component.scss']
 })
 
-
 export class ClientOverviewComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
 
-  client = new Client;
-  clients: any[];
+  // client = new Client();
+  // clients: any[];
   tableClients = [];
 
   tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email'];
 
-  constructor(public dialog: MatDialog, public clientData: ClientDataService) {
-
-  }
+  constructor(public dialog: MatDialog, public clientData: ClientDataService) { }
 
 
   ngOnInit(): void {
-    this.clientData.clients$.subscribe(changes => {
-      this.clients = changes;
-      //by default clients are displayed with descending client numbers -> newest client on top
-      if (this.clients.length > 0) {
-        // not possible to use generateTableData because renderRows is not accepted onInit
-        this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
-      }
-    });
-  }
+    //by default clients are displayed with descending client numbers -> newest client on top
+    if (this.clientData.clients.length > 0) {
+      // not possible to use generateTableData because renderRows is not accepted onInit
+      this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
+    }
+  };
 
-
-  ngAfterViewInit(): void {
-  }
 
 
   generateTableData(sorting: Sort, filter: string) {
+      //filter to be added
     if (sorting) {
       this.tableClients = this.sortClients(sorting);
       this.table.renderRows();
     } else {
-      this.tableClients = this.clients;
+      this.tableClients = this.clientData.clients;
     }
   }
 
@@ -59,7 +55,7 @@ export class ClientOverviewComponent implements OnInit {
   sortClients(sortState: Sort) {
     let prop = sortState.active;
     let direction = sortState.direction;
-    return this.clients.sort((a, b) => {
+    return this.clientData.clients.sort((a, b) => {
       return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
     });
   }

@@ -2,10 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { ClientDataService } from 'src/services/client-data.service';
 import { DogDataService } from 'src/services/dog-data.service';
 import { DialogAddDogComponent } from '../dialog-add-dog/dialog-add-dog.component';
+
+
 
 @Component({
   selector: 'app-dog-overview',
@@ -16,40 +19,26 @@ export class DogOverviewComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
 
-  dog :Dog;
-  dogs: any[];
-  clients: any[];
-  tableDogs = [];
+  // dog: Dog;
+  // dogs: Dog[];
+  // clients: Client[];
+  tableDogs: Dog[];
 
   tableColumns = ['name', 'breed', 'age', 'owner1', 'owner2'];
 
-  constructor(public dialog: MatDialog, public dogData: DogDataService, public clientData:ClientDataService) { }
+  constructor(
+    public dialog: MatDialog,
+    public dogData: DogDataService,
+    public clientData: ClientDataService
+  ) { }
 
   ngOnInit(): void {
-    this.clientData.clients$.subscribe(changes => {
-      this.clients = changes;
-      console.log(this.clients);
-    });
-
-    this.dogData.dogs$.subscribe(changes => {
-      this.dogs = changes;
-      for (let i = 0; i < this.dogs.length; i++) {
-        const dog = this.dogs[i];
-        //calculate age in years
-        if (dog.birthDate) {
-          dog.age = Math.round((Date.now() - dog.birthDate) / 1000 / 60 / 60 / 24 / 365.25 * 10) / 10;
-        }
-        dog.ownerData1 = this.clients.find(client => client.clientID == dog.owners[0]);
-        dog.ownerData2 = this.clients.find(client => client.clientID == dog.owners[1]);
-        console.log(dog);
-      }
-      //by default dogs are displayed with ascending dog names
-      if (this.dogs.length > 0) {
-        // not possible to use generateTableData because renderRows is not accepted onInit
-        this.tableDogs = this.sortDogs({ active: 'name', direction: 'asc' });
-      }
-    });
-  }
+    //by default dogs are displayed with ascending dog names
+    if (this.dogData.dogs.length > 0) {
+      // not possible to use generateTableData because renderRows is not accepted onInit
+      this.tableDogs = this.sortDogs({ active: 'name', direction: 'asc' });
+    }
+  };
 
 
   openAddDogDialog() {
@@ -58,10 +47,13 @@ export class DogOverviewComponent implements OnInit {
 
 
   generateTableData(sorting: Sort, filter: string) {
-    this.tableDogs = this.dogs;
+    //filter to be added
     if (sorting) {
       this.tableDogs = this.sortDogs(sorting);
       this.table.renderRows();
+    }
+    else {
+      this.tableDogs = this.dogData.dogs;
     }
   }
 
@@ -69,7 +61,7 @@ export class DogOverviewComponent implements OnInit {
   sortDogs(sortState: Sort) {
     let prop = sortState.active;
     let direction = sortState.direction;
-    return this.dogs.sort((a, b) => {
+    return this.dogData.dogs.sort((a, b) => {
       return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
     });
   }
