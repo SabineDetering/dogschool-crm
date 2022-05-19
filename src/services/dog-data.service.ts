@@ -8,7 +8,7 @@ import { ClientDataService } from './client-data.service';
 @Injectable({
   providedIn: 'root'
 })
-export class DogDataService implements OnInit {
+export class DogDataService {
 
   private itemsCollection: AngularFirestoreCollection<Dog>;
   dogs$: Observable<Dog[]>;
@@ -18,9 +18,8 @@ export class DogDataService implements OnInit {
 
     this.itemsCollection = this.firestore.collection<Dog>('dogs');
     this.dogs$ = this.itemsCollection.valueChanges({ idField: 'dogID' });
-  }
 
-  ngOnInit(): void {
+
     this.dogs$.subscribe(changes => {
       this.dogs = changes.map(this.addClientData);
     });

@@ -9,7 +9,7 @@ import { Client } from "./client.class";
 //     name : any;
 // }
 
-export class Dog{
+export class Dog {
     name: string;
     birthDate: number;
     age: number;
@@ -24,8 +24,8 @@ export class Dog{
     dogID: string;
 
 
-    constructor(obj?: any) {
-        
+    constructor(obj?: any/*, private clientData: ClientDataService*/) {
+
         this.name = obj ? obj.name : '';
         this.birthDate = obj ? obj.birthDate : '';
         if (this.birthDate) {
@@ -36,7 +36,8 @@ export class Dog{
         this.gender = obj ? obj.gender : '';
         this.castrated = obj ? obj.zipCode : '';
         this.breed = obj ? obj.breed : '';
-        this.ownerIds = obj ? obj.ownerIds : '';       
+        this.ownerIds = obj ? obj.ownerIds : '';
+        // this.ownerData = this.clientData.clients;
         this.dogID = obj ? obj.dogID : '';
     }
 

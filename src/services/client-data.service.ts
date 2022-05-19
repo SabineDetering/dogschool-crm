@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ClientDataService implements OnInit {
+export class ClientDataService {
 
   private itemsCollection: AngularFirestoreCollection<Client>;
   private clients$: Observable<Client[]>;
@@ -17,15 +17,14 @@ export class ClientDataService implements OnInit {
 
     this.itemsCollection = this.firestore.collection<Client>('clients');
     this.clients$ = this.itemsCollection.valueChanges({ idField: 'clientID' });
-  }
 
-
-  ngOnInit(): void {
     this.clients$.subscribe(changes => {
-      this.clients = changes.map(c=> new Client(c));
-      console.log('clients',this.clients);
+      this.clients = changes.map(c => new Client(c));
+      console.log('clients', this.clients);
     });
   }
+
+
 
   saveClient(client) {
     this.itemsCollection.doc().set(client);
