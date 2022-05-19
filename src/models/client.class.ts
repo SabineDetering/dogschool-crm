@@ -28,6 +28,7 @@ export class Client{
         this.mobilePhone = obj ? obj.mobilePhone : { areaCode: '', number: '' };
         this.whatsApp = obj ? obj.whatsApp : false;
         this.dogIds = obj ? obj.dogIds : '';
+        this.clientID = obj ? obj.clientID : '';
     }
 
     toJSON() {

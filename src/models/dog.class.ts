@@ -24,7 +24,7 @@ export class Dog {
     dogID: string;
 
 
-    constructor(obj?: any/*, private clientData: ClientDataService*/) {
+    constructor(obj?: any) {
 
         this.name = obj ? obj.name : '';
         this.birthDate = obj ? obj.birthDate : '';
@@ -36,8 +36,9 @@ export class Dog {
         this.gender = obj ? obj.gender : '';
         this.castrated = obj ? obj.zipCode : '';
         this.breed = obj ? obj.breed : '';
-        this.ownerIds = obj ? obj.ownerIds : '';
-        // this.ownerData = this.clientData.clients;
+        this.notes = obj ? obj.notes : '';
+        this.ownerIds = obj ? obj.ownerIds : [];
+        this.ownerData = obj.ownerData ? obj.ownerData : [];
         this.dogID = obj ? obj.dogID : '';
     }
 

@@ -20,23 +20,29 @@ export class DialogAddDogComponent implements OnInit {
   public owner2: string;
   public twoOwners = false;
   public today = new Date();
-  // public clients: any[];
+  public clients: Client[];
   public filteredClients_1: Client[];
   public filteredClients_2: Client[];
 
 
-  constructor(public addDogDialogRef: MatDialogRef<DialogAddDogComponent>,
-    private dogData: DogDataService, public clientData: ClientDataService) { }
+  constructor(
+    public addDogDialogRef: MatDialogRef<DialogAddDogComponent>,
+    private dogData: DogDataService,
+    public clientData: ClientDataService) { }
 
   ngOnInit(): void {
-    this.filteredClients_1 = this.clientData.clients;
-    this.filteredClients_2 = this.clientData.clients;
+
+    this.clientData.clients$.subscribe(changes => {
+      this.clients = changes.map(c => new Client(c));
+      this.filteredClients_1 = this.clients;
+      this.filteredClients_2 = this.clients;
+    });
   };
 
 
   applyFilter(index, event: Event) {
     let filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this['filteredClients_' + index] = this.clientData.clients.filter(client =>
+    this['filteredClients_' + index] = this.clients.filter(client =>
       (client.firstName.toLowerCase().startsWith(filter)) || (client.lastName.toLowerCase().startsWith(filter)));
   }
 
@@ -50,9 +56,7 @@ export class DialogAddDogComponent implements OnInit {
     if (this.birthDateInput) {
       this.dog.birthDate = this.birthDateInput.getTime();
     }
-    if (this.owner1) {
-      this.dog.ownerIds.push(this.owner1);
-    }
+    this.dog.ownerIds.push(this.owner1);
     if (this.owner2) {
       this.dog.ownerIds.push(this.owner2);
     }

@@ -23,7 +23,7 @@ export class ClientOverviewComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
 
   // client = new Client();
-  // clients: any[];
+  clients: Client[];
   tableClients = [];
 
   tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email'];
@@ -32,22 +32,26 @@ export class ClientOverviewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //by default clients are displayed with descending client numbers -> newest client on top
-    if (this.clientData.clients.length > 0) {
-      // not possible to use generateTableData because renderRows is not accepted onInit
-      this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
-    }
+    this.clientData.clients$.subscribe(changes => {
+      this.clients = changes.map(c => new Client(c));
+      console.log('clients', this.clients);
+      //by default clients are displayed with descending client numbers -> newest client on top
+      if (this.clients.length > 0) {
+        // not possible to use generateTableData because renderRows is not accepted onInit
+        this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
+      }
+    });
   };
 
 
 
   generateTableData(sorting: Sort, filter: string) {
-      //filter to be added
+    //filter to be added
     if (sorting) {
       this.tableClients = this.sortClients(sorting);
       this.table.renderRows();
     } else {
-      this.tableClients = this.clientData.clients;
+      this.tableClients = this.clients;
     }
   }
 
@@ -55,7 +59,7 @@ export class ClientOverviewComponent implements OnInit {
   sortClients(sortState: Sort) {
     let prop = sortState.active;
     let direction = sortState.direction;
-    return this.clientData.clients.sort((a, b) => {
+    return this.clients.sort((a, b) => {
       return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
     });
   }

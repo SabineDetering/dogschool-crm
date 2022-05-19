@@ -25,7 +25,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatSelectFilterModule } from 'mat-select-filter';
 
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -82,7 +81,6 @@ import { AuthGuardService } from 'src/services/auth-guard.service';
     MatAutocompleteModule,
     MatDividerModule,
     MatExpansionModule,
-    MatSelectFilterModule,
 
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
