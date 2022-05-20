@@ -31,7 +31,7 @@
                 <mat-form-field style="width: 100px;" appearance="outline">
                     <mat-label>Mobile Area Code</mat-label>
                     <input matInput pattern="^0\d{2,5}" maxlength="6" [(ngModel)]="client.mobilePhone.areaCode"
-                        #mobileAreaCode="ngModel" name="mobileAreaCode">
+                        #mobileAreaCode="ngModel" name="mobileAreaCode" [required]="client.whatsApp">
                     <mat-hint>E.g.: 0174</mat-hint>
                     <mat-error *ngIf="mobileAreaCode.invalid && (mobileAreaCode.dirty || mobileAreaCode.touched)">
                         Please enter an area code with leading 0
@@ -41,7 +41,7 @@
                 <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Mobile Phone Number</mat-label>
                     <input matInput pattern="\d{5,10}" maxlength="10" [(ngModel)]="client.mobilePhone.number"
-                        #mobileNumber="ngModel" name="mobileNumber">
+                        #mobileNumber="ngModel" name="mobileNumber"  [required]="client.whatsApp">
                     <mat-hint>E.g.: 123456</mat-hint>
                     <mat-error *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)">
                         Please enter a phone number

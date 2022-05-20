@@ -25,16 +25,15 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-// import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
-// import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
@@ -81,22 +80,14 @@ import { AuthGuardService } from 'src/services/auth-guard.service';
     MatAutocompleteModule,
     MatDividerModule,
     MatExpansionModule,
+    MatTabsModule,
 
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
-    // AngularFireAuth,
     provideDatabase(() => getDatabase()),
     provideAuth(() => getAuth()),
-    // NgxAuthFirebaseUIModule.forRoot({
-    //   apiKey: 'AIzaSyDQ0ZYkHfJIVpKqY4vcA8vSkH7FDmXwFY0',
-    //   authDomain: 'dogschool-crm.firebaseapp.com',
-    //   databaseURL: 'https://dogschool-crm-default-rtdb.europe-west1.firebasedatabase.app',
-    //   projectId: 'dogschool-crm',
-    //   storageBucket: 'dogschool-crm.appspot.com',
-    //   messagingSenderId: '760137668035'
-    // })
   ],
   providers: [
     { provide: PERSISTENCE, useValue: 'local' },

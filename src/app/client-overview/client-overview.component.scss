@@ -2,4 +2,10 @@
     border: 1px solid transparent;
     max-height: calc(100vh - 64px - 48px - 3 * 16px);
     overflow: auto;
+
+    th.mat-header-cell,
+        td.mat-cell,
+        td.mat-footer-cell{
+            padding:4px;
+        }
 }

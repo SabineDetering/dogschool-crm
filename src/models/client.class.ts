@@ -11,8 +11,9 @@ export class Client{
     landlinePhone: { areaCode: string, number: string };
     mobilePhone: { areaCode: string, number: string };
     whatsApp: boolean;
-    dogIds: string[];
-    dogData: Dog[];
+    dogIds: string[];   // array of dog ids
+    dogData: Dog[];     // array of complete dog data
+    ownedDogs: string=''; //list of dog names as string
     clientID: string;
 
 

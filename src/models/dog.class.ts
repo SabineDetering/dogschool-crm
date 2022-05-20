@@ -20,7 +20,7 @@ export class Dog {
     breed: string;
     notes: string;
     ownerIds: string[];
-    ownerData: Client[];
+    ownerData: Client[]=[];
     dogID: string;
 
 
@@ -38,7 +38,7 @@ export class Dog {
         this.breed = obj ? obj.breed : '';
         this.notes = obj ? obj.notes : '';
         this.ownerIds = obj ? obj.ownerIds : [];
-        this.ownerData = obj.ownerData ? obj.ownerData : [];
+        // this.ownerData = obj.ownerData ? obj.ownerData : [];
         this.dogID = obj ? obj.dogID : '';
     }
 

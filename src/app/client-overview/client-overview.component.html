@@ -41,6 +41,11 @@
 
         <mat-text-column name="email"></mat-text-column>
 
+        <ng-container matColumnDef="ownedDogs">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Dogs </th>
+            <td mat-cell *matCellDef="let client"> {{client.ownedDogs}} </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="tableColumns;sticky: true"></tr>
         <tr mat-row (click)="showRow(row)" *matRowDef="let row; columns:tableColumns;"></tr>
  

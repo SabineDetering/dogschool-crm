@@ -2,10 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from 'src/models/client.class';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogAddClientComponent } from '../dialog-add-client/dialog-add-client.component';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { ClientDataService } from 'src/services/client-data.service';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { DogDataService } from 'src/services/dog-data.service';
+import { Dog } from 'src/models/dog.class';
 
 class ClientWithId extends Client {
   clientId: string;
@@ -25,15 +27,29 @@ export class ClientOverviewComponent implements OnInit {
   // client = new Client();
   clients: Client[];
   tableClients = [];
+  dogs: Dog[];
 
-  tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email'];
+  tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email', 'ownedDogs'];
 
-  constructor(public dialog: MatDialog, public clientData: ClientDataService) { }
+  constructor(public dialog: MatDialog, public clientData: ClientDataService, public dogData: DogDataService) { }
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+
+    this.dogs = await firstValueFrom(this.dogData.dogs$);
+    console.log('dogs for clients', this.dogs);
+
     this.clientData.clients$.subscribe(changes => {
       this.clients = changes.map(c => new Client(c));
+
+      this.clients.forEach(client => {
+        for (let i = 0; i < this.dogs.length; i++) {
+          let dog = this.dogs[i];
+          if (dog.ownerIds.includes(client.clientID)) {
+            client.ownedDogs += (client.ownedDogs.length > 0 ? ', ' : ' ') + dog.name;
+          }
+        }
+      });
       console.log('clients', this.clients);
       //by default clients are displayed with descending client numbers -> newest client on top
       if (this.clients.length > 0) {
