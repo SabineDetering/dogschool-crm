@@ -45,6 +45,7 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from 'src/services/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PrivacyNoticeComponent,
     LegalNoticeComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,

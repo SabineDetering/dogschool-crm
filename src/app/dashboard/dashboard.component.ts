@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   tableClients: Client[];
   tableDogs: Dog[];
 
-  clientTableColumns = ['clientNumber', 'firstName', 'lastName','missingProps'];
+  clientTableColumns = ['clientNumber', 'firstName', 'lastName', 'missingProps'];
   dogTableColumns = ['name', 'breed', 'owner1', 'missingProps'];
 
   constructor(public dogData: DogDataService,
@@ -31,30 +31,24 @@ export class DashboardComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-    // this.clientData.clients$.subscribe(changes => {
-    //   this.clients = changes.map(c => new Client(c));
-    // });
     this.clients = await firstValueFrom(this.clientData.clients$);
+    this.dogs = await firstValueFrom(this.dogData.dogs$);
 
-    this.dogData.dogs$.subscribe(changes => {
-      this.dogs = changes.map(d => new Dog(d));
-      this.dogs.forEach(dog => {
-        for (let i = 0; i < dog.ownerIds.length; i++) {
-          dog.ownerData.push(this.getClientById(dog.ownerIds[i]));
-        }
-      });
-
-      //select all clients with missing data
-      this.tableClients = this.clients.filter(client => this.getMissingClientProps(client).length > 0);
-      //select all dogs with missing data
-      this.tableDogs = this.dogs.filter(dog => this.getMissingDogProps(dog).length>0);
-    })
+    //select all clients with missing data
+    this.tableClients = this.clients.filter(client => this.getMissingClientProps(client).length > 0);
+    //select all dogs with missing data
+    this.tableDogs = this.dogs.filter(dog => this.getMissingDogProps(dog).length > 0);
   }
 
 
-
-  getClientById(id: string): Client {
-    return this.clients.find(client => client.clientID == id);
+  /**
+   * get firstname and lastname of clientID
+   * @param id - clientId
+   * @returns firstname and lastname of clientID
+   */
+  getClientNameById(id: string): string {
+    let client = this.clients.find(client => client.clientID == id)
+    return client.firstName + ' ' + client.lastName;
   }
 
 

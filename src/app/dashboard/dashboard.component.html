@@ -61,7 +61,7 @@
                 <ng-container matColumnDef="owner1">
                     <th mat-header-cell *matHeaderCellDef>Owner 1</th>
                     <td mat-cell *matCellDef="let dog">
-                        {{ dog.ownerData[0].firstName }} {{ dog.ownerData[0].lastName }}
+                        {{ getClientNameById(dog.ownerIds[0]) }}
                     </td>
                 </ng-container>
 
