@@ -46,7 +46,7 @@ export class ClientOverviewComponent implements OnInit {
         for (let i = 0; i < this.dogs.length; i++) {
           let dog = this.dogs[i];
           if (dog.ownerIds.includes(client.clientID)) {
-            client.ownedDogs += (client.ownedDogs.length > 0 ? ', ' : ' ') + dog.name;
+            client.ownedDogs += (client.ownedDogs.length > 0 ? ', ' : '') + dog.name;
           }
         }
       });

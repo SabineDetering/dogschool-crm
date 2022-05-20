@@ -14,7 +14,7 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
-                    <mat-label>Birthdate</mat-label>
+                    <mat-label>Date of birth</mat-label>
                     <input [matDatepicker]="picker" [(ngModel)]="birthDateInput" name="birthDate" #birthDate="ngModel"
                         matInput [max]="today">
                     <mat-hint>MM/DD/YYYY (estimate if unknown)</mat-hint>
@@ -90,6 +90,9 @@
                         <mat-radio-button value="male">male</mat-radio-button>
                         <mat-radio-button value="female">female</mat-radio-button>
                     </mat-radio-group>
+                    <mat-error *ngIf="gender.invalid ">
+                       Select the gender
+                    </mat-error>
                 </div>
                 <div class="d-flex flex-column">
                     <mat-label>Castration</mat-label>

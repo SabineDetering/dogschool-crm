@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from 'src/services/auth-guard.service';
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { LoginComponent } from './login/login.component';
@@ -9,6 +10,7 @@ import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.componen
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'clients', component: ClientOverviewComponent, /*canActivate: [AuthGuardService] */},
 { path: 'dogs', component: DogOverviewComponent, /*canActivate: [AuthGuardService]*/ },

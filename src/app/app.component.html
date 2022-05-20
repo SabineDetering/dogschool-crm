@@ -25,7 +25,7 @@
 <mat-sidenav-container hasBackdrop="false">
     <mat-sidenav #drawer mode="side" opened>
         <mat-nav-list>
-            <mat-list-item>
+            <mat-list-item [routerLink]="'/dashboard'">
                 <mat-icon matListIcon> dashboard </mat-icon>
                 <span> Dashboard </span>
             </mat-list-item>
@@ -44,6 +44,12 @@
             <mat-list-item>
                 <img class="svg-icon" src="assets/img/training.svg">
                 <span> Trainings </span>
+            </mat-list-item>
+            <mat-list-item [routerLink]="'/dogs'">
+                <mat-icon matListIcon >
+                    help
+                </mat-icon>
+                <span> Help </span>
             </mat-list-item>
 
 
