@@ -11,7 +11,6 @@ export class ClientDataService {
 
   private itemsCollection: AngularFirestoreCollection<Client>;
   public clients$: Observable<Client[]>;
-  // public clients: Client[];
 
   constructor(private readonly firestore: AngularFirestore) {
 

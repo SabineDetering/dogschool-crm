@@ -8,13 +8,15 @@ import { HelpComponent } from './help/help.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { LoginComponent } from './login/login.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
+import { TrainingOverviewComponent } from './training-overview/training-overview.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'clients', component: ClientOverviewComponent, /*canActivate: [AuthGuardService] */},
-{ path: 'dogs', component: DogOverviewComponent, /*canActivate: [AuthGuardService]*/ },
+  { path: 'dogs', component: DogOverviewComponent, /*canActivate: [AuthGuardService]*/ },
+  { path: 'trainings', component: TrainingOverviewComponent, /*canActivate: [AuthGuardService]*/ },
 
   { path: 'help', component: HelpComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },

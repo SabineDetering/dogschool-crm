@@ -46,6 +46,8 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from 'src/services/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HelpComponent } from './help/help.component';
+import { TrainingOverviewComponent } from './training-overview/training-overview.component';
+import { DialogAddTrainingComponent } from './dialog-add-training/dialog-add-training.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { HelpComponent } from './help/help.component';
     LegalNoticeComponent,
     LoginComponent,
     DashboardComponent,
-    HelpComponent
+    HelpComponent,
+    TrainingOverviewComponent,
+    DialogAddTrainingComponent
   ],
   imports: [
     BrowserModule,
