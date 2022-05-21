@@ -13,13 +13,15 @@
                         Please enter a name
                     </mat-error>
                 </mat-form-field>
+
                 <mat-form-field appearance="outline">
                     <mat-label>Date of birth</mat-label>
-                    <input [matDatepicker]="picker" [(ngModel)]="birthDateInput" name="birthDate" #birthDate="ngModel"
+                    <input matInput type="date" [(ngModel)]="birthDateInput" name="birthDate"  [max]="today">
+                    <!-- <input [matDatepicker]="picker" [(ngModel)]="birthDateInput" name="birthDate" #birthDate="ngModel"
                         matInput [max]="today">
                     <mat-hint>MM/DD/YYYY (estimate if unknown)</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker startView="year"></mat-datepicker>
+                    <mat-datepicker #picker startView="year"></mat-datepicker> -->
                 </mat-form-field>
             </div>
 

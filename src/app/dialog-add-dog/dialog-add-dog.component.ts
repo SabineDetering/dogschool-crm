@@ -54,7 +54,7 @@ export class DialogAddDogComponent implements OnInit {
   saveDog() {
     console.log(this.birthDateInput);
     if (this.birthDateInput) {
-      this.dog.birthDate = this.birthDateInput.getTime();
+      this.dog.birthDate = new Date(this.birthDateInput).getTime();
     }
     this.dog.ownerIds.push(this.owner1);
     if (this.owner2) {
