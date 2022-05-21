@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -99,7 +99,7 @@ import { DialogAddTrainingComponent } from './dialog-add-training/dialog-add-tra
   ],
   providers: [
     { provide: PERSISTENCE, useValue: 'local' },
-    AuthGuardService
+    AuthGuardService,{provide:LOCALE_ID,useValue:'de-de'}
   ],
   bootstrap: [AppComponent]
 })

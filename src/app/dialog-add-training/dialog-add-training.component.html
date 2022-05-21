@@ -6,7 +6,7 @@
 
             <!-- client -->
             <div class="full-width d-flex justify-between g-16  mb-16">
-                <mat-form-field appearance="fill">
+                <mat-form-field appearance="outline">
                     <mat-label>Owner</mat-label>
                     <mat-select [(ngModel)]="training.clientID" name="clientID" required
                         (selectionChange)="applyDogFilter()">
@@ -16,7 +16,8 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
+
+                <mat-form-field appearance="outline">
                     <mat-label>Dog</mat-label>
                     <mat-select [(ngModel)]="training.dogID" name="dogID" required>
                         <mat-option *ngFor="let dog of filteredDogs" [value]="dog.dogID">
@@ -24,31 +25,37 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-
             </div>
 
-            <!-- date -->
+            <!-- date & location-->
+            <div class="full-width d-flex justify-between g-16  mb-16">
+                <mat-form-field appearance="outline">
+                    <mat-label>Date & time </mat-label>
+                    <input matInput type="datetime-local" [(ngModel)]="training.date" name="hours" step="900" required>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Date & time </mat-label>
-                <input matInput type="datetime-local" [(ngModel)]="training.date" name="hours" step="900" required>
-            </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Location </mat-label>
+                    <input matInput [(ngModel)]="training.location" name="location" >
+                </mat-form-field>
+            </div>
 
             <!-- subject & topics -->
-            <mat-form-field appearance="fill">
-                <mat-label>Subject</mat-label>
-                <mat-select [(ngModel)]="training.subject" name="subject" required>
-                    <mat-option *ngFor="let subject of subjects" >
-                        {{ subject }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+            <div class="full-width d-flex justify-between g-16  mb-16">
+                <mat-form-field appearance="outline">
+                    <mat-label>Subject</mat-label>
+                    <mat-select [(ngModel)]="training.subject" name="subject" required>
+                        <mat-option *ngFor="let subject of subjects" value="{{ subject }}">
+                            {{ subject }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Main topics </mat-label>
-                <input matInput  [(ngModel)]="training.topics" name="topics" required>
-            </mat-form-field>
-
+                <mat-form-field appearance="outline">
+                    <mat-label>Main topics </mat-label>
+                    <input matInput [(ngModel)]="training.topics" name="topics" max-length="30" >
+                </mat-form-field>
+            </div>
 
             <!-- notes -->
             <mat-form-field appearance="outline" class="full-width">
@@ -60,7 +67,7 @@
 
             <!-- homework -->
             <mat-form-field appearance="outline" class="full-width">
-                <mat-label>Training Notes</mat-label>
+                <mat-label>Homework</mat-label>
                 <textarea matInput class="form-control" [(ngModel)]="training.homework" name="homework"
                     #homework="ngModel" cdkTextareaAutosize placeholder="Exercises, frequency,...">
                             </textarea>

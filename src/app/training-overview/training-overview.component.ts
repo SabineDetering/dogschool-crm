@@ -6,9 +6,7 @@ import { firstValueFrom } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
-import { ClientDataService } from 'src/services/client-data.service';
 import { DataService } from 'src/services/data.service';
-import { DogDataService } from 'src/services/dog-data.service';
 import { DialogAddTrainingComponent } from '../dialog-add-training/dialog-add-training.component';
 
 @Component({
@@ -26,9 +24,7 @@ export class TrainingOverviewComponent implements OnInit {
   trainings: Training[];
   tableTrainings: Training[];
 
-  tableColumns = [
-    // 'date', 'time', 'client', 'dog', 'subject', 'main topics'
-  ];
+  tableColumns = [ 'date', 'client', 'dog','location', 'subject', 'topics'  ];
 
   constructor(public dialog: MatDialog, public Data: DataService) { }
 
@@ -37,24 +33,15 @@ export class TrainingOverviewComponent implements OnInit {
 
     this.clients = await firstValueFrom(this.Data.clients$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
-    this.trainings = await firstValueFrom(this.Data.trainings$);
+    // this.trainings = await firstValueFrom(this.Data.trainings$);
 
-    this.Data.clients$.subscribe(changes => {
-      this.clients = changes.map(c => new Client(c));
-
-      this.clients.forEach(client => {
-        for (let i = 0; i < this.dogs.length; i++) {
-          let dog = this.dogs[i];
-          if (dog.ownerIds.includes(client.clientID)) {
-            client.ownedDogs += (client.ownedDogs.length > 0 ? ', ' : '') + dog.name;
-          }
-        }
-      });
-      console.log('clients', this.clients);
-      //by default clients are displayed with descending client numbers -> newest client on top
-      if (this.clients.length > 0) {
+    this.Data.trainings$.subscribe(changes => {
+      this.trainings = changes.map(t => new Training(t));
+     
+      //by default trainings are displayed with descending date -> newest training on top
+      if (this.trainings.length > 0) {
         // not possible to use generateTableData because renderRows is not accepted onInit
-        this.tableTrainings = this.sortTrainings({ active: 'clientNumber', direction: 'desc' });
+        this.tableTrainings = this.sortTrainings({ active: 'date', direction: 'desc' });
       }
     });
   };
@@ -78,6 +65,28 @@ export class TrainingOverviewComponent implements OnInit {
     return this.trainings.sort((a, b) => {
       return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
     });
+  }
+
+
+  /**
+   * get firstname and lastname of clientID
+   * @param id - clientId
+   * @returns firstname and lastname of clientID
+   */
+  getClientNameById(id: string): string {
+    let client = this.clients.find(client => client.clientID == id)
+    return client.firstName + ' ' + client.lastName;
+  }
+
+
+  /**
+   * get name of dogID
+   * @param id - dogId
+   * @returns name of dogID
+   */
+  getDogNameById(id: string): string {
+    let dog = this.dogs.find(dog => dog.dogID == id)
+    return dog.name;
   }
 
 
