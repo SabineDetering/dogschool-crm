@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
 
-  // dog: Dog;
   clients: Client[];
   dogs: Dog[];
   tableClients: Client[];

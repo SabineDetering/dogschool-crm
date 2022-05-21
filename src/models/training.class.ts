@@ -1,10 +1,8 @@
-import { Dog } from "./dog.class";
-
 export class Training {
     clientID: string;
     dogID: string;
-    date: number;
-    time: string;
+    date: Date;
+    // time: {hours:number,minutes:number};
     location: string;
     subject: string;
     topics: string;
@@ -16,7 +14,8 @@ export class Training {
         this.clientID = obj ? obj.clientID : '';
         this.dogID = obj ? obj.dogID : '';
         this.date = obj ? obj.date : '';
-        this.time = obj ? obj.time : '';
+        // this.time = obj ? obj.time : '';
+        this.location = obj ? obj.location : '';
         this.subject = obj ? obj.subject : '';
         this.topics = obj ? obj.topics : '';
         this.trainingNotes = obj ? obj.trainingNotes : '';
@@ -28,7 +27,7 @@ export class Training {
             clientID: this.clientID,
             dogID: this.dogID,
             date: this.date,
-            time: this.time,
+            // time: this.time,
             location: this.location,
             subject: this.subject,
             topics: this.topics,

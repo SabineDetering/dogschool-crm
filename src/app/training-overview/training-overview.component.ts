@@ -26,7 +26,9 @@ export class TrainingOverviewComponent implements OnInit {
   trainings: Training[];
   tableTrainings: Training[];
 
-  tableColumns = ['date', 'time', 'client', 'dog', 'subject', 'main topics'];
+  tableColumns = [
+    // 'date', 'time', 'client', 'dog', 'subject', 'main topics'
+  ];
 
   constructor(public dialog: MatDialog, public Data: DataService) { }
 
@@ -79,7 +81,7 @@ export class TrainingOverviewComponent implements OnInit {
   }
 
 
-  openAddClientDialog(): void {
+  openAddTrainingDialog(): void {
     const addTrainingDialog = this.dialog.open(DialogAddTrainingComponent);
   }
 

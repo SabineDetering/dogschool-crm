@@ -24,9 +24,6 @@ export class DialogAddClientComponent implements OnInit {
   ) { }
 
 
-  onNoClick(): void {
-    this.addClientDialogRef.close();
-  }
   ngOnInit(): void {
     this.availableClientNumber.availableNumber$.subscribe(changes => {
       this.availableNumber = changes.availableNumber;

@@ -1,13 +1,4 @@
-import { ClientDataService } from "src/services/client-data.service";
 import { Client } from "./client.class";
-
-// interface DogInterface {
-//     dogID: string;
-//     age: number;
-//     ownerData1: any;
-//     ownerData2: any;
-//     name : any;
-// }
 
 export class Dog {
     name: string;

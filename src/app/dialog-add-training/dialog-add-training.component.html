@@ -1,1 +1,78 @@
-<p>dialog-add-training works!</p>
+<h2 mat-dialog-title>Add new training</h2>
+
+<mat-dialog-content>
+    <form #addTrainingForm="ngForm">
+        <div class="dialog-container form-group">
+
+            <!-- client -->
+            <div class="full-width d-flex justify-between g-16  mb-16">
+                <mat-form-field appearance="fill">
+                    <mat-label>Owner</mat-label>
+                    <mat-select [(ngModel)]="training.clientID" name="clientID" required
+                        (selectionChange)="applyDogFilter()">
+                        <input class="full-width p-16" (keyup)="applyClientFilter($event)">
+                        <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
+                            {{client.firstName}} {{client.lastName}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Dog</mat-label>
+                    <mat-select [(ngModel)]="training.dogID" name="dogID" required>
+                        <mat-option *ngFor="let dog of filteredDogs" [value]="dog.dogID">
+                            {{dog.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+
+            <!-- date -->
+
+            <mat-form-field appearance="outline">
+                <mat-label>Date & time </mat-label>
+                <input matInput type="datetime-local" [(ngModel)]="training.date" name="hours" step="900" required>
+            </mat-form-field>
+
+            <!-- subject & topics -->
+            <mat-form-field appearance="fill">
+                <mat-label>Subject</mat-label>
+                <mat-select [(ngModel)]="training.subject" name="subject" required>
+                    <mat-option *ngFor="let subject of subjects" >
+                        {{ subject }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Main topics </mat-label>
+                <input matInput  [(ngModel)]="training.topics" name="topics" required>
+            </mat-form-field>
+
+
+            <!-- notes -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Training Notes</mat-label>
+                <textarea matInput class="form-control" [(ngModel)]="training.trainingNotes" name="notes"
+                    #notes="ngModel" cdkTextareaAutosize placeholder="Exercises, difficulties, success,...">
+                </textarea>
+            </mat-form-field>
+
+            <!-- homework -->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Training Notes</mat-label>
+                <textarea matInput class="form-control" [(ngModel)]="training.homework" name="homework"
+                    #homework="ngModel" cdkTextareaAutosize placeholder="Exercises, frequency,...">
+                            </textarea>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button mat-dialog-close [disabled]="!addTrainingForm.valid" (click)="saveTraining()">Save</button>
+    </mat-dialog-actions>
+
+
+</mat-dialog-content>
