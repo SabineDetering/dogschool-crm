@@ -35,10 +35,21 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                    <mat-label>Location </mat-label>
-                    <input matInput [(ngModel)]="training.location" name="location" >
+                    <mat-label>Duration</mat-label>
+                    <mat-select [(ngModel)]="training.duration" name="duration" required>
+                        <mat-option *ngFor="let duration of durationArray" value="{{ duration }}">
+                            {{ duration }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
+
+
+            <!--  location-->
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Location </mat-label>
+                <input matInput [(ngModel)]="training.location" name="location">
+            </mat-form-field>
 
             <!-- subject & topics -->
             <div class="full-width d-flex justify-between g-16  mb-16">
@@ -53,7 +64,7 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Main topics </mat-label>
-                    <input matInput [(ngModel)]="training.topics" name="topics" max-length="30" >
+                    <input matInput [(ngModel)]="training.topics" name="topics" max-length="30">
                 </mat-form-field>
             </div>
 

@@ -1,9 +1,10 @@
 export class Training {
     clientID: string;
     dogID: string;
-    date: Date;
+    date: string;
     // time: {hours:number,minutes:number};
     location: string;
+    duration: number;
     subject: string;
     topics: string;
     trainingNotes: string;
@@ -16,6 +17,7 @@ export class Training {
         this.date = obj ? obj.date : '';
         // this.time = obj ? obj.time : '';
         this.location = obj ? obj.location : '';
+        this.duration = obj ? obj.duration : '';
         this.subject = obj ? obj.subject : '';
         this.topics = obj ? obj.topics : '';
         this.trainingNotes = obj ? obj.trainingNotes : '';
@@ -29,6 +31,7 @@ export class Training {
             date: this.date,
             // time: this.time,
             location: this.location,
+            duration: this.duration,
             subject: this.subject,
             topics: this.topics,
             trainingNotes: this.trainingNotes,

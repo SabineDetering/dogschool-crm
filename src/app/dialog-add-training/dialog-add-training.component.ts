@@ -19,6 +19,7 @@ export class DialogAddTrainingComponent implements OnInit {
   public dogs: Dog[];
   public filteredDogs: Dog[];
   public subjects: string[];
+  public durationArray = [30, 45, 60, 90, 120];
 
   // public DateInput: Date;
   // public minHours: number;

@@ -24,7 +24,7 @@ export class TrainingOverviewComponent implements OnInit {
   trainings: Training[];
   tableTrainings: Training[];
 
-  tableColumns = [ 'date', 'client', 'dog','location', 'subject', 'topics'  ];
+  tableColumns = [ 'date','duration', 'client', 'dog','location', 'subject', 'topics'  ];
 
   constructor(public dialog: MatDialog, public Data: DataService) { }
 

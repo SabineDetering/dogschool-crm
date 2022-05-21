@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
+import { now } from 'moment';
 import { firstValueFrom } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
+import { Training } from 'src/models/training.class';
 import { ClientDataService } from 'src/services/client-data.service';
+import { DataService } from 'src/services/data.service';
 import { DogDataService } from 'src/services/dog-data.service';
 
 
@@ -17,22 +20,35 @@ export class DashboardComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
 
+  trainings: Training[];
   clients: Client[];
   dogs: Dog[];
+  upcomingTrainings: Training[];
   tableClients: Client[];
   tableDogs: Dog[];
+  now = new Date();
+  today = this.now.toISOString().slice(0, 10) + 'T00:00';
 
+  trainingTableColumns = ['date','duration', 'client', 'dog', 'location', 'subject'];
   clientTableColumns = ['clientNumber', 'firstName', 'lastName', 'missingProps'];
   dogTableColumns = ['name', 'breed', 'owner1', 'missingProps'];
 
-  constructor(public dogData: DogDataService,
-    public clientData: ClientDataService) { }
+  constructor(public Data: DataService) { }
 
   async ngOnInit(): Promise<void> {
 
-    this.clients = await firstValueFrom(this.clientData.clients$);
-    this.dogs = await firstValueFrom(this.dogData.dogs$);
+    this.trainings = await firstValueFrom(this.Data.trainings$);
+    this.clients = await firstValueFrom(this.Data.clients$);
+    this.dogs = await firstValueFrom(this.Data.dogs$);
 
+
+
+    //select upcoming trainings
+
+    console.log(this.now);
+    console.log(this.now.toISOString());
+    console.log(this.today);
+    this.upcomingTrainings = this.trainings.filter(training => training.date > this.today);
     //select all clients with missing data
     this.tableClients = this.clients.filter(client => this.getMissingClientProps(client).length > 0);
     //select all dogs with missing data
@@ -48,6 +64,17 @@ export class DashboardComponent implements OnInit {
   getClientNameById(id: string): string {
     let client = this.clients.find(client => client.clientID == id)
     return client.firstName + ' ' + client.lastName;
+  }
+
+
+  /**
+   * get name of dogID
+   * @param id - dogId
+   * @returns name of dogID
+   */
+  getDogNameById(id: string): string {
+    let dog = this.dogs.find(dog => dog.dogID == id)
+    return dog.name;
   }
 
 
