@@ -1,17 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from 'src/models/client.class';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogAddClientComponent } from '../dialog-add-client/dialog-add-client.component';
-import { firstValueFrom, Observable } from 'rxjs';
-import { ClientDataService } from 'src/services/client-data.service';
+import { firstValueFrom } from 'rxjs';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { DogDataService } from 'src/services/dog-data.service';
 import { Dog } from 'src/models/dog.class';
-
-class ClientWithId extends Client {
-  clientId: string;
-}
+import { DataService } from 'src/services/data.service';
 
 
 @Component({
@@ -24,22 +19,21 @@ export class ClientOverviewComponent implements OnInit {
 
   @ViewChild(MatTable) table: MatTable<any>;
 
-  // client = new Client();
   clients: Client[];
   tableClients = [];
   dogs: Dog[];
 
   tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email', 'ownedDogs'];
 
-  constructor(public dialog: MatDialog, public clientData: ClientDataService, public dogData: DogDataService) { }
+  constructor(public dialog: MatDialog, public Data: DataService) { }
 
 
   async ngOnInit(): Promise<void> {
 
-    this.dogs = await firstValueFrom(this.dogData.dogs$);
+    this.dogs = await firstValueFrom(this.Data.dogs$);
     console.log('dogs for clients', this.dogs);
 
-    this.clientData.clients$.subscribe(changes => {
+    this.Data.clients$.subscribe(changes => {
       this.clients = changes.map(c => new Client(c));
 
       this.clients.forEach(client => {

@@ -24,12 +24,14 @@ export class DashboardComponent implements OnInit {
   clients: Client[];
   dogs: Dog[];
   upcomingTrainings: Training[];
+  latestTrainings: Training[]=[];
   tableClients: Client[];
   tableDogs: Dog[];
   now = new Date();
-  today = this.now.toISOString().slice(0, 10) + 'T00:00';
+  today = new Date(this.now.toDateString()).getTime();//today at midnight
 
-  trainingTableColumns = ['date','duration', 'client', 'dog', 'location', 'subject'];
+  trainingTableColumns = ['date', 'duration', 'client', 'dog', 'location', 'subject'];
+  latestTableColumns = ['date', 'dog', 'client', 'subject','topics'];
   clientTableColumns = ['clientNumber', 'firstName', 'lastName', 'missingProps'];
   dogTableColumns = ['name', 'breed', 'owner1', 'missingProps'];
 
@@ -44,17 +46,30 @@ export class DashboardComponent implements OnInit {
 
 
     //select upcoming trainings
+    this.upcomingTrainings = this.trainings.filter(training => (training.date > this.today) && (training.date < this.today + 7 * 24 * 60 * 60 * 1000));
+    this.upcomingTrainings = this.sortJSONArray(this.upcomingTrainings, 'date', 'asc');
+    
+    //select latest scheduled training for each dog
+    for (let i = 0; i < this.dogs.length; i++) {
+      let dogTrainings = this.trainings.filter(training => this.dogs[i].dogID == training.dogID);
+      dogTrainings = this.sortJSONArray(dogTrainings, 'date', 'desc');
+      if (dogTrainings.length > 0) {
+        this.latestTrainings.push(dogTrainings[0]);
+      }     
+    }
+    console.log(this.latestTrainings);
+    
 
-    console.log(this.now);
-    console.log(this.now.toISOString());
-    console.log(this.today);
-    this.upcomingTrainings = this.trainings.filter(training => training.date > this.today);
     //select all clients with missing data
     this.tableClients = this.clients.filter(client => this.getMissingClientProps(client).length > 0);
     //select all dogs with missing data
     this.tableDogs = this.dogs.filter(dog => this.getMissingDogProps(dog).length > 0);
   }
 
+
+  render() {
+    this.table.renderRows();
+  }
 
   /**
    * get firstname and lastname of clientID
@@ -120,6 +135,13 @@ export class DashboardComponent implements OnInit {
     return missingProps;
   }
 
+
+
+  sortJSONArray(array: any[], prop: string, direction: 'desc' | 'asc') {
+    return array.sort((a, b) => {
+      return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
+    });
+  }
 
   /**
   * show detailed data for selected row

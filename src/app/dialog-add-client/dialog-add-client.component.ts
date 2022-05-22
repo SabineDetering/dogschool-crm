@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Client } from 'src/models/client.class';
-import { ClientNumberService } from 'src/services/client-number.service';
-import { ClientDataService } from 'src/services/client-data.service';
+import { DataService } from 'src/services/data.service';
 
 @Component({
   selector: 'app-dialog-add-client',
@@ -19,21 +18,20 @@ export class DialogAddClientComponent implements OnInit {
 
   constructor(
     public addClientDialogRef: MatDialogRef<DialogAddClientComponent>,
-    private clientData: ClientDataService,
-    private availableClientNumber: ClientNumberService
+    private Data: DataService
   ) { }
 
 
   ngOnInit(): void {
-    this.availableClientNumber.availableNumber$.subscribe(changes => {
+    this.Data.availableNumber$.subscribe(changes => {
       this.availableNumber = changes.availableNumber;
     });
   }
 
   saveClient() {
     this.client.clientNumber = this.availableNumber;
-    this.availableClientNumber.saveNumber(this.availableNumber+1);
-    this.clientData.saveClient(this.client.toJSON());
+    this.Data.saveNumber(this.availableNumber+1);
+    this.Data.saveClient(this.client.toJSON());
   }
 
 }

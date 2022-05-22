@@ -15,7 +15,6 @@ export interface Subjects { subjectList: string[]; }
 })
 export class DataService {
 
-
   private availableNumberCollection: AngularFirestoreCollection<AvailableNumberI>;
   availableNumber$: Observable<AvailableNumberI>;
 

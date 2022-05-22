@@ -31,7 +31,7 @@
             <div class="full-width d-flex justify-between g-16  mb-16">
                 <mat-form-field appearance="outline">
                     <mat-label>Date & time </mat-label>
-                    <input matInput type="datetime-local" [(ngModel)]="training.date" name="hours" step="900" required>
+                    <input matInput type="datetime-local" [(ngModel)]="dateInput" name="hours" [step] ="1800" required>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">

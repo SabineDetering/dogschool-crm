@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { Dog } from 'src/models/dog.class';
-import { ClientDataService } from 'src/services/client-data.service';
-import { DogDataService } from 'src/services/dog-data.service';
-import { NgForm } from '@angular/forms';
 import { Client } from 'src/models/client.class';
+import { DataService } from 'src/services/data.service';
 
 @Component({
   selector: 'app-dialog-add-dog',
   templateUrl: './dialog-add-dog.component.html',
   styleUrls: ['./dialog-add-dog.component.scss']
 })
+  
 export class DialogAddDogComponent implements OnInit {
 
   public dog = new Dog();
@@ -27,12 +25,12 @@ export class DialogAddDogComponent implements OnInit {
 
   constructor(
     public addDogDialogRef: MatDialogRef<DialogAddDogComponent>,
-    private dogData: DogDataService,
-    public clientData: ClientDataService) { }
+    private Data: DataService
+  ) { }
 
   ngOnInit(): void {
 
-    this.clientData.clients$.subscribe(changes => {
+    this.Data.clients$.subscribe(changes => {
       this.clients = changes.map(c => new Client(c));
       this.filteredClients_1 = this.clients;
       this.filteredClients_2 = this.clients;
@@ -46,6 +44,7 @@ export class DialogAddDogComponent implements OnInit {
       (client.firstName.toLowerCase().startsWith(filter)) || (client.lastName.toLowerCase().startsWith(filter)));
   }
 
+  
   addOwner2() {
     this.twoOwners = true;
   }
@@ -60,7 +59,7 @@ export class DialogAddDogComponent implements OnInit {
     if (this.owner2) {
       this.dog.ownerIds.push(this.owner2);
     }
-    this.dogData.saveDog(this.dog.toJSON());
+    this.Data.saveDog(this.dog.toJSON());
     console.log(this.dog);
   }
 

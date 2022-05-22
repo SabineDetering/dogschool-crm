@@ -2,11 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
-import { ClientDataService } from 'src/services/client-data.service';
-import { DogDataService } from 'src/services/dog-data.service';
+import { DataService } from 'src/services/data.service';
 import { DialogAddDogComponent } from '../dialog-add-dog/dialog-add-dog.component';
 
 
@@ -29,8 +28,7 @@ export class DogOverviewComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public dogData: DogDataService,
-    public clientData: ClientDataService
+    public Data: DataService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -38,10 +36,10 @@ export class DogOverviewComponent implements OnInit {
     // this.clientData.clients$.subscribe(changes => {
     //   this.clients = changes.map(c => new Client(c));
     // });
-    this.clients = await firstValueFrom(this.clientData.clients$);
+    this.clients = await firstValueFrom(this.Data.clients$);
     console.log('clients for dogs', this.clients);
 
-    this.dogData.dogs$.subscribe(changes => {
+    this.Data.dogs$.subscribe(changes => {
       this.dogs = changes.map(d => new Dog(d));
 
       this.dogs.forEach(dog => {

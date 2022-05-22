@@ -39,6 +39,7 @@ $dogschool-crm-dark-theme: mat.define-dark-theme((color: (primary: $dogschool-cr
 html {
   height: 100%;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {

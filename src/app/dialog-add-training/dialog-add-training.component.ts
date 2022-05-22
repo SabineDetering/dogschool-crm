@@ -20,11 +20,7 @@ export class DialogAddTrainingComponent implements OnInit {
   public filteredDogs: Dog[];
   public subjects: string[];
   public durationArray = [30, 45, 60, 90, 120];
-
-  // public DateInput: Date;
-  // public minHours: number;
-  // public maxHours: number;
-  // public minuteArray = ['00', '15', '30', '45'];
+  public dateInput: string;
 
 
   constructor(
@@ -54,11 +50,12 @@ export class DialogAddTrainingComponent implements OnInit {
   }
 
   applyDogFilter() {
-    this.filteredDogs = this.dogs.filter(dog => dog.ownerIds.includes(this.training.clientID));     
+    this.filteredDogs = this.dogs.filter(dog => dog.ownerIds.includes(this.training.clientID));
   }
 
 
   saveTraining() {
+    this.training.date = new Date(this.dateInput).getTime();
     console.log(this.training);
     this.Data.saveTraining(this.training.toJSON());
   }

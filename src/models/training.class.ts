@@ -1,7 +1,7 @@
 export class Training {
     clientID: string;
     dogID: string;
-    date: string;
+    date: number;
     // time: {hours:number,minutes:number};
     location: string;
     duration: number;
