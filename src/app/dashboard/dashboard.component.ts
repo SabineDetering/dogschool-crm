@@ -5,9 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
-import { ClientDataService } from 'src/services/client-data.service';
 import { DataService } from 'src/services/data.service';
-import { DogDataService } from 'src/services/dog-data.service';
 
 
 
