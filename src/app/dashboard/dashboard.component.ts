@@ -22,14 +22,14 @@ export class DashboardComponent implements OnInit {
   clients: Client[];
   dogs: Dog[];
   upcomingTrainings: Training[];
-  latestTrainings: Training[]=[];
+  latestTrainings: Training[] = [];
   tableClients: Client[];
   tableDogs: Dog[];
   now = new Date();
   today = new Date(this.now.toDateString()).getTime();//today at midnight
 
   trainingTableColumns = ['date', 'duration', 'client', 'dog', 'location', 'subject'];
-  latestTableColumns = ['date', 'dog', 'client', 'subject','topics'];
+  latestTableColumns = ['date', 'dog', 'client', 'subject', 'topics'];
   clientTableColumns = ['clientNumber', 'firstName', 'lastName', 'missingProps'];
   dogTableColumns = ['name', 'breed', 'owner1', 'missingProps'];
 
@@ -37,26 +37,29 @@ export class DashboardComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-    this.trainings = await firstValueFrom(this.Data.trainings$);
+    // this.trainings = await firstValueFrom(this.Data.trainings$);
     this.clients = await firstValueFrom(this.Data.clients$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
 
 
 
-    //select upcoming trainings
-    this.upcomingTrainings = this.trainings.filter(training => (training.date > this.today) && (training.date < this.today + 7 * 24 * 60 * 60 * 1000));
-    this.upcomingTrainings = this.sortJSONArray(this.upcomingTrainings, 'date', 'asc');
-    
-    //select latest scheduled training for each dog
-    for (let i = 0; i < this.dogs.length; i++) {
-      let dogTrainings = this.trainings.filter(training => this.dogs[i].dogID == training.dogID);
-      dogTrainings = this.sortJSONArray(dogTrainings, 'date', 'desc');
-      if (dogTrainings.length > 0) {
-        this.latestTrainings.push(dogTrainings[0]);
-      }     
-    }
-    console.log(this.latestTrainings);
-    
+    this.Data.trainings$.subscribe(changes => {
+      this.trainings = changes.map(t => new Training(t));
+
+      //select upcoming trainings
+      this.upcomingTrainings = this.trainings.filter(training => (training.date > this.today) && (training.date < this.today + 7 * 24 * 60 * 60 * 1000));
+      this.upcomingTrainings = this.sortJSONArray(this.upcomingTrainings, 'date', 'asc');
+
+      //select latest scheduled training for each dog
+      for (let i = 0; i < this.dogs.length; i++) {
+        let dogTrainings = this.trainings.filter(training => this.dogs[i].dogID == training.dogID);
+        dogTrainings = this.sortJSONArray(dogTrainings, 'date', 'desc');
+        if (dogTrainings.length > 0) {
+          this.latestTrainings.push(dogTrainings[0]);
+        }
+      }
+      console.log(this.latestTrainings);
+    });
 
     //select all clients with missing data
     this.tableClients = this.clients.filter(client => this.getMissingClientProps(client).length > 0);
