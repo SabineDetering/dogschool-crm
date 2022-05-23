@@ -81,6 +81,11 @@
                     </td>
                 </ng-container>
 
+                <ng-container matColumnDef="clientNumber">
+                    <th mat-header-cell *matHeaderCellDef>No. </th>
+                    <td mat-cell *matCellDef="let client"> {{client.clientNumber}} </td>
+                </ng-container>
+
                 <tr mat-header-row *matHeaderRowDef="latestTableColumns;sticky: true"></tr>
                 <tr mat-row (click)="showRow(row)" *matRowDef="let row; columns:latestTableColumns;"></tr>
 

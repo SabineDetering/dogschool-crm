@@ -48,6 +48,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HelpComponent } from './help/help.component';
 import { TrainingOverviewComponent } from './training-overview/training-overview.component';
 import { DialogAddTrainingComponent } from './dialog-add-training/dialog-add-training.component';
+import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
+import { SortJSONArrayPipe } from 'src/pipes/sort-jsonarray.pipe';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { DialogAddTrainingComponent } from './dialog-add-training/dialog-add-tra
     DashboardComponent,
     HelpComponent,
     TrainingOverviewComponent,
-    DialogAddTrainingComponent
+    DialogAddTrainingComponent,
+    SearchFilterPipe,
+    SortJSONArrayPipe
   ],
   imports: [
     BrowserModule,
