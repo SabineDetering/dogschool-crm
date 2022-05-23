@@ -22,6 +22,8 @@ export class ClientOverviewComponent implements OnInit {
   clients: Client[];
   tableClients = [];
   dogs: Dog[];
+  sortProp = 'clientNumber';
+  sortDir:string = 'desc';
 
   tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email', 'ownedDogs'];
 
@@ -48,31 +50,38 @@ export class ClientOverviewComponent implements OnInit {
       //by default clients are displayed with descending client numbers -> newest client on top
       if (this.clients.length > 0) {
         // not possible to use generateTableData because renderRows is not accepted onInit
-        this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
+        // this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
       }
     });
   };
 
 
 
-  generateTableData(sorting: Sort, filter: string) {
-    //filter to be added
-    if (sorting) {
-      this.tableClients = this.sortClients(sorting);
+  // generateTableData(sorting: Sort, filter: string) {
+  //   //filter to be added
+  //   if (sorting) {
+  //     this.tableClients = this.sortClients(sorting);
+  //     this.table.renderRows();
+  //   } else {
+  //     this.tableClients = this.clients;
+  //   }
+  // }
+
+
+  setSorting(sorting: Sort) {
+    this.sortProp = sorting.active;
+    this.sortDir = sorting.direction;
       this.table.renderRows();
-    } else {
-      this.tableClients = this.clients;
-    }
   }
 
 
-  sortClients(sortState: Sort) {
-    let prop = sortState.active;
-    let direction = sortState.direction;
-    return this.clients.sort((a, b) => {
-      return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
-    });
-  }
+  // sortClients(sortState: Sort) {
+  //   let prop = sortState.active;
+  //   let direction = sortState.direction;
+  //   return this.clients.sort((a, b) => {
+  //     return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
+  //   });
+  // }
 
 
   openAddClientDialog(): void {
