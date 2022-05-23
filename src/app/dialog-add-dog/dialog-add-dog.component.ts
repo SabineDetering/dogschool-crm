@@ -17,7 +17,7 @@ export class DialogAddDogComponent implements OnInit {
   public owner1: string;
   public owner2: string;
   public twoOwners = false;
-  public today = new Date();
+  public today = new Date().toISOString().slice(0,10);
   public clients: Client[];
   public filteredClients_1: Client[];
   public filteredClients_2: Client[];
