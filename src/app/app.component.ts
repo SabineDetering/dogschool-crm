@@ -36,11 +36,27 @@ export class AppComponent {
     this.subItems = !this.subItems;
   }
 
+
+  /**
+   * updates the filter string for the filter pipe 
+   */
   changeFilter() {
     this.filter.filterSource.next(this.searchString.trim().toLowerCase());
   }
 
 
+  /**
+   * empties the search field and updates the filter string for the filter pipe
+   */
+  deleteSearch() {
+    this.searchString = '';
+    this.changeFilter();
+  }
+
+
+  /**
+   * logout of the current user so that access is restricted to components without data
+   */
   logout() {
     this.myAuth.logout();
   }

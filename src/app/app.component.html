@@ -8,8 +8,11 @@
     <span class="spacer"></span>
 
     <div class="search">
-        <button class="material-icons">search</button>
+        <button class="material-icons" disabled>search</button>
         <input id="searchField" type="text" [(ngModel)]="searchString" placeholder="Search" (keyup)="changeFilter()">
+        <button class="material-icons" (click)="deleteSearch()" [disabled]="searchString.length==0">
+            <mat-icon>close</mat-icon>
+        </button>
     </div>
 
     <span class="spacer"></span>
@@ -43,12 +46,12 @@
                 <img class="svg-icon" src="assets/img/group.svg">
                 <span> Groups </span>
             </mat-list-item> -->
-            <mat-list-item  [routerLink]="'/trainings'">
+            <mat-list-item [routerLink]="'/trainings'">
                 <img class="svg-icon" src="assets/img/training.svg">
                 <span> Trainings </span>
             </mat-list-item>
             <mat-list-item [routerLink]="'/help'">
-                <mat-icon matListIcon >
+                <mat-icon matListIcon>
                     help
                 </mat-icon>
                 <span> Help </span>

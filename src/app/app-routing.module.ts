@@ -12,8 +12,8 @@ import { TrainingOverviewComponent } from './training-overview/training-overview
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent /*, canActivate: [AuthGuardService] */ },
   { path: 'clients', component: ClientOverviewComponent, /*canActivate: [AuthGuardService] */},
   { path: 'dogs', component: DogOverviewComponent, /*canActivate: [AuthGuardService]*/ },
   { path: 'trainings', component: TrainingOverviewComponent, /*canActivate: [AuthGuardService]*/ },

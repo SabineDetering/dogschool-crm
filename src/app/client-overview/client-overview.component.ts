@@ -21,8 +21,10 @@ export class ClientOverviewComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
 
   clients: Client[];
-  tableClients = [];
+  // tableClients = [];
   dogs: Dog[];
+  sorting: Sort = { active: 'clientNumber', direction: 'desc'
+};
   sortProp = 'clientNumber';
   sortDir: string = 'desc';
   searchString: string;
