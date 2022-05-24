@@ -6,6 +6,7 @@ import { firstValueFrom } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { DataService } from 'src/services/data.service';
+import { FilterStringService } from 'src/services/filter-string.service';
 import { DialogAddDogComponent } from '../dialog-add-dog/dialog-add-dog.component';
 
 
@@ -24,11 +25,16 @@ export class DogOverviewComponent implements OnInit {
   clients: Client[];
   tableDogs: Dog[];
 
+  sortProp = 'name';
+  sortDir: string = 'asc';
+  searchString: string;
+
   tableColumns = ['name', 'breed', 'age', 'owner1', 'owner2'];
 
   constructor(
     public dialog: MatDialog,
-    public Data: DataService
+    public Data: DataService,
+    public filter: FilterStringService
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -46,15 +52,22 @@ export class DogOverviewComponent implements OnInit {
         for (let i = 0; i < dog.ownerIds.length; i++) {
           dog.ownerData.push(this.getClientById(dog.ownerIds[i]));
         }
+        // });
+        // console.log('dogs', this.dogs);
+        // //by default dogs are displayed with ascending dog names
+        // if (this.dogs.length > 0) {
+        //   // not possible to use generateTableData because renderRows is not accepted onInit
+        //   this.tableDogs = this.sortDogs({ active: 'name', direction: 'asc' });
+        // }        
       });
-      console.log('dogs', this.dogs);
-      //by default dogs are displayed with ascending dog names
-      if (this.dogs.length > 0) {
-        // not possible to use generateTableData because renderRows is not accepted onInit
-        this.tableDogs = this.sortDogs({ active: 'name', direction: 'asc' });
-      }
     });
-  };
+
+
+    this.filter.filterSource.subscribe(val => {
+      this.searchString = val;
+      console.log('aktueller filter', this.searchString)
+    });
+  }
 
 
   getClientById(id: string): Client {
@@ -67,25 +80,32 @@ export class DogOverviewComponent implements OnInit {
   }
 
 
-  generateTableData(sorting: Sort, filter: string) {
-    //filter to be added
-    if (sorting) {
-      this.tableDogs = this.sortDogs(sorting);
-      this.table.renderRows();
-    }
-    else {
-      this.tableDogs = this.dogs;
-    }
+  setSorting(sorting: Sort) {
+    this.sortProp = sorting.active;
+    this.sortDir = sorting.direction;
+    this.table.renderRows();
   }
 
 
-  sortDogs(sortState: Sort) {
-    let prop = sortState.active;
-    let direction = sortState.direction;
-    return this.dogs.sort((a, b) => {
-      return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
-    });
-  }
+  // generateTableData(sorting: Sort, filter: string) {
+  //   //filter to be added
+  //   if (sorting) {
+  //     this.tableDogs = this.sortDogs(sorting);
+  //     this.table.renderRows();
+  //   }
+  //   else {
+  //     this.tableDogs = this.dogs;
+  //   }
+  // }
+
+
+  // sortDogs(sortState: Sort) {
+  //   let prop = sortState.active;
+  //   let direction = sortState.direction;
+  //   return this.dogs.sort((a, b) => {
+  //     return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
+  //   });
+  // }
 
 
   /**

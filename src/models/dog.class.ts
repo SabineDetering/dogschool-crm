@@ -25,7 +25,7 @@ export class Dog {
         this.chipNumber = obj ? obj.chipNumber : '';
         this.color = obj ? obj.color : '';
         this.gender = obj ? obj.gender : '';
-        this.castrated = obj ? obj.zipCode : '';
+        this.castrated = obj ? obj.castrated : '';
         this.breed = obj ? obj.breed : '';
         this.notes = obj ? obj.notes : '';
         this.ownerIds = obj ? obj.ownerIds : [];
