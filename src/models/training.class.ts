@@ -9,6 +9,8 @@ export class Training {
     topics: string;
     trainingNotes: string;
     homework: string;
+    clientName: string;
+    dogName: string;
 
 
     constructor(obj?: any) {

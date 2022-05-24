@@ -58,7 +58,6 @@ export class ClientOverviewComponent implements OnInit {
 
     this.filter.filterSource.subscribe(val => {
       this.searchString = val;
-      console.log('aktueller filter', this.searchString)
     });
   };
 

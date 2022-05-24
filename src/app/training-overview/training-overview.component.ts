@@ -7,6 +7,7 @@ import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { DataService } from 'src/services/data.service';
+import { FilterStringService } from 'src/services/filter-string.service';
 import { DialogAddTrainingComponent } from '../dialog-add-training/dialog-add-training.component';
 
 @Component({
@@ -22,11 +23,19 @@ export class TrainingOverviewComponent implements OnInit {
   clients: Client[];
   dogs: Dog[];
   trainings: Training[];
-  tableTrainings: Training[];
+  // tableTrainings: Training[];
 
-  tableColumns = [ 'date','duration', 'client', 'dog','location', 'subject', 'topics'  ];
+  sortProp = 'date';
+  sortDir: string = 'desc';
+  searchString: string;
 
-  constructor(public dialog: MatDialog, public Data: DataService) { }
+  tableColumns = ['date', 'duration', 'clientName', 'dogName', 'location', 'subject', 'topics'];
+
+  constructor(
+    public dialog: MatDialog,
+    public Data: DataService,
+    public filter: FilterStringService
+  ) { }
 
 
   async ngOnInit(): Promise<void> {
@@ -36,36 +45,50 @@ export class TrainingOverviewComponent implements OnInit {
     // this.trainings = await firstValueFrom(this.Data.trainings$);
 
     this.Data.trainings$.subscribe(changes => {
-      this.trainings = changes.map(t => new Training(t));
-     
+      this.trainings = changes.map(t => {
+        let training = new Training(t);
+        training.clientName = this.getClientNameById(training.clientID);
+        training.dogName = this.getDogNameById(training.dogID);
+        return training;
+      });
+
       //by default trainings are displayed with descending date -> newest training on top
-      if (this.trainings.length > 0) {
+      // if (this.trainings.length > 0) {
         // not possible to use generateTableData because renderRows is not accepted onInit
-        this.tableTrainings = this.sortTrainings({ active: 'date', direction: 'desc' });
-      }
+        // this.tableTrainings = this.sortTrainings({ active: 'date', direction: 'desc' });
+      // }
+    });
+
+    this.filter.filterSource.subscribe(val => {
+      this.searchString = val;
     });
   };
 
 
-
-  generateTableData(sorting: Sort, filter: string) {
-    //filter to be added
-    if (sorting) {
-      this.tableTrainings = this.sortTrainings(sorting);
-      this.table.renderRows();
-    } else {
-      this.tableTrainings = this.trainings;
-    }
+  setSorting(sorting: Sort) {
+    this.sortProp = sorting.active;
+    this.sortDir = sorting.direction;
+    this.table.renderRows();
   }
 
+  // generateTableData(sorting: Sort, filter: string) {
+  //   //filter to be added
+  //   if (sorting) {
+  //     this.tableTrainings = this.sortTrainings(sorting);
+  //     this.table.renderRows();
+  //   } else {
+  //     this.tableTrainings = this.trainings;
+  //   }
+  // }
 
-  sortTrainings(sortState: Sort) {
-    let prop = sortState.active;
-    let direction = sortState.direction;
-    return this.trainings.sort((a, b) => {
-      return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
-    });
-  }
+
+  // sortTrainings(sortState: Sort) {
+  //   let prop = sortState.active;
+  //   let direction = sortState.direction;
+  //   return this.trainings.sort((a, b) => {
+  //     return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
+  //   });
+  // }
 
 
   /**

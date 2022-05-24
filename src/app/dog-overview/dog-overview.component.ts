@@ -23,7 +23,7 @@ export class DogOverviewComponent implements OnInit {
   // dog: Dog;
   dogs: Dog[];
   clients: Client[];
-  tableDogs: Dog[];
+  // tableDogs: Dog[];
 
   sortProp = 'name';
   sortDir: string = 'asc';
@@ -65,7 +65,6 @@ export class DogOverviewComponent implements OnInit {
 
     this.filter.filterSource.subscribe(val => {
       this.searchString = val;
-      console.log('aktueller filter', this.searchString)
     });
   }
 
@@ -81,6 +80,7 @@ export class DogOverviewComponent implements OnInit {
 
 
   setSorting(sorting: Sort) {
+    console.log(sorting);
     this.sortProp = sorting.active;
     this.sortDir = sorting.direction;
     this.table.renderRows();
