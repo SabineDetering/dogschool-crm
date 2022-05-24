@@ -7,6 +7,7 @@ import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Dog } from 'src/models/dog.class';
 import { DataService } from 'src/services/data.service';
+import { FilterStringService } from 'src/services/filter-string.service';
 
 
 @Component({
@@ -23,11 +24,12 @@ export class ClientOverviewComponent implements OnInit {
   tableClients = [];
   dogs: Dog[];
   sortProp = 'clientNumber';
-  sortDir:string = 'desc';
+  sortDir: string = 'desc';
+  searchString: string;
 
   tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email', 'ownedDogs'];
 
-  constructor(public dialog: MatDialog, public Data: DataService) { }
+  constructor(public dialog: MatDialog, public Data: DataService, public filter: FilterStringService) { }
 
 
   async ngOnInit(): Promise<void> {
@@ -46,12 +48,17 @@ export class ClientOverviewComponent implements OnInit {
           }
         }
       });
-      console.log('clients', this.clients);
+      // console.log('clients', this.clients);
       //by default clients are displayed with descending client numbers -> newest client on top
-      if (this.clients.length > 0) {
-        // not possible to use generateTableData because renderRows is not accepted onInit
-        // this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
-      }
+      // if (this.clients.length > 0) {
+      // not possible to use generateTableData because renderRows is not accepted onInit
+      // this.tableClients = this.sortClients({ active: 'clientNumber', direction: 'desc' });
+      // }      
+    });
+
+    this.filter.filterSource.subscribe(val => {
+      this.searchString = val;
+      console.log('aktueller filter', this.searchString)
     });
   };
 
@@ -71,7 +78,7 @@ export class ClientOverviewComponent implements OnInit {
   setSorting(sorting: Sort) {
     this.sortProp = sorting.active;
     this.sortDir = sorting.direction;
-      this.table.renderRows();
+    this.table.renderRows();
   }
 
 

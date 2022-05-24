@@ -10,6 +10,13 @@
 
 .search {
     display: flex;
+
+}
+
+#searchField {
+    min-width: 120px;
+    width: 50vw;
+    max-width: 300px;
 }
 
 .mode-toggle {

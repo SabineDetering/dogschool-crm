@@ -6,17 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SortJSONArrayPipe implements PipeTransform {
 
   transform(array: any[], prop: string, direction: string): any[] {
-    return array.sort((a, b) => {
-      return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
-    });
+    if (array) {
+      return array.sort((a, b) => {
+        return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
+      });
+    } else {
+      return []
+    }
   }
-
-
-
-  // sortJSONArray(array: any[], prop: string, direction: 'desc' | 'asc') {
-  //   return array.sort((a, b) => {
-  //     return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
-  //   });
-  // }
 
 }
