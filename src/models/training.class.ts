@@ -11,6 +11,7 @@ export class Training {
     homework: string;
     clientName: string;
     dogName: string;
+    trainingID: string;
 
 
     constructor(obj?: any) {
@@ -24,6 +25,7 @@ export class Training {
         this.topics = obj ? obj.topics : '';
         this.trainingNotes = obj ? obj.trainingNotes : '';
         this.homework = obj ? obj.homework : '';
+        this.trainingID = obj ? obj.trainingID : '';
     }
 
     toJSON() {

@@ -50,6 +50,7 @@ import { TrainingOverviewComponent } from './training-overview/training-overview
 import { DialogAddTrainingComponent } from './dialog-add-training/dialog-add-training.component';
 import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
 import { SortJSONArrayPipe } from 'src/pipes/sort-jsonarray.pipe';
+import { TrainingDetailsComponent } from './training-details/training-details.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { SortJSONArrayPipe } from 'src/pipes/sort-jsonarray.pipe';
     TrainingOverviewComponent,
     DialogAddTrainingComponent,
     SearchFilterPipe,
-    SortJSONArrayPipe
+    SortJSONArrayPipe,
+    TrainingDetailsComponent
   ],
   imports: [
     BrowserModule,
