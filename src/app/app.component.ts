@@ -36,6 +36,14 @@ export class AppComponent {
     this.subItems = !this.subItems;
   }
 
+  
+  /**
+   * hides second level nav items
+   */
+  closeSubItems() {
+    this.subItems = false;
+  }
+
 
   /**
    * updates the filter string for the filter pipe 

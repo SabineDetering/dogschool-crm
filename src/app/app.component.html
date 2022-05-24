@@ -30,15 +30,15 @@
 <mat-sidenav-container hasBackdrop="false">
     <mat-sidenav #drawer mode="side" opened>
         <mat-nav-list>
-            <mat-list-item [routerLink]="'/dashboard'">
+            <mat-list-item [routerLink]="'/dashboard'" (click)="closeSubItems()">
                 <mat-icon matListIcon> dashboard </mat-icon>
                 <span> Dashboard </span>
             </mat-list-item>
-            <mat-list-item [routerLink]="'/clients'">
+            <mat-list-item [routerLink]="'/clients'" (click)="closeSubItems()">
                 <mat-icon matListIcon> person </mat-icon>
                 <span> Clients </span>
             </mat-list-item>
-            <mat-list-item [routerLink]="'/dogs'">
+            <mat-list-item [routerLink]="'/dogs'" (click)="closeSubItems()">
                 <mat-icon matListIcon> pets </mat-icon>
                 <span> Dogs </span>
             </mat-list-item>
@@ -46,11 +46,11 @@
                 <img class="svg-icon" src="assets/img/group.svg">
                 <span> Groups </span>
             </mat-list-item> -->
-            <mat-list-item [routerLink]="'/trainings'">
+            <mat-list-item [routerLink]="'/trainings'" (click)="closeSubItems()">
                 <img class="svg-icon" src="assets/img/training.svg">
                 <span> Trainings </span>
             </mat-list-item>
-            <mat-list-item [routerLink]="'/help'">
+            <mat-list-item [routerLink]="'/help'" (click)="closeSubItems()">
                 <mat-icon matListIcon>
                     help
                 </mat-icon>
@@ -63,17 +63,17 @@
                 <span> Legal </span>
             </mat-list-item>
             <ng-container *ngIf="subItems">
-                <mat-list-item (click)="toggleSubItems()" [routerLink]="'/legal-notice'">
+                <mat-list-item (click)="closeSubItems()" [routerLink]="'/legal-notice'">
                     <span class="ml-32"> Legal Notice </span>
                 </mat-list-item>
-                <mat-list-item (click)="toggleSubItems()" [routerLink]="'/privacy-notice'">
+                <mat-list-item (click)="closeSubItems()" [routerLink]="'/privacy-notice'">
                     <span class="ml-32"> Privacy Notice </span>
                 </mat-list-item>
             </ng-container>
 
             <mat-divider></mat-divider>
 
-            <mat-list-item (click)="logout()" [routerLink]="'/login'">
+            <mat-list-item (click)="logout()" [routerLink]="'/login'" (click)="closeSubItems()">
                 <mat-icon matListIcon> logout </mat-icon>
                 <span> Logout </span>
             </mat-list-item>
