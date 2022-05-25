@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'dogs', component: DogOverviewComponent, /*canActivate: [AuthGuardService]*/ },
   { path: 'trainings', component: TrainingOverviewComponent, /*canActivate: [AuthGuardService]*/ },
 
-  { path: 'training/:trainingId', component: TrainingDetailsComponent },
+  { path: 'training/:trainingID', component: TrainingDetailsComponent },
 
   { path: 'help', component: HelpComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },

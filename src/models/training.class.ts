@@ -1,3 +1,6 @@
+import { Client } from "./client.class";
+import { Dog } from "./dog.class";
+
 export class Training {
     clientID: string;
     dogID: string;
@@ -10,7 +13,9 @@ export class Training {
     trainingNotes: string;
     homework: string;
     clientName: string;
+    clientData: Client;
     dogName: string;
+    dogData: Dog;
     trainingID: string;
 
 

@@ -1,1 +1,39 @@
-<p>training-details works!</p>
+<mat-card *ngIf="training">
+    <mat-card-title>Training</mat-card-title>
+    <mat-card-subtitle>{{ training.date | date:'EEEE, dd.MM.yyyy, HH:mm' }}, {{ training.subject }} ({{
+        training.duration }} min)
+    </mat-card-subtitle>
+    <mat-card-content class="d-flex">
+        <mat-card>
+            <h3>
+                <mat-icon color="accent"> pets </mat-icon> {{ training.dogData.name }}
+            </h3>
+            <span>{{ training.dogData.gender }}, {{ training.dogData.castrated ? 'castrated':'intact' }}</span><br>
+            <span>{{ training.dogData.age }} years</span><br>
+            <span>{{ training.dogData.breed }} </span><br>
+            <p>{{ training.dogData.notes }} </p><br>
+
+        </mat-card>
+        <mat-card>
+            <h3>
+                <mat-icon color="primary"> person </mat-icon> {{ training.clientData.firstName }} {{
+                training.clientData.lastName }}
+            </h3>
+            <span *ngIf=" training.clientData.mobilePhone.number">{{ training.clientData.mobilePhone.areaCode }} / {{
+                training.clientData.mobilePhone.number }} </span><br *ngIf=" training.clientData.mobilePhone.number">
+            <span *ngIf=" training.clientData.landlinePhone.number">{{ training.clientData.landlinePhone.areaCode }} /
+                {{ training.clientData.landlinePhone.number }} </span><br
+                *ngIf=" training.clientData.landlinePhone.number">
+            <span *ngIf=" training.clientData.email">{{ training.clientData.email }} </span><br
+                *ngIf=" training.clientData.email">
+            <span *ngIf=" training.clientData.street">{{ training.clientData.street }} </span><br
+                *ngIf=" training.clientData.street">
+            <span *ngIf=" training.clientData.city">{{ training.clientData.zipCode }} {{ training.clientData.city }}</span><br *ngIf=" training.clientData.city">
+
+        </mat-card>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+    </mat-card-actions>
+</mat-card>

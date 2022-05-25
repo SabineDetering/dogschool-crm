@@ -39,29 +39,24 @@ export class DogOverviewComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-    // this.clientData.clients$.subscribe(changes => {
-    //   this.clients = changes.map(c => new Client(c));
-    // });
     this.clients = await firstValueFrom(this.Data.clients$);
-    console.log('clients for dogs', this.clients);
 
     this.Data.dogs$.subscribe(changes => {
-      this.dogs = changes.map(d => new Dog(d));
-
-      this.dogs.forEach(dog => {
+      this.dogs = changes.map(d=> {
+        let dog = new Dog(d);
         for (let i = 0; i < dog.ownerIds.length; i++) {
           dog.ownerData.push(this.getClientById(dog.ownerIds[i]));
         }
-        // });
-        // console.log('dogs', this.dogs);
+        return dog;
+      });
+
         // //by default dogs are displayed with ascending dog names
         // if (this.dogs.length > 0) {
         //   // not possible to use generateTableData because renderRows is not accepted onInit
         //   this.tableDogs = this.sortDogs({ active: 'name', direction: 'asc' });
         // }        
-      });
+      // });
     });
-
 
     this.filter.filterSource.subscribe(val => {
       this.searchString = val;

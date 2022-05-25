@@ -23,8 +23,7 @@ export class ClientOverviewComponent implements OnInit {
   clients: Client[];
   // tableClients = [];
   dogs: Dog[];
-  sorting: Sort = { active: 'clientNumber', direction: 'desc'
-};
+  sorting: Sort = { active: 'clientNumber', direction: 'desc' };
   sortProp = 'clientNumber';
   sortDir: string = 'desc';
   searchString: string;
@@ -40,17 +39,18 @@ export class ClientOverviewComponent implements OnInit {
     console.log('dogs for clients', this.dogs);
 
     this.Data.clients$.subscribe(changes => {
-      this.clients = changes.map(c => new Client(c));
-
-      this.clients.forEach(client => {
+      this.clients = changes.map(c => {
+        let client = new Client(c);
         for (let i = 0; i < this.dogs.length; i++) {
           let dog = this.dogs[i];
           if (dog.ownerIds.includes(client.clientID)) {
             client.ownedDogs += (client.ownedDogs.length > 0 ? ', ' : '') + dog.name;
           }
         }
+        return client;
       });
-      // console.log('clients', this.clients);
+
+     
       //by default clients are displayed with descending client numbers -> newest client on top
       // if (this.clients.length > 0) {
       // not possible to use generateTableData because renderRows is not accepted onInit

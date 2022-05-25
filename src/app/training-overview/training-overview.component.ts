@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, map } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
@@ -42,7 +42,12 @@ export class TrainingOverviewComponent implements OnInit {
 
     this.clients = await firstValueFrom(this.Data.clients$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
-    // this.trainings = await firstValueFrom(this.Data.trainings$);
+    // this.trainings = await firstValueFrom(this.Data.trainings$.pipe(map(changes => {
+    //   let training = new Training(changes);
+    //     training.clientName = this.getClientNameById(training.clientID);
+    //     training.dogName = this.getDogNameById(training.dogID);
+    //     return training;
+    // })));
 
     this.Data.trainings$.subscribe(changes => {
       this.trainings = changes.map(t => {
