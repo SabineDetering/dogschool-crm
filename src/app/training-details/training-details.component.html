@@ -3,37 +3,60 @@
     <mat-card-subtitle>{{ training.date | date:'EEEE, dd.MM.yyyy, HH:mm' }}, {{ training.subject }} ({{
         training.duration }} min)
     </mat-card-subtitle>
-    <mat-card-content class="d-flex">
-        <mat-card>
-            <h3>
-                <mat-icon color="accent"> pets </mat-icon> {{ training.dogData.name }}
-            </h3>
-            <span>{{ training.dogData.gender }}, {{ training.dogData.castrated ? 'castrated':'intact' }}</span><br>
-            <span>{{ training.dogData.age }} years</span><br>
-            <span>{{ training.dogData.breed }} </span><br>
-            <p>{{ training.dogData.notes }} </p><br>
+    <mat-card-content>
+        <div class="d-flex">
+            <mat-card class=" details-card mr-16">
+                <h3>
+                    <mat-icon color="primary"> person </mat-icon> {{ training.clientData.firstName }} {{
+                    training.clientData.lastName }}
+                </h3>
+                <p *ngIf=" training.clientData.mobilePhone.number">{{ training.clientData.mobilePhone.areaCode }} / {{
+                    training.clientData.mobilePhone.number }} </p>
+                <p *ngIf=" training.clientData.landlinePhone.number">{{ training.clientData.landlinePhone.areaCode }} /
+                    {{ training.clientData.landlinePhone.number }} </p>
+                <mat-checkbox color="primary" [checked]="training.clientData.whatsApp" disabled="">WhatsApp
+                </mat-checkbox>
+                <p *ngIf=" training.clientData.email">{{ training.clientData.email }} </p>
+                <p *ngIf=" training.clientData.street">{{ training.clientData.street }} </p>
+                <p *ngIf=" training.clientData.city">{{ training.clientData.zipCode }} {{ training.clientData.city }}
+                </p>
+            </mat-card>
+            <mat-card class=" details-card ">
+                <h3>
+                    <mat-icon color="accent"> pets </mat-icon> {{ training.dogData.name }}
+                </h3>
+                <p>{{ training.dogData.gender }}, {{ training.dogData.castrated ? 'castrated':'intact' }}</p>
+                <p>{{ training.dogData.age }} years</p>
+                <p>{{ training.dogData.breed }} </p>
+                <p>{{ training.dogData.notes }} </p>
 
-        </mat-card>
-        <mat-card>
-            <h3>
-                <mat-icon color="primary"> person </mat-icon> {{ training.clientData.firstName }} {{
-                training.clientData.lastName }}
-            </h3>
-            <span *ngIf=" training.clientData.mobilePhone.number">{{ training.clientData.mobilePhone.areaCode }} / {{
-                training.clientData.mobilePhone.number }} </span><br *ngIf=" training.clientData.mobilePhone.number">
-            <span *ngIf=" training.clientData.landlinePhone.number">{{ training.clientData.landlinePhone.areaCode }} /
-                {{ training.clientData.landlinePhone.number }} </span><br
-                *ngIf=" training.clientData.landlinePhone.number">
-            <span *ngIf=" training.clientData.email">{{ training.clientData.email }} </span><br
-                *ngIf=" training.clientData.email">
-            <span *ngIf=" training.clientData.street">{{ training.clientData.street }} </span><br
-                *ngIf=" training.clientData.street">
-            <span *ngIf=" training.clientData.city">{{ training.clientData.zipCode }} {{ training.clientData.city }}</span><br *ngIf=" training.clientData.city">
+            </mat-card>
+        </div>
 
-        </mat-card>
+        <mat-form-field appearance="outline">
+            <mat-label>Main topics </mat-label>
+            <input matInput [(ngModel)]="training.topics" name="topics" max-length="30">
+        </mat-form-field>
+
+        <!-- notes -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Training Notes</mat-label>
+            <textarea matInput class="form-control" [(ngModel)]="training.trainingNotes" name="notes" #notes="ngModel"
+                cdkTextareaAutosize placeholder="Exercises, difficulties, success,...">
+                        </textarea>
+        </mat-form-field>
+
+        <!-- homework -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Homework</mat-label>
+            <textarea matInput class="form-control" [(ngModel)]="training.homework" name="homework" #homework="ngModel"
+                cdkTextareaAutosize placeholder="Exercises, frequency,...">
+                                    </textarea>
+        </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+        <button mat-button>DELETE TRAINING</button>
+        <button mat-button>CANCEL CHANGES</button>
+        <button mat-button>SAVE CHANGES</button>
     </mat-card-actions>
 </mat-card>
