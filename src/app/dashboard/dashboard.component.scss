@@ -1,3 +1,18 @@
+:host {
+    max-height: 100%;
+    max-width: 100%;
+        height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+.table-container {
+    max-height: 100%;
+    max-width: 100%;
+    flex: 1 1 auto;
+    overflow: auto;
+}
+
 tr {
     cursor: pointer;
 }

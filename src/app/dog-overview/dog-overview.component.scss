@@ -1,5 +1,19 @@
+:host {
+    height: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+
 .table-container {
-    border: 1px solid transparent;
-    max-height: calc(100vh - 64px - 48px - 3 * 16px);
+    flex: 0 1 auto;
     overflow: auto;
 }
+
+
+// .table-container {
+//     border: 1px solid transparent;
+//     max-height: calc(100vh - 64px - 48px - 3 * 16px);
+//     overflow: auto;
+// }

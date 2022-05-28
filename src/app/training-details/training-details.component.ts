@@ -33,6 +33,7 @@ export class TrainingDetailsComponent implements OnInit {
     this.Data.trainings$.subscribe(changes => {
       this.training = changes.filter((t) => (t.trainingID == this.trainingID))
         .map(training => {
+          training = new Training(training);
           training.clientData = this.getClientDataById(training.clientID);
           training.dogData = new Dog(this.getDogDataById(training.dogID));
           return training;
@@ -41,17 +42,33 @@ export class TrainingDetailsComponent implements OnInit {
     });
   }
 
+
+  /**
+   * returns all data saved for the given clientID
+   * @param id - clientID
+   * @returns client data for the given clientID
+   */
   getClientDataById(id: string): Client {
     return this.clients.find(client => client.clientID == id);
   }
 
 
+  /**
+   * returns all data saved for the given dogID
+   * @param id - dogID
+   * @returns dog data for the given dogtID
+   */
   getDogDataById(id: string): Dog {
     return this.dogs.find(dog => dog.dogID == id);
   }
 
 
-  getDetailedAge(ageInYears) {
+  /**
+   * transforms ages below 1 years into months and ages below 4 months into weeks
+   * @param ageInYears 
+   * @returns age information as string
+   */
+  getDetailedAge(ageInYears:number):string {
     let ageString = '';
     if (ageInYears > 1) {
       ageString = `${Math.round(ageInYears * 10) / 10} years`
@@ -60,12 +77,17 @@ export class TrainingDetailsComponent implements OnInit {
     } else {
       ageString = `${Math.round(ageInYears * 52.14)} weeks`
     }
-    console.log(new Date(1643756400000));
     return ageString;
   }
 
-  saveTraining() {
 
+  /**
+   * 
+   */
+  saveTraining() {
+    console.log(this.training);
+    console.log(this.training.toJSON());
+    this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
   }
 }
 

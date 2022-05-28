@@ -71,8 +71,8 @@ export class DataService {
   }
 
 
-  saveTraining(training) {
-    this.trainingCollection.doc().set(training);
+  saveTraining(training:any,id?:string) {
+    this.trainingCollection.doc(id).set(training);
   }
 
   saveSubjects(subjects) {
