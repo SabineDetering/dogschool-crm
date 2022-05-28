@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { filter, firstValueFrom } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
@@ -23,8 +24,9 @@ export class TrainingDetailsComponent implements OnInit {
   training: Training;
   constructor(
     private route: ActivatedRoute,
-    private Data: DataService
-    , public dialog: MatDialog) { }
+    private Data: DataService,
+    public dialog: MatDialog,
+    private location: Location) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -91,6 +93,7 @@ export class TrainingDetailsComponent implements OnInit {
    */
   saveTraining() {
     this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
+    this.location.back();
   }
 
 
@@ -108,6 +111,11 @@ export class TrainingDetailsComponent implements OnInit {
    */
   deleteTraining() {
     this.Data.deleteTraining(this.training.trainingID);
+    this.location.back();
+  }
+
+  closeTraining() {
+    this.location.back();
   }
 
 

@@ -1,14 +1,14 @@
 <mat-card *ngIf="training" class="training-card">
     <mat-card-title class="d-flex justify-between">
         <span>Training</span>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="closeTraining()">
             <mat-icon>close</mat-icon>
         </button>
     </mat-card-title>
 
-
-    <mat-card-subtitle>{{ training.date | date:'EEEE, dd.MM.yyyy, HH:mm' }}, {{ training.subject }} ({{
-        training.duration }} min)
+    <mat-card-subtitle>
+        {{ training.date | date:'EEEE, dd.MM.yyyy, HH:mm' }}, {{ training.subject }} ({{ training.duration }} min)
+        <p *ngIf="training.location">{{training.location}}</p>
     </mat-card-subtitle>
 
     <mat-card-content>
@@ -73,14 +73,15 @@
         <!-- topics -->
         <h4>Main topics </h4>
         <mat-form-field appearance="fill" class="topics">
-            <input matInput [(ngModel)]="training.topics" name="topics" max-length="30" placeholder="Topics in keywords">
+            <input matInput [(ngModel)]="training.topics" name="topics" max-length="30"
+                placeholder="Topics in keywords">
         </mat-form-field>
 
         <!-- notes -->
         <h4>Training Notes</h4>
         <mat-form-field appearance="fill" class="full-width">
-            <textarea matInput  cdkTextareaAutosize class="form-control" [(ngModel)]="training.trainingNotes" name="notes" #notes="ngModel"
-                cdkTextareaAutosize placeholder="Exercises, difficulties, success,...">
+            <textarea matInput cdkTextareaAutosize class="form-control" [(ngModel)]="training.trainingNotes"
+                name="notes" #notes="ngModel" cdkTextareaAutosize placeholder="Exercises, difficulties, success,...">
                         </textarea>
         </mat-form-field>
 
@@ -88,15 +89,15 @@
         <h4>Homework</h4>
         <mat-form-field appearance="fill" class="full-width">
 
-            <textarea matInput  cdkTextareaAutosize class="form-control" [(ngModel)]="training.homework" name="homework" #homework="ngModel"
-                cdkTextareaAutosize placeholder="Exercises, frequency,...">
+            <textarea matInput cdkTextareaAutosize class="form-control" [(ngModel)]="training.homework" name="homework"
+                #homework="ngModel" cdkTextareaAutosize placeholder="Exercises, frequency,...">
                                     </textarea>
         </mat-form-field>
     </mat-card-content>
 
     <mat-card-actions>
         <button mat-button (click)="openDeleteConfirmationDialog()">DELETE TRAINING</button>
-        <button mat-button>CANCEL CHANGES</button>
+        <button mat-button (click)="closeTraining()">CANCEL CHANGES</button>
         <button mat-button (click)="saveTraining()">SAVE CHANGES</button>
     </mat-card-actions>
 </mat-card>
