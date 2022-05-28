@@ -31,9 +31,12 @@ $dogschool-crm-dark-theme: mat.define-dark-theme((color: (primary: $dogschool-cr
   @include mat.all-component-colors($dogschool-crm-dark-theme);
 }
 
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 :root {
   --primary: #00bcd4;
+  --accent: #ffa726;
+  --dark: #424242;
 }
 
 html {
@@ -56,10 +59,22 @@ body {
   }
 }
 
+.bg-mode {
+  background-color: white;
+}
+
+.dark-mode {
+  .bg-mode {
+    background-color: var(--dark)!important ;
+  }
+}
+
+
 .d-flex {
   display: flex !important;
 }
-.flex-column{
+
+.flex-column {
   flex-direction: column;
 }
 
@@ -82,7 +97,8 @@ body {
 .pb-16 {
   padding-bottom: 16px;
 }
-.pt-16{
+
+.pt-16 {
   padding-top: 16px;
 }
 
@@ -106,16 +122,28 @@ body {
   margin-top: 8px !important;
 }
 
-.ml-32{
-  margin-left:32px;
+.ml-8 {
+  margin-left: 8px;
+}
+
+.ml-32 {
+  margin-left: 32px;
 }
 
 .g-16 {
   gap: 16px;
 }
 
-.border{
-  border:1px solid black;
+.border {
+  border: 1px solid black;
+}
+
+.border-primary {
+  border: 1px solid var(--primary);
+}
+
+.border-accent {
+  border: 1px solid var(--accent);
 }
 
 .full-width {

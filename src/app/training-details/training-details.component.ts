@@ -37,7 +37,7 @@ export class TrainingDetailsComponent implements OnInit {
           training.dogData = new Dog(this.getDogDataById(training.dogID));
           return training;
         })[0];
-      console.log('training',this.training)
+      console.log('training', this.training)
     });
   }
 
@@ -48,5 +48,19 @@ export class TrainingDetailsComponent implements OnInit {
 
   getDogDataById(id: string): Dog {
     return this.dogs.find(dog => dog.dogID == id);
+  }
+
+
+  getDetailedAge(ageInYears) {
+    let ageString = '';
+    if (ageInYears > 1) {
+      ageString = `${Math.round(ageInYears * 10) / 10} years`
+    } else if (ageInYears > 0.333) {
+      ageString = `${Math.round(ageInYears * 12 * 10) / 10} months`
+    } else {
+      ageString = `${Math.round(ageInYears * 52.14)} weeks`
+    }
+    console.log(new Date(1643756400000));
+    return ageString;
   }
 }

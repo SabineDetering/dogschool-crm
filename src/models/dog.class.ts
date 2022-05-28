@@ -3,7 +3,7 @@ import { Client } from "./client.class";
 export class Dog {
     name: string;
     birthDate: number;
-    age: number;
+    age: number;//in years
     chipNumber: string;
     color: string;
     gender: string;
@@ -19,8 +19,9 @@ export class Dog {
 
         this.name = obj ? obj.name : '';
         this.birthDate = obj ? obj.birthDate : '';
+        //calculate age in years
         if (this.birthDate) {
-            this.age = Math.round((Date.now() - this.birthDate) / 1000 / 60 / 60 / 24 / 365.25 * 10) / 10;
+            this.age = Math.round((Date.now() - this.birthDate) / 1000 / 60 / 60 / 24 / 365.25 * 1000) / 1000;
         }
         this.chipNumber = obj ? obj.chipNumber : '';
         this.color = obj ? obj.color : '';
