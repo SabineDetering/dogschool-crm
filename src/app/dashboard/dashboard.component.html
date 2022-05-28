@@ -1,6 +1,6 @@
 <mat-tab-group animationDuration="0ms">
 
-
+<!--------------------------------------------------------------------------------------------------------->
     <mat-tab label="Upcoming Trainings">
         <p class="pt-16">Scheduled trainings in the next 7 days</p>
 
@@ -33,13 +33,13 @@
                 <mat-text-column name="subject"></mat-text-column>
 
                 <tr mat-header-row *matHeaderRowDef="trainingTableColumns;sticky: true"></tr>
-                <tr mat-row (click)="showRow(row)" *matRowDef="let row; columns:trainingTableColumns;"></tr>
+                <tr mat-row  [routerLink]="['/training/'+ row.trainingID]" *matRowDef="let row; columns:trainingTableColumns;"></tr>
 
             </table>
         </div>
     </mat-tab>
 
-
+<!--------------------------------------------------------------------------------------------------------->
     <mat-tab label="Call to make an appointment">
         <p class="pt-16">The table shows the last training session of all dogs that haven't had a training during the last 4 weeks and that have no training scheduled in the future. </p>
 
@@ -87,13 +87,13 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="latestTableColumns;sticky: true"></tr>
-                <tr mat-row (click)="showRow(row)" *matRowDef="let row; columns:latestTableColumns;"></tr>
+                <tr mat-row  [routerLink]="['/training/'+ row.trainingID]" *matRowDef="let row; columns:latestTableColumns;"></tr>
 
             </table>
         </div>
     </mat-tab>
 
-
+<!--------------------------------------------------------------------------------------------------------->
     <mat-tab label="Clients with incomplete data">
         <p class="pt-16">The data of these clients should be completed. Click on a table row to edit.</p>
 
@@ -123,13 +123,13 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="clientTableColumns;sticky: true"></tr>
-                <tr mat-row (click)="showRow(row)" *matRowDef="let row; columns:clientTableColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns:clientTableColumns;"></tr>
 
             </table>
         </div>
     </mat-tab>
 
-
+<!--------------------------------------------------------------------------------------------------------->
     <mat-tab label="Dogs with incomplete data">
         <p class="pt-16">The data of these dogs should be completed. Click on a table row to edit.</p>
 
@@ -165,21 +165,9 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="dogTableColumns;sticky: true"></tr>
-                <tr mat-row (click)="showRow(row)" *matRowDef="let row; columns:dogTableColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns:dogTableColumns;"></tr>
 
             </table>
         </div>
     </mat-tab>
 </mat-tab-group>
-
-<!-- 
-<ng-container *ngIf="(asyncTabs | async) === null">
-    Loading tabs...
-</ng-container>
-
-<mat-tab-group>
-    <mat-tab *ngFor="let tab of asyncTabs | async">
-        <ng-template mat-tab-label>{{tab.label}}</ng-template>
-        {{tab.content}}
-    </mat-tab>
-</mat-tab-group> -->

@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
-import { now } from 'moment';
 import { firstValueFrom } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
@@ -39,11 +37,11 @@ export class DashboardComponent implements OnInit {
     this.clients = await firstValueFrom(this.Data.clients$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
 
-    //select upcoming trainings
+    //select upcoming trainings and sort by date
     this.upcomingTrainings = this.trainings.filter(training => (training.date > this.today) && (training.date < this.today + 7 * 24 * 60 * 60 * 1000));
     this.upcomingTrainings = this.sortJSONArray(this.upcomingTrainings, 'date', 'asc');
 
-    //select latest scheduled training for each dog
+    //select latest scheduled training for each dog, if more than 4 weeks ago
     this.latestTrainings = [];
     for (let i = 0; i < this.dogs.length; i++) {
       let dogTrainings = this.trainings.filter(training => this.dogs[i].dogID == training.dogID);
@@ -93,7 +91,7 @@ export class DashboardComponent implements OnInit {
 
   /**
    * get name of dogID
-   * @param id - dogId
+   * @param id - dogID
    * @returns name of dogID
    */
   getDogNameById(id: string): string {
@@ -104,8 +102,8 @@ export class DashboardComponent implements OnInit {
 
   /**
    * creates a list of empty properties to indicate which data needs to be recorded
-   * @param dog 
-   * @returns string
+   * @param client 
+   * @returns string of missing properties
    */
   getMissingClientProps(client: Client): string {
     let missingProps: string = '';
@@ -125,7 +123,7 @@ export class DashboardComponent implements OnInit {
   /**
    * creates a list of empty properties to indicate which data needs to be recorded
    * @param dog 
-   * @returns string
+   * @returns string of missing properties
    */
   getMissingDogProps(dog: Dog): string {
     let missingProps: string = '';
@@ -145,20 +143,17 @@ export class DashboardComponent implements OnInit {
   }
 
 
-
-  sortJSONArray(array: any[], prop: string, direction: 'desc' | 'asc') {
+/**
+ * 
+ * @param array 
+ * @param prop  - name of the property to sort
+ * @param direction - sorting direction, either 'asc' or 'desc'
+ * @returns 
+ */
+  sortJSONArray(array: any[], prop: string, direction: 'desc' | 'asc'):any[] {
     return array.sort((a, b) => {
       return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
     });
-  }
-
-  /**
-  * show detailed data for selected row
-  * @param row 
-  */
-  showRow(row: any) {
-    console.log(row);
-    // to be completed
   }
 
 }
