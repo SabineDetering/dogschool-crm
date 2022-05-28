@@ -63,4 +63,11 @@ export class TrainingDetailsComponent implements OnInit {
     console.log(new Date(1643756400000));
     return ageString;
   }
+
+  saveTraining() {
+
+  }
 }
+
+// leading dog from front to right side with/without treat, few steps with dog on right side
+//repeat training exercises every day reducing treats

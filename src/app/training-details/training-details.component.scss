@@ -1,3 +1,12 @@
+:host {
+    max-height: 100%;
+}
+
+.training-card {
+    max-height: calc(100% - 2* 16px);
+    overflow-y: auto;
+}
+
 .details-card {
     width: 50%;
     max-width: 280px;
@@ -17,14 +26,19 @@
         margin: 0px -8px;
     }
 
-    h4 {
-        font-weight: 500;
-        margin: 8px 0 4px 0;
-    }
-
     .category {
         display: inline-block;
         font-weight: 500;
         margin: 8px 0 4px 0;
     }
+}
+
+h4 {
+    font-weight: 500;
+    margin: 8px 0 4px 0;
+}
+
+.topics {
+    width: 50%;
+    max-width: 312px;
 }

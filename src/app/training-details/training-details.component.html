@@ -1,5 +1,11 @@
- <mat-card *ngIf="training">
-    <mat-card-title>Training</mat-card-title>
+<mat-card *ngIf="training" class="training-card">
+    <mat-card-title class="d-flex justify-between">
+        <span>Training</span>
+        <button mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-card-title>
+
 
     <mat-card-subtitle>{{ training.date | date:'EEEE, dd.MM.yyyy, HH:mm' }}, {{ training.subject }} ({{
         training.duration }} min)
@@ -7,19 +13,21 @@
 
     <mat-card-content>
         <div class="d-flex">
+            <!-- client data -->
             <mat-card class=" details-card border-primary mr-16">
                 <h3 class="bg-mode">
                     <mat-icon color="primary"> person </mat-icon> {{ training.clientData.firstName }} {{
                     training.clientData.lastName }}
                 </h3>
+
                 <mat-card-content class="mt-8">
-                    
                     <h4>Contact</h4>
                     <div *ngIf=" training.clientData.mobilePhone.number">
                         <span>{{ training.clientData.mobilePhone.areaCode }} / {{ training.clientData.mobilePhone.number
                             }}
                         </span>
-                        <mat-checkbox color="primary" [checked]="training.clientData.whatsApp" disabled="" class="ml-8">WhatsApp
+                        <mat-checkbox color="primary" [checked]="training.clientData.whatsApp" disabled="" class="ml-8">
+                            WhatsApp
                         </mat-checkbox>
                     </div>
                     <p *ngIf=" training.clientData.landlinePhone.number">{{ training.clientData.landlinePhone.areaCode
@@ -34,6 +42,8 @@
                     </p>
                 </mat-card-content>
             </mat-card>
+
+            <!-- dog data -->
             <mat-card class=" details-card border-accent">
                 <h3 class="bg-mode">
                     <mat-icon color="accent"> pets </mat-icon> {{ training.dogData.name }}
@@ -41,7 +51,7 @@
                 <mat-card-content class="mt-8">
                     <p>
                         <span class="category">Breed: </span>
-                    {{ training.dogData.breed }}
+                        {{ training.dogData.breed }}
                     </p>
                     <p>
                         <span class="category">Gender: </span>
@@ -49,40 +59,44 @@
                     </p>
                     <p *ngIf="training.dogData.age">
                         <span class="category">Age: </span>
-                    {{ getDetailedAge(training.dogData.age) }} 
+                        {{ getDetailedAge(training.dogData.age) }}
                     </p>
                     <p *ngIf="training.dogData.notes">
                         <span class="category">Notes: </span>
-                        {{ training.dogData.notes }} 
+                        {{ training.dogData.notes }}
                     </p>
                 </mat-card-content>
             </mat-card>
         </div>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Main topics </mat-label>
-            <input matInput [(ngModel)]="training.topics" name="topics" max-length="30">
+
+        <!-- topics -->
+        <h4>Main topics </h4>
+        <mat-form-field appearance="fill" class="topics">
+            <input matInput [(ngModel)]="training.topics" name="topics" max-length="30" placeholder="Topics in keywords">
         </mat-form-field>
 
         <!-- notes -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Training Notes</mat-label>
-            <textarea matInput class="form-control" [(ngModel)]="training.trainingNotes" name="notes" #notes="ngModel"
+        <h4>Training Notes</h4>
+        <mat-form-field appearance="fill" class="full-width">
+            <textarea matInput  cdkTextareaAutosize class="form-control" [(ngModel)]="training.trainingNotes" name="notes" #notes="ngModel"
                 cdkTextareaAutosize placeholder="Exercises, difficulties, success,...">
                         </textarea>
         </mat-form-field>
 
         <!-- homework -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Homework</mat-label>
-            <textarea matInput class="form-control" [(ngModel)]="training.homework" name="homework" #homework="ngModel"
+        <h4>Homework</h4>
+        <mat-form-field appearance="fill" class="full-width">
+
+            <textarea matInput  cdkTextareaAutosize class="form-control" [(ngModel)]="training.homework" name="homework" #homework="ngModel"
                 cdkTextareaAutosize placeholder="Exercises, frequency,...">
                                     </textarea>
         </mat-form-field>
     </mat-card-content>
+
     <mat-card-actions>
-        <button mat-button>DELETE TRAINING</button>
+        <button mat-button >DELETE TRAINING</button>
         <button mat-button>CANCEL CHANGES</button>
-        <button mat-button>SAVE CHANGES</button>
+        <button mat-button (click)="saveTraining()">SAVE CHANGES</button>
     </mat-card-actions>
 </mat-card>
