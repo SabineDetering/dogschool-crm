@@ -51,9 +51,6 @@ export class DataService {
 
     this.subjectCollection = this.firestore.collection<Subjects>('subjects');
     this.subjects$ = this.subjectCollection.doc('subjects').valueChanges();
-
-    // this.scheduleHoursCollection = this.firestore.collection<scheduleHoursI>('schedule-hours');
-    // this.scheduleHours$ = this.scheduleHoursCollection.doc('schedule').valueChanges();
   }
 
 
@@ -73,6 +70,10 @@ export class DataService {
 
   saveTraining(training:any,id?:string) {
     this.trainingCollection.doc(id).set(training);
+  }
+
+  deleteTraining( id: string) {
+    this.trainingCollection.doc(id).delete();
   }
 
   saveSubjects(subjects) {

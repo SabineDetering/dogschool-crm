@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { filter, firstValueFrom } from 'rxjs';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { DataService } from 'src/services/data.service';
+import { DialogDeleteConfirmationComponent } from '../dialog-delete-confirmation/dialog-delete-confirmation.component';
 
 @Component({
   selector: 'app-training-details',
@@ -19,7 +21,10 @@ export class TrainingDetailsComponent implements OnInit {
   // trainings: Training[];
   trainingID: string;
   training: Training;
-  constructor(private route: ActivatedRoute, private Data: DataService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private Data: DataService
+    , public dialog: MatDialog) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -82,13 +87,30 @@ export class TrainingDetailsComponent implements OnInit {
 
 
   /**
-   * 
+   * update training details on firestore
    */
   saveTraining() {
-    console.log(this.training);
-    console.log(this.training.toJSON());
     this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
   }
+
+
+  openDeleteConfirmationDialog() {
+    const confirmationRef = this.dialog.open(DialogDeleteConfirmationComponent);
+    confirmationRef.afterClosed().subscribe(result => {
+      if (result == 'delete') {
+        this.deleteTraining();
+      }
+    });
+  }
+
+  /**
+   * delete training details on firestore
+   */
+  deleteTraining() {
+    this.Data.deleteTraining(this.training.trainingID);
+  }
+
+
 }
 
 // leading dog from front to right side with/without treat, few steps with dog on right side

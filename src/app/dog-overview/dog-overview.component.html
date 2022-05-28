@@ -45,7 +45,7 @@
 
 
         <tr mat-header-row *matHeaderRowDef="tableColumns;sticky: true"></tr>
-        <tr mat-row (click)="showRow(row)" *matRowDef="let row; columns:tableColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns:tableColumns;"></tr>
 
     </table>
 </div>

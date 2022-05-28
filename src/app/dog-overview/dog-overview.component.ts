@@ -81,36 +81,4 @@ export class DogOverviewComponent implements OnInit {
     this.table.renderRows();
   }
 
-
-  // generateTableData(sorting: Sort, filter: string) {
-  //   //filter to be added
-  //   if (sorting) {
-  //     this.tableDogs = this.sortDogs(sorting);
-  //     this.table.renderRows();
-  //   }
-  //   else {
-  //     this.tableDogs = this.dogs;
-  //   }
-  // }
-
-
-  // sortDogs(sortState: Sort) {
-  //   let prop = sortState.active;
-  //   let direction = sortState.direction;
-  //   return this.dogs.sort((a, b) => {
-  //     return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
-  //   });
-  // }
-
-
-  /**
-  * show detailed data for selected row
-  * @param row 
-  */
-  showRow(row: any) {
-    console.log(row);
-    // to be completed
-  }
-
-
 }

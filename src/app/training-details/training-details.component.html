@@ -95,7 +95,7 @@
     </mat-card-content>
 
     <mat-card-actions>
-        <button mat-button >DELETE TRAINING</button>
+        <button mat-button (click)="openDeleteConfirmationDialog()">DELETE TRAINING</button>
         <button mat-button>CANCEL CHANGES</button>
         <button mat-button (click)="saveTraining()">SAVE CHANGES</button>
     </mat-card-actions>

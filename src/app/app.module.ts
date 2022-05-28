@@ -52,6 +52,7 @@ import { DialogAddTrainingComponent } from './dialog-add-training/dialog-add-tra
 import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
 import { SortJSONArrayPipe } from 'src/pipes/sort-jsonarray.pipe';
 import { TrainingDetailsComponent } from './training-details/training-details.component';
+import { DialogDeleteConfirmationComponent } from './dialog-delete-confirmation/dialog-delete-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { TrainingDetailsComponent } from './training-details/training-details.co
     DialogAddTrainingComponent,
     SearchFilterPipe,
     SortJSONArrayPipe,
-    TrainingDetailsComponent
+    TrainingDetailsComponent,
+    DialogDeleteConfirmationComponent
   ],
   imports: [
     BrowserModule,

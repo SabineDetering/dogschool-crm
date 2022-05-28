@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Delete this training?</h2>
+<mat-dialog-content>This will delete all data concerning this training and cannot be undone.
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button [mat-dialog-close]="'delete'">Delete</button>
+</mat-dialog-actions>
