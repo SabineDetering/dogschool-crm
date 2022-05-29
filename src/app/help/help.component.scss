@@ -1,0 +1,8 @@
+ .mat-list-item.mat-list-item-word-wrap {
+     height: initial ;
+
+     .mat-line {
+         word-wrap: break-word ;
+         white-space: pre-wrap ;
+     }
+ }
