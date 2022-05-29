@@ -28,6 +28,7 @@ export class TrainingDetailsComponent implements OnInit {
     private Data: DataService,
     public dialog: MatDialog,
     private location: Location) { }
+  
 
   async ngOnInit(): Promise<void> {
 
@@ -38,6 +39,7 @@ export class TrainingDetailsComponent implements OnInit {
       this.trainingID = params['trainingID'];
     });
 
+    //get the selected training and add the corresponding client and dog data
     this.Data.trainings$.subscribe(changes => {
       this.training = changes.filter((t) => (t.trainingID == this.trainingID))
         .map(training => {
@@ -90,14 +92,17 @@ export class TrainingDetailsComponent implements OnInit {
 
 
   /**
-   * update training details on firestore
+   * update training details on firestore and go back to previous page
    */
   saveTraining() {
     this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
-    this.location.back();
+    this.closeTraining();
   }
 
 
+  /**
+   * open dialog to get confirmation for deletion or cancel deletion
+   */
   openDeleteConfirmationDialog() {
     const confirmationRef = this.dialog.open(DialogDeleteConfirmationComponent);
     confirmationRef.afterClosed().subscribe(result => {
@@ -107,18 +112,27 @@ export class TrainingDetailsComponent implements OnInit {
     });
   }
 
+
   /**
-   * delete training details on firestore
+   * delete training details on firestore and go back to previous page
    */
   deleteTraining() {
     this.Data.deleteTraining(this.training.trainingID);
-    this.location.back();
+    this.closeTraining();
   }
 
+
+  /**
+   * go back to previous page
+   */
   closeTraining() {
     this.location.back();
   }
 
+
+  /**
+   * open dialog to edit all training details, incl. key data
+   */
   editTraining() {
     const addTrainingDialog = this.dialog.open(DialogAddTrainingComponent, { data: this.training });
   }
