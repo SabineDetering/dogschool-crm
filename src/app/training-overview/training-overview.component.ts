@@ -76,25 +76,6 @@ export class TrainingOverviewComponent implements OnInit {
     this.table.renderRows();
   }
 
-  // generateTableData(sorting: Sort, filter: string) {
-  //   //filter to be added
-  //   if (sorting) {
-  //     this.tableTrainings = this.sortTrainings(sorting);
-  //     this.table.renderRows();
-  //   } else {
-  //     this.tableTrainings = this.trainings;
-  //   }
-  // }
-
-
-  // sortTrainings(sortState: Sort) {
-  //   let prop = sortState.active;
-  //   let direction = sortState.direction;
-  //   return this.trainings.sort((a, b) => {
-  //     return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
-  //   });
-  // }
-
 
   /**
    * get firstname and lastname of clientID

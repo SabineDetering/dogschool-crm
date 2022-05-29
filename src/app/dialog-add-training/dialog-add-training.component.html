@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>Add new training</h2>
+<h2 *ngIf="!training.trainingID" mat-dialog-title>Add a new training</h2>
+<h2 *ngIf="training.trainingID"mat-dialog-title>Edit training</h2>
 
 <mat-dialog-content>
     <form #addTrainingForm="ngForm">
@@ -27,7 +28,7 @@
                 </mat-form-field>
             </div>
 
-            <!-- date & location-->
+            <!-- date & duration-->
             <div class="full-width d-flex justify-between g-16  mb-16">
                 <mat-form-field appearance="outline">
                     <mat-label>Date & time </mat-label>
@@ -53,7 +54,7 @@
 
             <!-- subject & topics -->
             <div class="full-width d-flex justify-between g-16  mb-16">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" >
                     <mat-label>Subject</mat-label>
                     <mat-select [(ngModel)]="training.subject" name="subject" required>
                         <mat-option *ngFor="let subject of subjects" value="{{ subject }}">
@@ -62,7 +63,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" >
                     <mat-label>Main topics </mat-label>
                     <input matInput [(ngModel)]="training.topics" name="topics" max-length="30">
                 </mat-form-field>
@@ -89,7 +90,7 @@
 
     <mat-dialog-actions>
         <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button mat-dialog-close [disabled]="!addTrainingForm.valid" (click)="saveTraining()">Save</button>
+        <button mat-button mat-dialog-close [disabled]="!addTrainingForm.valid" (click)="saveTraining(training.trainingID)">Save</button>
     </mat-dialog-actions>
 
 

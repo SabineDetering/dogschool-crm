@@ -8,6 +8,7 @@ import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { DataService } from 'src/services/data.service';
 import { DialogDeleteConfirmationComponent } from '../dialog-delete-confirmation/dialog-delete-confirmation.component';
+import { DialogAddTrainingComponent } from '../dialog-add-training/dialog-add-training.component';
 
 @Component({
   selector: 'app-training-details',
@@ -75,7 +76,7 @@ export class TrainingDetailsComponent implements OnInit {
    * @param ageInYears 
    * @returns age information as string
    */
-  getDetailedAge(ageInYears:number):string {
+  getDetailedAge(ageInYears: number): string {
     let ageString = '';
     if (ageInYears > 1) {
       ageString = `${Math.round(ageInYears * 10) / 10} years`
@@ -118,8 +119,8 @@ export class TrainingDetailsComponent implements OnInit {
     this.location.back();
   }
 
+  editTraining() {
+    const addTrainingDialog = this.dialog.open(DialogAddTrainingComponent, { data: this.training });
+  }
 
 }
-
-// leading dog from front to right side with/without treat, few steps with dog on right side
-//repeat training exercises every day reducing treats

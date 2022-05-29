@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DataService } from 'src/services/data.service';
 import { Training } from 'src/models/training.class';
 import { Client } from 'src/models/client.class';
@@ -13,7 +13,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class DialogAddTrainingComponent implements OnInit {
 
-  public training = new Training();
+  public training: Training;
   public clients: Client[];
   public filteredClients: Client[];
   public dogs: Dog[];
@@ -25,9 +25,17 @@ export class DialogAddTrainingComponent implements OnInit {
 
   constructor(
     public addTrainingDialogRef: MatDialogRef<DialogAddTrainingComponent>,
-    private Data: DataService,) { }
+    @Inject(MAT_DIALOG_DATA) public dialogData: Training,
+    private Data: DataService) { }
 
   async ngOnInit(): Promise<void> {
+
+    if (this.dialogData) {
+      this.training = new Training(this.dialogData);
+      this.dateInput = new Date(this.dialogData.date - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 19);
+    } else {
+      this.training = new Training();
+    }
 
     this.clients = await firstValueFrom(this.Data.clients$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
@@ -37,9 +45,9 @@ export class DialogAddTrainingComponent implements OnInit {
       this.subjects = changes.subjectList;
     });
 
-
     this.filteredClients = this.clients;
     this.filteredDogs = this.dogs;
+    this.applyDogFilter();
   }
 
 
@@ -54,10 +62,10 @@ export class DialogAddTrainingComponent implements OnInit {
   }
 
 
-  saveTraining() {
+  saveTraining(id?: string) {
     this.training.date = new Date(this.dateInput).getTime();
     console.log(this.training);
-    this.Data.saveTraining(this.training.toJSON());
+    this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
   }
 
 }
