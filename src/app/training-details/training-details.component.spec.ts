@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire/compat';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 import { TrainingDetailsComponent } from './training-details.component';
 
@@ -8,9 +12,14 @@ describe('TrainingDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TrainingDetailsComponent ]
+      imports: [
+        RouterModule.forRoot([]),
+        AngularFireModule.initializeApp(environment.firebase),
+        MatDialogModule
+      ],
+      declarations: [TrainingDetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

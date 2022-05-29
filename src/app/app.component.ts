@@ -10,13 +10,11 @@ import { FilterStringService } from 'src/services/filter-string.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dogschool-crm';
-  // mode: string = 'dark';
   subItems = false;//second level nav items hidden
   darkMode = false;//light mode active
   searchString: string = '';
 
-  constructor(public myAuth: AuthenticationService,public filter:FilterStringService) { }
+  constructor(public myAuth: AuthenticationService, public filter: FilterStringService) { }
 
   toggleMode(state: MatSlideToggleChange) {
     if (state.checked) {
@@ -36,7 +34,7 @@ export class AppComponent {
     this.subItems = !this.subItems;
   }
 
-  
+
   /**
    * hides second level nav items
    */

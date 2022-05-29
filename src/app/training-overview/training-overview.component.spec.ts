@@ -1,4 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire/compat';
+import { MatDialogModule } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
+import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
+import { SortJSONArrayPipe } from 'src/pipes/sort-jsonarray.pipe';
 
 import { TrainingOverviewComponent } from './training-overview.component';
 
@@ -8,9 +13,17 @@ describe('TrainingOverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TrainingOverviewComponent ]
+      imports: [
+        MatDialogModule,
+        AngularFireModule.initializeApp(environment.firebase)
+      ],
+      declarations: [
+        TrainingOverviewComponent,
+        SortJSONArrayPipe,
+        SearchFilterPipe
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

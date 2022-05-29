@@ -1,4 +1,7 @@
 import { TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire/compat';
+import {  RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 import { AuthenticationService } from './authentication.service';
 
@@ -6,7 +9,12 @@ describe('AuthenticationService', () => {
   let service: AuthenticationService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        RouterModule.forRoot([]),
+        AngularFireModule.initializeApp(environment.firebase)
+      ]
+    });
     service = TestBed.inject(AuthenticationService);
   });
 
