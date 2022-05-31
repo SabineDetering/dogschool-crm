@@ -11,15 +11,14 @@ export class LoginComponent implements OnInit {
 
   email: string;
   password: string;
+  guest: boolean;
   userID: string;
 
   constructor(public myAuth:AuthenticationService) {
   }
 
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
 
   login() {
@@ -27,13 +26,12 @@ export class LoginComponent implements OnInit {
   }
 
 
-  signup() {
-    this.myAuth.signup(this.email, this.password);
-  }
-
-
-  guestLogin() {
-    this.myAuth.guestLogin();
+  signin() {
+    if (this.guest) {
+      this.myAuth.guestLogin();
+    } else {
+      this.myAuth.signup(this.email, this.password);
+    }
   }
 
 

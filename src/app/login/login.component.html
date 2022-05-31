@@ -1,22 +1,74 @@
 <div *ngIf="myAuth.auth.user | async as user; else showLogin">
-    <h1>Hello {{ user.uid }}!</h1>
+    <h1>Hi {{ user.email }}! You are already logged in.</h1>
     <button (click)="logout()">Logout</button>
 </div>
-<ng-template #showLogin>
-    <p>Please login.</p>
-   <form  #loginForm="ngForm">
-        <input type="email" autocomplete="username" name="email" id="loginEmail" [(ngModel)]="email">
-        <input type="password"  autocomplete="current-password" name="password" id="loginPassword" [(ngModel)]="password">
-        <button (click)="login()">Login </button>
-    </form>
-    <p>Please register.</p>
-    <form #signupForm="ngForm">
-        <input type="email"  autocomplete="username" name="email" id="signinEmail" [(ngModel)]="email">
-        <input type="password"   autocomplete="new-password" name="password" id="signinPassword" [(ngModel)]="password">
-        <button (click)="signup()">Register </button>
-    </form>
 
-    <label>Login as guest</label>
-    <input type="checkbox" name="guest" id="guestLogin">
-    <button (click)="guestLogin()">Signin as guest </button>
+<ng-template #showLogin>
+    <div class="login-container">
+        <mat-card class="login-card">
+            <mat-card-title>
+                <p> Are you already registered?</p>
+                <p>Please log in.</p>
+            </mat-card-title>
+            <mat-card-content>
+                <form #loginForm="ngForm">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput autocomplete="username"
+                            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="email"
+                            name="email" id="loginEmail">
+                        <!-- <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                            Please enter a valid email address
+                        </mat-error> -->
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" autocomplete="current-password" [(ngModel)]="password"
+                            name="password" id="loginPassword">
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="login()">Log in </button>
+            </mat-card-actions>
+        </mat-card>
+
+
+        <!-- #email="ngModel" -->
+
+
+        <mat-card class="login-card">
+            <mat-card-title>
+                <p> Not yet registered?</p>
+                <p>Please sign in or log in as guest.</p>
+            </mat-card-title>
+            <mat-card-content>
+                <form #signupForm="ngForm">
+                    <div>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput autocomplete="username"
+                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="email"
+                                name="email" id="signinEmail" [disabled]="guest">
+                            <!-- <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                    Please enter a valid email address
+                </mat-error> -->
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" autocomplete="new-password" [(ngModel)]="password"
+                            name="password" id="signinPassword" [disabled]="guest">
+                    </mat-form-field>
+
+                    <mat-checkbox [(ngModel)]="guest" name="guest" id="guestLogin">Login as guest</mat-checkbox>
+
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="signin()">Sign in </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
 </ng-template>

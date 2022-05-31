@@ -10,14 +10,15 @@ import firebase from 'firebase/compat/app';
 export class AuthenticationService {
 
   userID: string;
+  navigationTarget = '/dashboard';
 
   constructor(public auth: AngularFireAuth, private router: Router) { }
 
 
-  signup(email, password) {
+  signup(email:string, password:string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((user) => {
-        this.router.navigate(['/clients']);
+        this.router.navigate([this.navigationTarget]);
         this.userID = user.user.uid;
       })
       .catch((error) => {
@@ -36,10 +37,10 @@ export class AuthenticationService {
   }
 
 
-  login(email, password) {
+  login(email: string, password: string) {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
-        this.router.navigate(['/clients']);
+        this.router.navigate([this.navigationTarget]);
         this.userID = user.user.uid;
       })
       .catch (function (error) {
@@ -59,7 +60,7 @@ export class AuthenticationService {
   guestLogin() {
     firebase.auth().signInAnonymously()
       .then((user) => {
-        this.router.navigate(['/clients']);
+        this.router.navigate([this.navigationTarget]);
         this.userID = user.user.uid;
       });
   }
