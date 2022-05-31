@@ -2,8 +2,10 @@
     <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
-    <img class="logo" src="assets/img/favicon.png" alt="Logo">
-    <span>Dogschool CRM</span>
+    <div class="logo-container" [routerLink]="'/login'">
+        <img class="logo" src="assets/img/favicon.png" alt="Logo" >
+        <div>Dogschool CRM</div>
+    </div>
 
     <span class="spacer"></span>
 

@@ -2,10 +2,15 @@
     flex: 1 1 auto;
 }
 
-.logo {
-    width: 48px;
-    height: 48px;
-    padding: 8px 8px 8px 16px;
+.logo-container {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    .logo {
+        width: 48px;
+        height: 48px;
+        padding: 8px 8px 8px 16px;
+    }
 }
 
 .search {
