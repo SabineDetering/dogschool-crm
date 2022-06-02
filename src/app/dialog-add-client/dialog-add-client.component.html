@@ -5,7 +5,7 @@
         <div class="dialog-container form-group">
 
             <!-- names -->
-            <div class="full-width d-flex g-16 ">
+            <div class="full-width d-flex g-m ">
                 <mat-form-field appearance="outline">
                     <mat-label>Firstname</mat-label>
                     <input [(ngModel)]="client.firstName" name="firstName" #firstName="ngModel" matInput required>
@@ -23,11 +23,11 @@
             </div>
 
             <!-- mobile phone number & whatsApp -->
-            <div class="d-flex g-16 align-center">
+            <div class="d-flex g-m align-center">
                 <p class="mt-8">Mobile Phone Number</p>
                 <mat-checkbox [(ngModel)]="client.whatsApp" name="whatsApp">uses WhatsApp</mat-checkbox>
             </div>
-            <div class="full-width d-flex g-16 align-center ">
+            <div class="full-width d-flex g-m align-center ">
                 <mat-form-field style="width: 100px;" appearance="outline">
                     <mat-label>Mobile Area Code</mat-label>
                     <input matInput pattern="^0\d{2,5}" maxlength="6" [(ngModel)]="client.mobilePhone.areaCode"
@@ -53,7 +53,7 @@
 
             <!-- landline phone number -->
             <p class="mt-8">Landline Phone Number</p>
-            <div class="full-width d-flex g-16 align-center ">
+            <div class="full-width d-flex g-m align-center ">
                 <mat-form-field style="width: 100px;" appearance="outline">
                     <mat-label>Landline Area Code</mat-label>
                     <input matInput pattern="^0\d{2,5}" maxlength="6" [(ngModel)]="client.landlinePhone.areaCode"
@@ -95,7 +95,7 @@
                 </mat-form-field>
             </div>
 
-            <div class="full-width d-flex g-16">
+            <div class="full-width d-flex g-m">
                 <mat-form-field appearance="outline" style="width:80px;">
                     <mat-label>Zip-Code</mat-label>
                     <input matInput [(ngModel)]="client.zipCode" name="zipCode" pattern="\d{5}" maxlength="5">

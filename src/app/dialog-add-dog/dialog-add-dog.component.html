@@ -5,7 +5,7 @@
         <div class="dialog-container form-group">
 
             <!-- name & birthdate -->
-            <div class="full-width d-flex g-16 ">
+            <div class="full-width d-flex g-m ">
                 <mat-form-field appearance="outline">
                     <mat-label>Name</mat-label>
                     <input [(ngModel)]="dog.name" name="name" #name="ngModel" matInput required>
@@ -37,11 +37,11 @@
             </div>
 
             <!-- owner -->
-            <div class="full-width d-flex g-16  mb-16" [class.justify-between]="twoOwners">
+            <div class="full-width d-flex g-m  mb-m" [class.justify-between]="twoOwners">
                 <mat-form-field appearance="fill">
                     <mat-label>Owner</mat-label>
                     <mat-select [(ngModel)]="owner1" name="owner" required>
-                        <input class="full-width p-16" (keyup)="applyFilter(1,$event)">
+                        <input class="full-width p-m" (keyup)="applyFilter(1,$event)">
                         <mat-option *ngFor="let client of filteredClients_1" [value]="client.clientID">
                             {{client.firstName}} {{client.lastName}}
                         </mat-option>
@@ -55,7 +55,7 @@
                 <mat-form-field *ngIf="twoOwners" appearance="fill">
                     <mat-label>Second owner</mat-label>
                     <mat-select [(ngModel)]="owner2" name="owner2">
-                        <input  class="full-width p-16" (keyup)="applyFilter(2,$event)">
+                        <input  class="full-width p-m" (keyup)="applyFilter(2,$event)">
                         <mat-option *ngFor="let client of filteredClients_2" [value]="client.clientID">
                             {{client.firstName}} {{client.lastName}}
                         </mat-option>
@@ -64,7 +64,7 @@
             </div>
 
             <!-- color& chip number -->
-            <div class="full-width d-flex g-16 justify-between mb-16">
+            <div class="full-width d-flex g-m justify-between mb-m">
                 <div>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Color</mat-label>
@@ -84,7 +84,7 @@
             </div>
 
             <!-- gender & castration -->
-            <div class="full-width d-flex g-16 justify-between mb-16">
+            <div class="full-width d-flex g-m justify-between mb-m">
                 <div class="d-flex flex-column">
                     <mat-label id="gender-label">Gender</mat-label>
                     <mat-radio-group aria-labelledby="gender-label" [(ngModel)]="dog.gender" name="gender"

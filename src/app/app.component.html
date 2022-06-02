@@ -1,23 +1,25 @@
 <mat-toolbar color="primary" role="heading">
-    <button mat-icon-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <div class="logo-container" [routerLink]="'/login'">
-        <img class="logo" src="assets/img/favicon.png" alt="Logo" >
-        <div>Dogschool CRM</div>
+    <div class="d-flex align-center">
+        <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div class="logo-container" [routerLink]="'/login'">
+            <img class="logo" src="assets/img/favicon.png" alt="Logo">
+            <div class="hide-below-800">Dogschool CRM</div>
+        </div>
     </div>
 
-    <span class="spacer"></span>
+    <!-- <span class="spacer"></span> -->
 
     <div class="search">
-        <button class="material-icons" disabled>search</button>
+        <span class="material-icons">search</span>
         <input id="searchField" type="text" [(ngModel)]="searchString" placeholder="Search" (keyup)="changeFilter()">
         <button class="material-icons" (click)="deleteSearch()" [disabled]="searchString.length==0">
             <mat-icon>close</mat-icon>
         </button>
     </div>
 
-    <span class="spacer"></span>
+    <!-- <span class="spacer"></span> -->
 
     <div class="mode-toggle">
         <img src="assets/img/light_mode_white.svg" title="light mode">
@@ -84,7 +86,7 @@
 
 
     <mat-sidenav-content class="d-flex">
-        <div id="main" class="main p-16 router-container">
+        <div id="main" class="main p-m router-container">
             <router-outlet></router-outlet>
         </div>
     </mat-sidenav-content>

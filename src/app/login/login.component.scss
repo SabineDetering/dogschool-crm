@@ -6,7 +6,7 @@
 
 .login-container {
     display: flex;
-    gap: 16px;
+    gap: var(--size-m);
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
@@ -15,8 +15,6 @@
 }
 
 .login-card {
-    max-width: calc(100% - 2* 16px);
+    max-width: var(--full-minus-2sizem);
     width: 410px;
-    margin-top: 16px;
-    margin-bottom: 16px;
 }

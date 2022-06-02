@@ -5,7 +5,11 @@
     display: flex;
     flex-flow: column;
 }
-
+mat-tab-group{
+    max-width: var(--full-minus-2sizem);
+        flex: 1 1 auto;
+        overflow: auto;
+}
 .table-container {
     max-height: 100%;
     max-width: 100%;

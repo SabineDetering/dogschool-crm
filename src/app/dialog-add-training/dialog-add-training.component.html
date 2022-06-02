@@ -6,12 +6,12 @@
         <div class="dialog-container form-group">
 
             <!-- client -->
-            <div class="full-width d-flex justify-between g-16  mb-16">
+            <div class="full-width d-flex justify-between g-m  mb-m">
                 <mat-form-field appearance="outline">
                     <mat-label>Owner</mat-label>
                     <mat-select [(ngModel)]="training.clientID" name="clientID" required
                         (selectionChange)="applyDogFilter()">
-                        <input class="full-width p-16" (keyup)="applyClientFilter($event)">
+                        <input class="full-width p-m" (keyup)="applyClientFilter($event)">
                         <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
                             {{client.firstName}} {{client.lastName}}
                         </mat-option>
@@ -29,7 +29,7 @@
             </div>
 
             <!-- date & duration-->
-            <div class="full-width d-flex justify-between g-16  mb-16">
+            <div class="full-width d-flex justify-between g-m  mb-m">
                 <mat-form-field appearance="outline">
                     <mat-label>Date & time </mat-label>
                     <input matInput type="datetime-local" [(ngModel)]="dateInput" name="hours" step ="900" required>
@@ -53,7 +53,7 @@
             </mat-form-field>
 
             <!-- subject & topics -->
-            <div class="full-width d-flex justify-between g-16  mb-16">
+            <div class="full-width d-flex justify-between g-m  mb-m">
                 <mat-form-field appearance="outline" >
                     <mat-label>Subject</mat-label>
                     <mat-select [(ngModel)]="training.subject" name="subject" required>

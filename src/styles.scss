@@ -37,6 +37,10 @@ $dogschool-crm-dark-theme: mat.define-dark-theme((color: (primary: $dogschool-cr
   --primary: #00bcd4;
   --accent: #ffa726;
   --dark: #424242;
+  --size-s:8px;
+  --size-m:16px;
+  --size-l:32px;
+  --full-minus-2sizem:calc(100% - 2* 16px);
 }
 
 html {
@@ -91,48 +95,48 @@ body {
   flex: 1 1 auto;
 }
 
-.p-16 {
-  padding: 16px;
+.p-m {
+  padding: var(--size-m);
 }
 
-.pb-16 {
-  padding-bottom: 16px;
+.pb-m {
+  padding-bottom: var(--size-m);
 }
 
-.pt-16 {
-  padding-top: 16px;
+.pt-m {
+  padding-top: var(--size-m);
 }
 
-.m-16 {
-  margin: 16px;
+.m-m {
+  margin:var(--size-m);
 }
 
-.mt-16 {
-  margin-top: 16px;
+.mt-m {
+  margin-top: var(--size-m);
 }
 
-.mb-16 {
-  margin-bottom: 16px;
+.mb-m {
+  margin-bottom: var(--size-m);
 }
 
-.mr-16 {
-  margin-right: 16px;
+.mr-m {
+  margin-right:var(--size-m);
 }
 
-.mt-8 {
-  margin-top: 8px !important;
+.mt-s {
+  margin-top: var(--size-s) !important;
 }
 
-.ml-8 {
-  margin-left: 8px;
+.ml-s {
+  margin-left: var(--size-s);
 }
 
-.ml-32 {
-  margin-left: 32px;
+.ml-l {
+  margin-left: var(--size-l);
 }
 
-.g-16 {
-  gap: 16px;
+.g-m {
+  gap: var(--size-m);
 }
 
 .border {
@@ -159,7 +163,13 @@ body {
     'opsz' 48
 }
 
+@media (max-width:800px){
+  .hide-below-800{
+    display:none;
+  }
+}
 
+/*custom scrollbar**********************************/
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
