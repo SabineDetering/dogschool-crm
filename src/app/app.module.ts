@@ -53,6 +53,8 @@ import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
 import { SortJSONArrayPipe } from 'src/pipes/sort-jsonarray.pipe';
 import { TrainingDetailsComponent } from './training-details/training-details.component';
 import { DialogDeleteConfirmationComponent } from './dialog-delete-confirmation/dialog-delete-confirmation.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ModeSwitcherComponent } from './mode-switcher/mode-switcher.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,9 @@ import { DialogDeleteConfirmationComponent } from './dialog-delete-confirmation/
     SearchFilterPipe,
     SortJSONArrayPipe,
     TrainingDetailsComponent,
-    DialogDeleteConfirmationComponent
+    DialogDeleteConfirmationComponent,
+    SettingsComponent,
+    ModeSwitcherComponent
   ],
   imports: [
     BrowserModule,

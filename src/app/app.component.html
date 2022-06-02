@@ -3,15 +3,13 @@
         <button mat-icon-button (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
-        <div class="logo-container" [routerLink]="'/login'">
-            <img class="logo" src="assets/img/favicon.png" alt="Logo">
+        <div class="logo-container " [routerLink]="'/login'">
+            <img class="logo hide-below-360" src="assets/img/favicon.png" alt="Logo">
             <div class="hide-below-800">Dogschool CRM</div>
         </div>
     </div>
 
-    <!-- <span class="spacer"></span> -->
-
-    <div class="search">
+    <div class="search p-m">
         <span class="material-icons">search</span>
         <input id="searchField" type="text" [(ngModel)]="searchString" placeholder="Search" (keyup)="changeFilter()">
         <button class="material-icons" (click)="deleteSearch()" [disabled]="searchString.length==0">
@@ -19,20 +17,13 @@
         </button>
     </div>
 
-    <!-- <span class="spacer"></span> -->
+    <app-mode-switcher  class="hide-below-460"></app-mode-switcher>
 
-    <div class="mode-toggle">
-        <img src="assets/img/light_mode_white.svg" title="light mode">
-        <mat-slide-toggle class="example-margin" aria-label="switch between light and dark mode" [checked]="darkMode"
-            (change)="toggleMode($event)">
-        </mat-slide-toggle>
-        <img src="assets/img/dark_mode_white.svg" title="dark mode">
-    </div>
 </mat-toolbar>
 
 
-<mat-sidenav-container hasBackdrop="false">
-    <mat-sidenav #drawer mode="side" opened>
+<mat-sidenav-container [hasBackdrop]="mobileQuery.matches">
+    <mat-sidenav #drawer  [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches" >
         <mat-nav-list>
             <mat-list-item [routerLink]="'/dashboard'" (click)="closeSubItems()">
                 <mat-icon matListIcon> dashboard </mat-icon>
@@ -46,26 +37,28 @@
                 <mat-icon matListIcon> pets </mat-icon>
                 <span> Dogs </span>
             </mat-list-item>
-            <!-- <mat-list-item>
-                <img class="svg-icon" src="assets/img/group.svg">
-                <span> Groups </span>
-            </mat-list-item> -->
             <mat-list-item [routerLink]="'/trainings'" (click)="closeSubItems()">
                 <img class="svg-icon" src="assets/img/training.svg">
                 <span> Trainings </span>
             </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item [routerLink]="'/settings'" (click)="closeSubItems()">
+                <mat-icon matListIcon> settings </mat-icon>
+                <span> Settings </span>
+            </mat-list-item>
             <mat-list-item [routerLink]="'/help'" (click)="closeSubItems()">
-                <mat-icon matListIcon>
-                    help
-                </mat-icon>
+                <mat-icon matListIcon> help </mat-icon>
                 <span> Help </span>
             </mat-list-item>
-
-
             <mat-list-item (click)="toggleSubItems()">
                 <mat-icon matListIcon> receipt_long </mat-icon>
                 <span> Legal </span>
             </mat-list-item>
+
+            <mat-divider></mat-divider>
+
             <ng-container *ngIf="subItems">
                 <mat-list-item (click)="closeSubItems()" [routerLink]="'/legal-notice'">
                     <span class="ml-l"> Legal Notice </span>
@@ -75,7 +68,6 @@
                 </mat-list-item>
             </ng-container>
 
-            <mat-divider></mat-divider>
 
             <mat-list-item (click)="logout()" [routerLink]="'/login'" (click)="closeSubItems()">
                 <mat-icon matListIcon> logout </mat-icon>

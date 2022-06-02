@@ -1,0 +1,9 @@
+:host {
+    padding: var(--size-m);
+}
+
+.mode-switcher {
+    .mode-icon {
+        filter: invert(0.5);
+    }
+}

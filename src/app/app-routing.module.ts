@@ -8,6 +8,7 @@ import { HelpComponent } from './help/help.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { LoginComponent } from './login/login.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
+import { SettingsComponent } from './settings/settings.component';
 import { TrainingDetailsComponent } from './training-details/training-details.component';
 import { TrainingOverviewComponent } from './training-overview/training-overview.component';
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'clients', component: ClientOverviewComponent, /*canActivate: [AuthGuardService] */},
   { path: 'dogs', component: DogOverviewComponent, /*canActivate: [AuthGuardService]*/ },
   { path: 'trainings', component: TrainingOverviewComponent, /*canActivate: [AuthGuardService]*/ },
+  { path: 'settings', component: SettingsComponent },
 
   { path: 'training/:trainingID', component: TrainingDetailsComponent },
 

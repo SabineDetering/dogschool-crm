@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { filter } from 'rxjs';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { FilterStringService } from 'src/services/filter-string.service';
@@ -11,19 +11,24 @@ import { FilterStringService } from 'src/services/filter-string.service';
 })
 export class AppComponent {
   subItems = false;//second level nav items hidden
-  darkMode = false;//light mode active
   searchString: string = '';
+  mobileQuery: MediaQueryList;
 
-  constructor(public myAuth: AuthenticationService, public filter: FilterStringService) { }
+  // constructor(public myAuth: AuthenticationService, public filter: FilterStringService) { }
 
-  toggleMode(state: MatSlideToggleChange) {
-    if (state.checked) {
-      this.darkMode = true;
-      document.body.classList.add('dark-mode');
-    } else {
-      this.darkMode = false;
-      document.body.classList.remove('dark-mode');
-    }
+
+  private _mobileQueryListener: () => void;
+
+  constructor(public myAuth: AuthenticationService,
+    public filter: FilterStringService,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher) {
+    
+    //check if screen width is too small for showing sidenav
+    this.mobileQuery = media.matchMedia('(max-width: 870px)');
+    console.log('mobileQuery',this.mobileQuery);
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }
 
 
