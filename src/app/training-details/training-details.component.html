@@ -25,7 +25,7 @@
                         training.clientData.lastName }}
                     </h3>
 
-                    <mat-card-content class="mt-8">
+                    <mat-card-content class="mt-s">
                         <h4>Contact</h4>
                         <div *ngIf=" training.clientData.mobilePhone.number">
                             <span>{{ training.clientData.mobilePhone.areaCode }} / {{
@@ -33,7 +33,7 @@
                                 }}
                             </span>
                             <mat-checkbox color="primary" [checked]="training.clientData.whatsApp" disabled=""
-                                class="ml-8">
+                                class="ml-s">
                                 WhatsApp
                             </mat-checkbox>
                         </div>
@@ -57,7 +57,7 @@
                     <h3 class="bg-mode">
                         <mat-icon color="accent"> pets </mat-icon> {{ training.dogData.name }}
                     </h3>
-                    <mat-card-content class="mt-8">
+                    <mat-card-content class="mt-s">
                         <p>
                             <span class="category">Breed: </span>
                             {{ training.dogData.breed }}
