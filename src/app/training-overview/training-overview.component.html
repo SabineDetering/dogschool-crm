@@ -1,7 +1,6 @@
-<div class=" header d-flex justify-between align-center ">
+<div class=" header d-flex justify-between align-center m-m">
     <div>
         <h2>Trainings</h2>
-        <p>Use the + Button to schedule a new training. </p>
         <p>Click on a table row to see or edit training details. </p>
     </div>
     <button mat-mini-fab color="primary" title="Add training" (click)="openAddTrainingDialog()">
@@ -9,7 +8,7 @@
     </button>
 </div>
 
-<div class="table-container mat-elevation-z8 mt-m mb-m  ">
+<div class="table-container mat-elevation-z4  mb-m  ">
     <table mat-table matSort (matSortChange)="setSorting($event)"
         [dataSource]="trainings|searchFilter:searchString|sortJSONArray:sortProp:sortDir" class="full-width">
 

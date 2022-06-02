@@ -1,10 +1,10 @@
 <mat-tab-group animationDuration="0ms">
 
-<!--------------------------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
     <mat-tab label="Upcoming Trainings">
-        <p class="pt-m">Scheduled trainings in the next 7 days</p>
+        <h4 class="">Scheduled trainings in the next 7 days</h4>
 
-        <div class="table-container mat-elevation-z8 mt-m mb-m  ">
+        <div class="table-container mat-elevation-z4 mb-m  ">
             <table mat-table [dataSource]="upcomingTrainings" class="full-width">
 
                 <ng-container matColumnDef="date">
@@ -12,7 +12,12 @@
                     <td mat-cell *matCellDef="let training"> {{ training.date|date:'short' }} </td>
                 </ng-container>
 
-                <mat-text-column name="duration"></mat-text-column>
+                <ng-container matColumnDef="duration">
+                    <th mat-header-cell *matHeaderCellDef>Duration </th>
+                    <td mat-cell *matCellDef="let training">
+                        {{ training.duration}}
+                    </td>
+                </ng-container>
 
                 <ng-container matColumnDef="client">
                     <th mat-header-cell *matHeaderCellDef>Client </th>
@@ -28,22 +33,34 @@
                     </td>
                 </ng-container>
 
-                <mat-text-column name="location"></mat-text-column>
+                <ng-container matColumnDef="location">
+                    <th mat-header-cell *matHeaderCellDef>Location </th>
+                    <td mat-cell *matCellDef="let training">
+                        {{ training.location}}
+                    </td>
+                </ng-container>
 
-                <mat-text-column name="subject"></mat-text-column>
+                <ng-container matColumnDef="subject">
+                    <th mat-header-cell *matHeaderCellDef>Subject </th>
+                    <td mat-cell *matCellDef="let training">
+                        {{ training.subject}}
+                    </td>
+                </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="trainingTableColumns;sticky: true"></tr>
-                <tr mat-row  [routerLink]="['/training/'+ row.trainingID]" *matRowDef="let row; columns:trainingTableColumns;"></tr>
+                <tr mat-row [routerLink]="['/training/'+ row.trainingID]"
+                    *matRowDef="let row; columns:trainingTableColumns;"></tr>
 
             </table>
         </div>
     </mat-tab>
 
-<!--------------------------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
     <mat-tab label="Call to make an appointment">
-        <p class="pt-m">The table shows the last training session of all dogs that haven't had a training during the last 4 weeks and that have no training scheduled in the future. </p>
+        <h4 class="pt-m">The table shows the last training session of all dogs that haven't had a training during the
+            last 4 weeks and that have no training scheduled in the future. </h4>
 
-        <div class="table-container mat-elevation-z8 mt-m mb-m  ">
+        <div class="table-container mat-elevation-z4 mt-m mb-m  ">
             <table mat-table [dataSource]="latestTrainings" class="full-width">
 
                 <ng-container matColumnDef="date">
@@ -70,9 +87,14 @@
                     <td mat-cell *matCellDef="let training">
                         {{ getClientContactById(training.clientID) }}
                     </td>
-                </ng-container>                
-
-                <mat-text-column name="subject"></mat-text-column>
+                </ng-container>
+                
+                <ng-container matColumnDef="subject">
+                    <th mat-header-cell *matHeaderCellDef>Subject </th>
+                    <td mat-cell *matCellDef="let training">
+                        {{ training.subject}}
+                    </td>
+                </ng-container>
 
                 <ng-container matColumnDef="topics">
                     <th mat-header-cell *matHeaderCellDef>Main topics</th>
@@ -87,17 +109,18 @@
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="latestTableColumns;sticky: true"></tr>
-                <tr mat-row  [routerLink]="['/training/'+ row.trainingID]" *matRowDef="let row; columns:latestTableColumns;"></tr>
+                <tr mat-row [routerLink]="['/training/'+ row.trainingID]"
+                    *matRowDef="let row; columns:latestTableColumns;"></tr>
 
             </table>
         </div>
     </mat-tab>
 
-<!--------------------------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
     <mat-tab label="Clients with incomplete data">
-        <p class="pt-m">The data of these clients should be completed. Click on a table row to edit.</p>
+        <h4 class="pt-m">The data of these clients should be completed. Click on a table row to edit.</h4>
 
-        <div class="table-container mat-elevation-z8 mt-m mb-m  ">
+        <div class="table-container mat-elevation-z4 mt-m mb-m  ">
             <table mat-table [dataSource]="tableClients" class="full-width">
 
                 <ng-container matColumnDef="clientNumber">
@@ -129,11 +152,11 @@
         </div>
     </mat-tab>
 
-<!--------------------------------------------------------------------------------------------------------->
+    <!--------------------------------------------------------------------------------------------------------->
     <mat-tab label="Dogs with incomplete data">
-        <p class="pt-m">The data of these dogs should be completed. Click on a table row to edit.</p>
+        <h4 class="pt-m">The data of these dogs should be completed. Click on a table row to edit.</h4>
 
-        <div class="table-container mat-elevation-z8 mt-m mb-m  ">
+        <div class="table-container mat-elevation-z4 mt-m mb-m  ">
             <table mat-table [dataSource]="tableDogs" class="full-width">
 
                 <ng-container matColumnDef="name">
