@@ -9,8 +9,10 @@ import { AuthenticationService } from 'src/services/authentication.service';
 })
 export class LoginComponent implements OnInit {
 
-  email: string;
-  password: string;
+  signinEmail: string;
+  loginEmail: string;
+  signinPassword: string;
+  loginPassword: string;
   guest: boolean;
   userID: string;
 
@@ -22,7 +24,7 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    this.myAuth.login(this.email, this.password);    
+    this.myAuth.login(this.loginEmail, this.loginPassword);    
   }
 
 
@@ -30,7 +32,7 @@ export class LoginComponent implements OnInit {
     if (this.guest) {
       this.myAuth.guestLogin();
     } else {
-      this.myAuth.signup(this.email, this.password);
+      this.myAuth.signup(this.signinEmail, this.signinPassword);
     }
   }
 

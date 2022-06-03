@@ -17,7 +17,7 @@ export class AuthenticationService {
     public auth: AngularFireAuth,
     private router: Router,
     private _snackBar: MatSnackBar) { }
-  
+
 
   openSnackBar(message: string, action?: string) {
     this._snackBar.open(message, action, { duration: 3000 });
@@ -29,7 +29,7 @@ export class AuthenticationService {
       .then((user) => {
         this.router.navigate([this.navigationTarget]);
         this.userID = user.user.uid;
-       this.openSnackBar('You are logged in successfully.');
+        this.openSnackBar('You are logged in successfully.');
       })
       .catch((error) => {
         // Handle Errors here.
@@ -56,19 +56,20 @@ export class AuthenticationService {
         this.userID = user.user.uid;
         this.openSnackBar('You are logged in successfully.');
       })
-      .catch(function (error) {
+      .catch((error) => {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
         console.log('error code', errorCode);
         console.log('errorMessage', errorMessage);
-        if (errorCode === 'auth/wrong-password') {
-          // alert('Wrong password.');
+        if (errorCode == 'auth/wrong-password') {
           this.openSnackBar('Wrong password.');
-        } else {
-          // alert(errorMessage);
-          this.openSnackBar(errorMessage);
-        } 
+        } else if (errorCode == 'auth/user-not-found') {
+          this.openSnackBar('This email is not registered.');
+         }
+          else {
+            this.openSnackBar(errorMessage);
+          }
       })
   }
 
