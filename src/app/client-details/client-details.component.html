@@ -1,0 +1,61 @@
+<mat-card *ngIf="client" class="wrapper-card">
+    <mat-card-title class="d-flex justify-between">
+        <span>Client</span>
+        <button mat-icon-button (click)="closeDetails()" title="close">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-card-title>
+
+    <mat-card-content>
+        <div class="client-metadata">
+            <button class="edit-btn" mat-icon-button (click)="editClient()" title="edit key data">
+                <mat-icon>edit</mat-icon>
+            </button>
+
+
+            <div class="d-flex">
+
+                <!-- client data -->
+                <mat-card class=" details-card mt-m mb-m border-primary mr-m">
+                    <h3 class="bg-mode">
+                        <mat-icon color="primary"> person </mat-icon> {{ client.firstName }} {{
+                        client.lastName }}
+                    </h3>
+
+                    <mat-card-content class="mt-s">
+                        <h4>Contact</h4>
+                        <div *ngIf=" client.mobilePhone.number">
+                            <span>{{ client.mobilePhone.areaCode }} / {{
+                                client.mobilePhone.number
+                                }}
+                            </span>
+                            <mat-checkbox color="primary" [checked]="client.whatsApp" disabled="" class="ml-s">
+                                WhatsApp
+                            </mat-checkbox>
+                        </div>
+                        <p *ngIf=" client.landlinePhone.number">{{
+                            client.landlinePhone.areaCode
+                            }} /
+                            {{ client.landlinePhone.number }} </p>
+                        <p *ngIf=" client.email">{{ client.email }} </p>
+
+                        <h4 *ngIf=" client.street">Address</h4>
+                        <p *ngIf=" client.street">{{ client.street }} </p>
+                        <p *ngIf=" client.city">{{ client.zipCode }} {{
+                            client.city
+                            }}
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+
+
+                <app-small-dog-card *ngFor="let dog of client.dogData" [dog]="dog">                    
+                </app-small-dog-card>
+
+
+
+            </div>
+
+        </div>
+    </mat-card-content>
+</mat-card>

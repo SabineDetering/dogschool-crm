@@ -1,6 +1,7 @@
 import { Input, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardService } from 'src/services/auth-guard.service';
+import { ClientDetailsComponent } from './client-details/client-details.component';
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'trainings', component: TrainingOverviewComponent, /*canActivate: [AuthGuardService]*/ },
   { path: 'settings', component: SettingsComponent },
 
-  { path: 'training/:trainingID', component: TrainingDetailsComponent },
+  { path: 'client/:clientID', component: ClientDetailsComponent/*, canActivate: [AuthGuardService] */ },
+  // { path: 'dog/:dogID', component: DogDetailsComponent/*, canActivate: [AuthGuardService] */ },
+  { path: 'training/:trainingID', component: TrainingDetailsComponent /*, canActivate: [AuthGuardService] */},
 
   { path: 'help', component: HelpComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },

@@ -1,4 +1,5 @@
 import { Dog } from "./dog.class";
+import { Training } from "./training.class";
 
 export class Client{
     clientNumber: number;
@@ -13,6 +14,7 @@ export class Client{
     whatsApp: boolean;
     dogIds: string[];   // array of dog ids
     dogData: Dog[];     // array of complete dog data
+    trainingData: Training[];  // array of complete training data
     ownedDogs: string=''; //list of dog names as string
     clientID: string;
 

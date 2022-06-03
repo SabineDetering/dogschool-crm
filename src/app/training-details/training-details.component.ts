@@ -20,7 +20,6 @@ export class TrainingDetailsComponent implements OnInit {
 
   clients: Client[];
   dogs: Dog[];
-  // trainings: Training[];
   trainingID: string;
   training: Training;
   constructor(
@@ -41,7 +40,8 @@ export class TrainingDetailsComponent implements OnInit {
 
     //get the selected training and add the corresponding client and dog data
     this.Data.trainings$.subscribe(changes => {
-      this.training = changes.filter((t) => (t.trainingID == this.trainingID))
+      this.training = changes
+        .filter((t) => (t.trainingID == this.trainingID))
         .map(training => {
           training = new Training(training);
           training.clientData = this.getClientDataById(training.clientID);
@@ -123,7 +123,7 @@ export class TrainingDetailsComponent implements OnInit {
 
 
   /**
-   * go back to previous page
+   * close details view and go back to previous page
    */
   closeTraining() {
     this.location.back();

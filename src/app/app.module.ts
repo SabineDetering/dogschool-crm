@@ -56,6 +56,8 @@ import { TrainingDetailsComponent } from './training-details/training-details.co
 import { DialogDeleteConfirmationComponent } from './dialog-delete-confirmation/dialog-delete-confirmation.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ModeSwitcherComponent } from './mode-switcher/mode-switcher.component';
+import { ClientDetailsComponent } from './client-details/client-details.component';
+import { SmallDogCardComponent } from './small-dog-card/small-dog-card.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { ModeSwitcherComponent } from './mode-switcher/mode-switcher.component';
     TrainingDetailsComponent,
     DialogDeleteConfirmationComponent,
     SettingsComponent,
-    ModeSwitcherComponent
+    ModeSwitcherComponent,
+    ClientDetailsComponent,
+    SmallDogCardComponent
   ],
   imports: [
     BrowserModule,

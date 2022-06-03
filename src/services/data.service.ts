@@ -58,13 +58,13 @@ export class DataService {
     this.availableNumberCollection.doc('available-number').set({ availableNumber: number });
   }
 
-  saveClient(client) {
-    this.clientCollection.doc().set(client);
+  saveClient(client:any, id?: string) {
+    this.clientCollection.doc(id).set(client);
   }
 
 
-  saveDog(dog) {
-    this.dogCollection.doc().set(dog);
+  saveDog(dog:any, id?: string) {
+    this.dogCollection.doc(id).set(dog);
   }
 
 
@@ -72,9 +72,21 @@ export class DataService {
     this.trainingCollection.doc(id).set(training);
   }
 
+
+  deleteClient(id: string) {
+    this.clientCollection.doc(id).delete();
+  }
+
+
+  deleteDog(id: string) {
+    this.dogCollection.doc(id).delete();
+  }
+
+
   deleteTraining( id: string) {
     this.trainingCollection.doc(id).delete();
   }
+
 
   saveSubjects(subjects) {
     this.subjectCollection.doc('subjects').set(subjects);

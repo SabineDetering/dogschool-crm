@@ -1,0 +1,23 @@
+<mat-card class="details-card mt-m mb-m border-accent">
+    <h3 class="bg-mode">
+        <mat-icon color="accent"> pets </mat-icon> {{ dog.name }}
+    </h3>
+    <mat-card-content class="mt-s">
+        <p>
+            <span class="category">Breed: </span>
+            {{ dog.breed }}
+        </p>
+        <p>
+            <span class="category">Gender: </span>
+            {{ dog.gender }}{{ dog.castrated ? ', castrated':', intact' }}
+        </p>
+        <p *ngIf="dog.age">
+            <span class="category">Age: </span>
+            {{ getDetailedAge(dog.age) }}
+        </p>
+        <p *ngIf="dog.notes">
+            <span class="category">Notes: </span>
+            {{ dog.notes }}
+        </p>
+    </mat-card-content>
+</mat-card>

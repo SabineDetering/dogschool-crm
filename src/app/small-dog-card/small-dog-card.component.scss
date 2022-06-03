@@ -1,0 +1,23 @@
+.details-card {
+    width: 50%;
+    max-width: 410px;
+    position: relative;
+
+    p {
+        margin: 0px 0px 0px;
+    }
+
+    h3 {
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%);
+        padding: 0px 8px;
+        margin: 0px -8px;
+    }
+
+    .category {
+        display: inline-block;
+        font-weight: 500;
+        margin: 8px 0 4px 0;
+    }
+}
