@@ -16,7 +16,7 @@ export class AuthGuardService implements CanActivate {
       return true;
     } else {
       console.log('access denied');
-      window.alert("You don't have permission to view this page");
+      this.myAuth.openSnackBar("You don't have permission to view that page. Please log in.");
       this.router.navigate(['/login']);
       return false;
     }
