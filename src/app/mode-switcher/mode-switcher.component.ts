@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { DarkModeService } from 'src/services/dark-mode.service';
 
 @Component({
   selector: 'app-mode-switcher',
@@ -8,13 +9,8 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 })
 export class ModeSwitcherComponent implements OnInit {
 
-  darkMode = false;//light mode active by default
-  static counter = 0;
-  id_number: number;
 
-  constructor() {
-    ModeSwitcherComponent.counter++;
-    this.id_number = ModeSwitcherComponent.counter;
+  constructor(public darkService:DarkModeService) {  
    }
 
   ngOnInit(): void {
@@ -22,13 +18,10 @@ export class ModeSwitcherComponent implements OnInit {
 
 
   toggleMode(state: MatSlideToggleChange) {
-    
     if (state.checked) {
-      this.darkMode = true;
-      document.body.classList.add('dark-mode');
+      this.darkService.switchTo('dark');
     } else {
-      this.darkMode = false;
-      document.body.classList.remove('dark-mode');
+      this.darkService.switchTo('light');
     }
   }
 
