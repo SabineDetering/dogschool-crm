@@ -27,6 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -103,6 +104,7 @@ import { ModeSwitcherComponent } from './mode-switcher/mode-switcher.component';
     MatExpansionModule,
     MatTabsModule,
     MatCardModule,
+    MatSnackBarModule,
 
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -113,7 +115,7 @@ import { ModeSwitcherComponent } from './mode-switcher/mode-switcher.component';
   ],
   providers: [
     { provide: PERSISTENCE, useValue: 'local' },
-    AuthGuardService,{provide:LOCALE_ID,useValue:'de-de'}
+    AuthGuardService, { provide: LOCALE_ID, useValue: 'de-de' }
   ],
   bootstrap: [AppComponent]
 })

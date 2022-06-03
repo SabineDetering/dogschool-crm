@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -12,28 +13,39 @@ export class AuthenticationService {
   userID: string;
   navigationTarget = '/dashboard';
 
-  constructor(public auth: AngularFireAuth, private router: Router) { }
+  constructor(
+    public auth: AngularFireAuth,
+    private router: Router,
+    private _snackBar: MatSnackBar) { }
+  
+
+  openSnackBar(message: string, action?: string) {
+    this._snackBar.open(message, action, { duration: 3000 });
+  }
 
 
-  signup(email:string, password:string) {
+  signup(email: string, password: string) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.router.navigate([this.navigationTarget]);
         this.userID = user.user.uid;
+       this.openSnackBar('You are logged in successfully.');
       })
       .catch((error) => {
         // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
+        console.log('error code', errorCode);
+        console.log('errorMessage', errorMessage);
         if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
+          // alert('The password is too weak.');
+          this.openSnackBar('The password is too weak.');
         } else {
-          alert(errorMessage);
+          // alert(errorMessage);
+          this.openSnackBar(errorMessage);
         }
-        console.log(error);
       })
       ;
-
   }
 
 
@@ -42,18 +54,22 @@ export class AuthenticationService {
       .then((user) => {
         this.router.navigate([this.navigationTarget]);
         this.userID = user.user.uid;
+        this.openSnackBar('You are logged in successfully.');
       })
-      .catch (function (error) {
-          // Handle Errors here.
-          let errorCode = error.code;
-          let errorMessage = error.message;
-          if (errorCode === 'auth/wrong-password') {
-            alert('Wrong password.');
-          } else {
-            alert(errorMessage);
-          }
-          console.log(error);
-        })
+      .catch(function (error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log('error code', errorCode);
+        console.log('errorMessage', errorMessage);
+        if (errorCode === 'auth/wrong-password') {
+          // alert('Wrong password.');
+          this.openSnackBar('Wrong password.');
+        } else {
+          // alert(errorMessage);
+          this.openSnackBar(errorMessage);
+        } 
+      })
   }
 
 
@@ -62,12 +78,15 @@ export class AuthenticationService {
       .then((user) => {
         this.router.navigate([this.navigationTarget]);
         this.userID = user.user.uid;
+        this.openSnackBar('You were logged in as guest.');
       });
   }
+
 
   logout() {
     this.auth.signOut();
     this.userID = '';
+    this.openSnackBar('You were logged out.');
   }
 
 }

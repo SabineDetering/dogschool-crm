@@ -10,7 +10,7 @@ import { DarkModeService } from 'src/services/dark-mode.service';
 export class ModeSwitcherComponent implements OnInit {
 
 
-  constructor(public darkService:DarkModeService) {  
+  constructor(public darkService:DarkModeService) {   
    }
 
   ngOnInit(): void {

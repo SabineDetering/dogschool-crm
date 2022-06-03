@@ -14,9 +14,6 @@ export class AppComponent {
   searchString: string = '';
   mobileQuery: MediaQueryList;
 
-  // constructor(public myAuth: AuthenticationService, public filter: FilterStringService) { }
-
-
   private _mobileQueryListener: () => void;
 
   constructor(public myAuth: AuthenticationService,
