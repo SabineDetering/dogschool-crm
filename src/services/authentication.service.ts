@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { deleteUser, getAuth } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -32,16 +33,12 @@ export class AuthenticationService {
         this.openSnackBar('You are logged in successfully.');
       })
       .catch((error) => {
-        // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
-        console.log('error code', errorCode);
-        console.log('errorMessage', errorMessage);
+        console.log('error code: ', errorCode,' errorMessage: ', errorMessage);
         if (errorCode == 'auth/weak-password') {
-          // alert('The password is too weak.');
           this.openSnackBar('The password is too weak.');
         } else {
-          // alert(errorMessage);
           this.openSnackBar(errorMessage);
         }
       })
@@ -57,19 +54,17 @@ export class AuthenticationService {
         this.openSnackBar('You are logged in successfully.');
       })
       .catch((error) => {
-        // Handle Errors here.
         let errorCode = error.code;
         let errorMessage = error.message;
-        console.log('error code', errorCode);
-        console.log('errorMessage', errorMessage);
+        console.log('error code: ', errorCode, ' errorMessage: ', errorMessage);
         if (errorCode == 'auth/wrong-password') {
           this.openSnackBar('Wrong password.');
         } else if (errorCode == 'auth/user-not-found') {
           this.openSnackBar('This email is not registered.');
-         }
-          else {
-            this.openSnackBar(errorMessage);
-          }
+        }
+        else {
+          this.openSnackBar(errorMessage);
+        }
       })
   }
 
@@ -84,10 +79,19 @@ export class AuthenticationService {
   }
 
 
-  logout() {
+  async logout() {
+    let user = await this.auth.currentUser;
     this.auth.signOut();
     this.userID = '';
     this.openSnackBar('You were logged out.');
+    //delete user from firebase if anonymous
+    if (!!!user.email ) {
+      deleteUser(user).then(() => {
+        console.log('guest user deleted');
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
 }

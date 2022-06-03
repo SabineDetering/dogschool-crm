@@ -1,6 +1,6 @@
 <div *ngIf="myAuth.auth.user | async as user; else showLogin">
     <h1> You are logged in as {{ user.email ? user.email :'guest' }}.</h1>
-    <button  mat-stroked-button (click)="logout()">Logout</button>
+    <button mat-stroked-button (click)="logout()">Logout</button>
 </div>
 
 <ng-template #showLogin>
@@ -15,11 +15,8 @@
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Email</mat-label>
                         <input matInput autocomplete="username"
-                            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="loginEmail"
-                            name="email" id="loginEmail">
-                        <!-- <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-                            Please enter a valid email address
-                        </mat-error> -->
+                            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                            [(ngModel)]="loginEmail" name="email" id="loginEmail">
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Password</mat-label>
@@ -45,21 +42,22 @@
                         <mat-form-field appearance="outline" class="full-width">
                             <mat-label>Email</mat-label>
                             <input matInput autocomplete="username"
-                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" [(ngModel)]="signinEmail" #email="ngModel"
-                                name="email" id="signinEmail" [disabled]="guest">
+                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                                [(ngModel)]="signinEmail" #email="ngModel" name="email" id="signinEmail"
+                                [disabled]="guest">
                             <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-                    Please enter a valid email address
-                </mat-error>
+                                Please enter a valid email address
+                            </mat-error>
                         </mat-form-field>
                     </div>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Password</mat-label>
-                        <input matInput type="password" autocomplete="new-password" 
-                         pattern=".{6,}"[(ngModel)]="signinPassword"
-                            name="password" id="signinPassword" [disabled]="guest">
+                        <input matInput type="password" autocomplete="new-password" pattern=".{6,}"
+                            [(ngModel)]="signinPassword" name="password" id="signinPassword" [disabled]="guest">
                     </mat-form-field>
 
-                    <mat-checkbox [(ngModel)]="guest" name="guest" id="guestLogin" data-cy="guestLogin">Login as guest</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="guest" name="guest" id="guestLogin" data-cy="guestLogin">Login as guest
+                    </mat-checkbox>
 
                 </form>
             </mat-card-content>
