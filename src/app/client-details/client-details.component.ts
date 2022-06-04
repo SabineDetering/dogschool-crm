@@ -59,7 +59,7 @@ export class ClientDetailsComponent implements OnInit,OnChanges {
 
 
   /**
-   * returns all training data saved for the given clientID
+   * returns all training data saved for the given clientID sorted by descending date
    * @param id - clientID
    * @returns training data for the given clientID
    */

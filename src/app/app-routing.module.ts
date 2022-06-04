@@ -4,6 +4,7 @@ import { AuthGuardService } from 'src/services/auth-guard.service';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DogDetailsComponent } from './dog-details/dog-details.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 import { HelpComponent } from './help/help.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
@@ -17,14 +18,14 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent /*, canActivate: [AuthGuardService] */ },
-  { path: 'clients', component: ClientOverviewComponent, /*canActivate: [AuthGuardService] */},
+  { path: 'clients', component: ClientOverviewComponent, /*canActivate: [AuthGuardService] */ },
   { path: 'dogs', component: DogOverviewComponent, /*canActivate: [AuthGuardService]*/ },
   { path: 'trainings', component: TrainingOverviewComponent, /*canActivate: [AuthGuardService]*/ },
   { path: 'settings', component: SettingsComponent },
 
   { path: 'client/:clientID', component: ClientDetailsComponent/*, canActivate: [AuthGuardService] */ },
-  // { path: 'dog/:dogID', component: DogDetailsComponent/*, canActivate: [AuthGuardService] */ },
-  { path: 'training/:trainingID', component: TrainingDetailsComponent /*, canActivate: [AuthGuardService] */},
+  { path: 'dog/:dogID', component: DogDetailsComponent/*, canActivate: [AuthGuardService] */ },
+  { path: 'training/:trainingID', component: TrainingDetailsComponent /*, canActivate: [AuthGuardService] */ },
 
   { path: 'help', component: HelpComponent },
   { path: 'legal-notice', component: LegalNoticeComponent },
@@ -35,6 +36,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
   @Input() searchString: string;
 }

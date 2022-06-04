@@ -45,17 +45,10 @@ export class DogOverviewComponent implements OnInit {
       this.dogs = changes.map(d=> {
         let dog = new Dog(d);
         for (let i = 0; i < dog.ownerIds.length; i++) {
-          dog.ownerData.push(this.getClientById(dog.ownerIds[i]));
+          dog.ownerData.push(this.getClientDataById(dog.ownerIds[i]));
         }
         return dog;
       });
-
-        // //by default dogs are displayed with ascending dog names
-        // if (this.dogs.length > 0) {
-        //   // not possible to use generateTableData because renderRows is not accepted onInit
-        //   this.tableDogs = this.sortDogs({ active: 'name', direction: 'asc' });
-        // }        
-      // });
     });
 
     this.filter.filterSource.subscribe(val => {
@@ -64,7 +57,7 @@ export class DogOverviewComponent implements OnInit {
   }
 
 
-  getClientById(id: string): Client {
+  getClientDataById(id: string): Client {
     return this.clients.find(client => client.clientID == id);
   }
 

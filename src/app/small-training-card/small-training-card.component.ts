@@ -11,6 +11,7 @@ import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dial
 export class SmallTrainingCardComponent implements OnInit {
 
   @Input() training: Training;
+  @Input() view: string;
   constructor(public dialog: MatDialog) {
   }
 

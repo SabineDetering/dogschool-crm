@@ -1,1 +1,39 @@
-<p>dog-details works!</p>
+<mat-card *ngIf="dog" class="wrapper-card ">
+    <mat-card-title class="d-flex justify-between">
+        <span>Dog</span>
+        <button mat-icon-button (click)="closeDetails()" title="close">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-card-title>
+
+    <mat-card-content>
+        <div class="d-flex mt-l pt-l g-m flex-wrap metadata">
+
+            <button class="edit-btn" mat-icon-button (click)="editDog()" title="edit key data">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <!-- dog data -->
+            <app-small-dog-card [dog]="dog" class="details-card mt-m mb-m">
+            </app-small-dog-card>
+
+            <!-- client data -->
+            <div class="d-flex g-m flex-wrap flex-1">
+                <app-small-client-card *ngFor="let client of dog.ownerData" [client]="client"
+                    class="details-card mt-m mb-m">
+                </app-small-client-card>
+            </div>
+        </div>
+
+        <div class=" d-flex justify-between align-center ">
+            <h2>Trainings</h2>
+            <button mat-mini-fab color="primary" title="Add training" (click)="openAddEditTrainingDialog()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+
+        <app-small-training-card *ngFor="let training of dog.trainingData" [training]="training" [view]="'dog'"
+            class="training-details mt-m  pb-m">
+        </app-small-training-card>
+
+    </mat-card-content>
+</mat-card>

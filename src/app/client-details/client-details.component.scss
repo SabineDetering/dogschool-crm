@@ -22,20 +22,21 @@
 .metadata {
     position: relative;
     width: 100%;
-}
-.edit-btn {
-    display: none;
-}
-
-.metadata:hover {
-    background-color: rgba(0, 0, 0, 0.04);
 
     .edit-btn {
-        position: absolute;
-        top: 0;
-        right: 0;
-        color: rgb(140, 140, 140);
-        display: block;
+        display: none;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+
+        .edit-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: rgb(140, 140, 140);
+            display: block;
+        }
     }
 }
 

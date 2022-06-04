@@ -1,0 +1,56 @@
+:host {
+    max-height: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrapper-card {
+    width: 820px;
+    max-width: var(--full-minus-2sizem);
+    max-height: var(--full-minus-2sizem);
+    margin: var(--size-m);
+    overflow: auto;
+
+    @media(max-width:1000px) {
+        margin: 0;
+        height: 100%;
+    }
+}
+
+.metadata {
+    position: relative;
+    width: 100%;
+
+    .edit-btn {
+        display: none;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+
+        .edit-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: rgb(140, 140, 140);
+            display: block;
+        }
+    }
+}
+
+.details-card {
+    min-width: 240px;
+    max-width: min(410px, 50%);
+    flex: 1;
+
+    @media (max-width:528px) {
+        width: 100%;
+        max-width: unset;
+    }
+}
+
+.training-details {
+    display: block;
+}

@@ -1,4 +1,5 @@
 import { Client } from "./client.class";
+import { Training } from "./training.class";
 
 export class Dog {
     name: string;
@@ -11,7 +12,8 @@ export class Dog {
     breed: string;
     notes: string;
     ownerIds: string[];
-    ownerData: Client[]=[];
+    ownerData: Client[] = [];
+    trainingData: Training[] = [];
     dogID: string;
 
 
