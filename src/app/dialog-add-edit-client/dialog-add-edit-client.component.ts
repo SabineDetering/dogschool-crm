@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Client } from 'src/models/client.class';
 import { DataService } from 'src/services/data.service';
@@ -10,14 +10,15 @@ import { DataService } from 'src/services/data.service';
 })
 
 
-export class DialogAddClientComponent implements OnInit {
+export class DialogAddEditClientComponent implements OnInit {
 
 
   public client = new Client();
   availableNumber: number;
 
   constructor(
-    public addClientDialogRef: MatDialogRef<DialogAddClientComponent>,
+    public addClientDialogRef: MatDialogRef<DialogAddEditClientComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData: Client, 
     private Data: DataService
   ) { }
 

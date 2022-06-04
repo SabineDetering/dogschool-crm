@@ -8,7 +8,7 @@ import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { DataService } from 'src/services/data.service';
 import { DialogDeleteConfirmationComponent } from '../dialog-delete-confirmation/dialog-delete-confirmation.component';
-import { DialogAddTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
+import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
 
 @Component({
   selector: 'app-training-details',
@@ -134,7 +134,7 @@ export class TrainingDetailsComponent implements OnInit {
    * open dialog to edit all training details, incl. key data
    */
   editTraining() {
-    const addTrainingDialog = this.dialog.open(DialogAddTrainingComponent, { data: this.training });
+    const addTrainingDialog = this.dialog.open(DialogAddEditTrainingComponent, { data: this.training });
   }
 
 }

@@ -11,7 +11,7 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './dialog-add-edit-training.component.html',
   styleUrls: ['./dialog-add-edit-training.component.scss']
 })
-export class DialogAddTrainingComponent implements OnInit {
+export class DialogAddEditTrainingComponent implements OnInit {
 
   public training: Training;
   public clients: Client[];
@@ -24,7 +24,7 @@ export class DialogAddTrainingComponent implements OnInit {
 
 
   constructor(
-    public addTrainingDialogRef: MatDialogRef<DialogAddTrainingComponent>,
+    public addTrainingDialogRef: MatDialogRef<DialogAddEditTrainingComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: Training,
     private Data: DataService) { }
 

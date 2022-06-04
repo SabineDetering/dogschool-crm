@@ -7,7 +7,7 @@ import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { DataService } from 'src/services/data.service';
 import { FilterStringService } from 'src/services/filter-string.service';
-import { DialogAddDogComponent } from '../dialog-add-edit-dog/dialog-add-edit-dog.component';
+import { DialogAddEditDogComponent } from '../dialog-add-edit-dog/dialog-add-edit-dog.component';
 
 
 
@@ -70,7 +70,7 @@ export class DogOverviewComponent implements OnInit {
 
 
   openAddDogDialog() {
-    const addDogDialog = this.dialog.open(DialogAddDogComponent);
+    const addDogDialog = this.dialog.open(DialogAddEditDogComponent);
   }
 
 

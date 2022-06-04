@@ -8,7 +8,7 @@ import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { DataService } from 'src/services/data.service';
 import { FilterStringService } from 'src/services/filter-string.service';
-import { DialogAddTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
+import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
 
 @Component({
   selector: 'app-training-overview',
@@ -100,7 +100,7 @@ export class TrainingOverviewComponent implements OnInit {
 
 
   openAddTrainingDialog(): void {
-    const addTrainingDialog = this.dialog.open(DialogAddTrainingComponent);
+    const addTrainingDialog = this.dialog.open(DialogAddEditTrainingComponent);
   }
 
 

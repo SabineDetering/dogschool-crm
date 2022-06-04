@@ -10,7 +10,7 @@ import { DataService } from 'src/services/data.service';
   styleUrls: ['./dialog-add-edit-dog.component.scss']
 })
   
-export class DialogAddDogComponent implements OnInit {
+export class DialogAddEditDogComponent implements OnInit {
 
   public dog = new Dog();
   public birthDateInput: Date;
@@ -24,7 +24,7 @@ export class DialogAddDogComponent implements OnInit {
 
 
   constructor(
-    public addDogDialogRef: MatDialogRef<DialogAddDogComponent>,
+    public addDogDialogRef: MatDialogRef<DialogAddEditDogComponent>,
     private Data: DataService
   ) { }
 

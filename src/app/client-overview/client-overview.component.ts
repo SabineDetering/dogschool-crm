@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from 'src/models/client.class';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogAddClientComponent } from '../dialog-add-edit-client/dialog-add-edit-client.component';
+import { DialogAddEditClientComponent } from '../dialog-add-edit-client/dialog-add-edit-client.component';
 import { firstValueFrom } from 'rxjs';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -65,7 +65,7 @@ export class ClientOverviewComponent implements OnInit {
 
 
   openAddClientDialog(): void {
-    const addClientDialog = this.dialog.open(DialogAddClientComponent);
+    const addClientDialog = this.dialog.open(DialogAddEditClientComponent);
   }
 
 }

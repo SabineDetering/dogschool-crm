@@ -7,7 +7,7 @@ import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { Location } from '@angular/common';
 import { DataService } from 'src/services/data.service';
-import { DialogAddClientComponent } from '../dialog-add-edit-client/dialog-add-edit-client.component';
+import { DialogAddEditClientComponent } from '../dialog-add-edit-client/dialog-add-edit-client.component';
 import { DialogDeleteConfirmationComponent } from '../dialog-delete-confirmation/dialog-delete-confirmation.component';
 
 @Component({
@@ -142,7 +142,7 @@ export class ClientDetailsComponent implements OnInit {
    * open dialog to edit all training details, incl. key data
    */
   editClient() {
-    const addEditClientDialog = this.dialog.open(DialogAddClientComponent, { data: this.client });
+    const addEditClientDialog = this.dialog.open(DialogAddEditClientComponent, { data: this.client });
   }
 
 }

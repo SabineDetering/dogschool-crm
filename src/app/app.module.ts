@@ -39,8 +39,8 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
-import { DialogAddClientComponent } from './dialog-add-edit-client/dialog-add-edit-client.component';
-import { DialogAddDogComponent } from './dialog-add-edit-dog/dialog-add-edit-dog.component';
+import { DialogAddEditClientComponent } from './dialog-add-edit-client/dialog-add-edit-client.component';
+import { DialogAddEditDogComponent } from './dialog-add-edit-dog/dialog-add-edit-dog.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
@@ -49,7 +49,7 @@ import { AuthGuardService } from 'src/services/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HelpComponent } from './help/help.component';
 import { TrainingOverviewComponent } from './training-overview/training-overview.component';
-import { DialogAddTrainingComponent } from './dialog-add-edit-training/dialog-add-edit-training.component';
+import { DialogAddEditTrainingComponent } from './dialog-add-edit-training/dialog-add-edit-training.component';
 import { SearchFilterPipe } from 'src/pipes/search-filter.pipe';
 import { SortJSONArrayPipe } from 'src/pipes/sort-jsonarray.pipe';
 import { TrainingDetailsComponent } from './training-details/training-details.component';
@@ -65,8 +65,9 @@ import { SmallTrainingCardComponent } from './small-training-card/small-training
   declarations: [
     AppComponent,
     ClientOverviewComponent,
-    DialogAddClientComponent,
-    DialogAddDogComponent,
+    DialogAddEditClientComponent,
+    DialogAddEditDogComponent,
+    DialogAddEditTrainingComponent,
     DogOverviewComponent,
     PrivacyNoticeComponent,
     LegalNoticeComponent,
@@ -74,7 +75,6 @@ import { SmallTrainingCardComponent } from './small-training-card/small-training
     DashboardComponent,
     HelpComponent,
     TrainingOverviewComponent,
-    DialogAddTrainingComponent,
     SearchFilterPipe,
     SortJSONArrayPipe,
     TrainingDetailsComponent,
