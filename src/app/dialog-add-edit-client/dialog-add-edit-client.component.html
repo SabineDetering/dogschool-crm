@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>Add new client</h2>
+<h2 *ngIf="!client.clientID" mat-dialog-title>Add new client</h2>
+<h2 *ngIf="client.clientID" mat-dialog-title>Edit client</h2>
 
 <mat-dialog-content>
     <form #addClientForm="ngForm">

@@ -65,7 +65,7 @@ export class ClientOverviewComponent implements OnInit {
 
 
   openAddClientDialog(): void {
-    const addClientDialog = this.dialog.open(DialogAddEditClientComponent);
+    this.dialog.open(DialogAddEditClientComponent);
   }
 
 }

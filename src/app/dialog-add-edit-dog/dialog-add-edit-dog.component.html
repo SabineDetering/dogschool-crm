@@ -1,4 +1,5 @@
-<h2 mat-dialog-title>Add new dog</h2>
+<h2 *ngIf="!dog.dogID"mat-dialog-title>Add new dog</h2>
+<h2 *ngIf="dog.dogID" mat-dialog-title>Edit Dog</h2>
 
 <mat-dialog-content>
     <form #addDogForm="ngForm">

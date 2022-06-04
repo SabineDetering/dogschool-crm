@@ -70,7 +70,7 @@ export class DogOverviewComponent implements OnInit {
 
 
   openAddDogDialog() {
-    const addDogDialog = this.dialog.open(DialogAddEditDogComponent);
+   this.dialog.open(DialogAddEditDogComponent);
   }
 
 

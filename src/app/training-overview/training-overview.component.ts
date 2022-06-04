@@ -90,16 +90,4 @@ export class TrainingOverviewComponent implements OnInit {
     this.dialog.open(DialogAddEditTrainingComponent);
   }
 
-
-  /**
-  * show detailed data for selected row
-  * @param row 
-  */
-  showRow(row: any) {
-    console.log(row);
-    // to be completed
-  }
-
 }
-
-
