@@ -93,6 +93,10 @@ body {
   flex: 1 1 auto;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .p-m {
   padding: var(--size-m);
 }
@@ -103,6 +107,10 @@ body {
 
 .pt-m {
   padding-top: var(--size-m);
+}
+
+.pt-l {
+  padding-top: var(--size-l);
 }
 
 .m-m {
@@ -151,6 +159,13 @@ body {
 
 .full-width {
   width: 100%
+}
+
+.full-height {
+  height: 100%;
+}
+.full-height-minus-2sizem {
+  height: var(--full-minus-2sizem);
 }
 
 .material-symbols-outlined {

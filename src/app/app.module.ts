@@ -58,6 +58,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ModeSwitcherComponent } from './mode-switcher/mode-switcher.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { SmallDogCardComponent } from './small-dog-card/small-dog-card.component';
+import { SmallClientCardComponent } from './small-client-card/small-client-card.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { SmallDogCardComponent } from './small-dog-card/small-dog-card.component
     SettingsComponent,
     ModeSwitcherComponent,
     ClientDetailsComponent,
-    SmallDogCardComponent
+    SmallDogCardComponent,
+    SmallClientCardComponent
   ],
   imports: [
     BrowserModule,

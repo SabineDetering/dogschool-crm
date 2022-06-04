@@ -1,0 +1,31 @@
+<mat-card class="full-height-minus-2sizem border-primary card ">
+    <h3 class="bg-mode card-header">
+        <mat-icon color="primary"> person </mat-icon> {{ client.firstName }} {{
+        client.lastName }}
+    </h3>
+
+    <mat-card-content class="mt-s">
+        <h4>Contact</h4>
+        <div *ngIf=" client.mobilePhone.number">
+            <span>{{ client.mobilePhone.areaCode }} / {{
+                client.mobilePhone.number
+                }}
+            </span>
+            <mat-checkbox color="primary" [checked]="client.whatsApp" disabled="" class="ml-s">
+                WhatsApp
+            </mat-checkbox>
+        </div>
+        <p *ngIf=" client.landlinePhone.number">{{
+            client.landlinePhone.areaCode
+            }} /
+            {{ client.landlinePhone.number }} </p>
+        <p *ngIf=" client.email">{{ client.email }} </p>
+
+        <h4 *ngIf=" client.street">Address</h4>
+        <p *ngIf=" client.street">{{ client.street }} </p>
+        <p *ngIf=" client.city">{{ client.zipCode }} {{
+            client.city
+            }}
+        </p>
+    </mat-card-content>
+</mat-card>
