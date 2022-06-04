@@ -134,7 +134,7 @@ export class TrainingDetailsComponent implements OnInit {
    * open dialog to edit all training details, incl. key data
    */
   editTraining() {
-    const addTrainingDialog = this.dialog.open(DialogAddEditTrainingComponent, { data: this.training });
+   this.dialog.open(DialogAddEditTrainingComponent, { data: this.training });
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Training } from 'src/models/training.class';
+import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
 
 @Component({
   selector: 'app-small-training-card',
@@ -9,9 +11,18 @@ import { Training } from 'src/models/training.class';
 export class SmallTrainingCardComponent implements OnInit {
 
   @Input() training: Training;
-  constructor() { }
+  constructor(public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
+  }
+
+
+  /**
+   * open dialog to edit all training details, incl. key data
+   */
+  editTraining() {
+    this.dialog.open(DialogAddEditTrainingComponent, { data: this.training });
   }
 
 }

@@ -13,7 +13,7 @@
     margin: var(--size-m);
     overflow: auto;
 
-    @media(max-width:528px) {
+    @media(max-width:1000px) {
         margin: 0;
         height: 100%;
     }
@@ -21,20 +21,22 @@
 
 .metadata {
     position: relative;
+    width: 100%;
+}
 
+.edit-btn {
+    display: none;
+}
 
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
+.metadata:hover {
+    background-color: rgba(0, 0, 0, 0.04);
 
-        .edit-btn {
-            position: absolute;
-            top: 0;
-            right: 0;
-            color: rgb(140, 140, 140);
-            visibility: hidden;
-            visibility: visible;
-        }
-
+    .edit-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: rgb(140, 140, 140);
+        display: block;
     }
 }
 

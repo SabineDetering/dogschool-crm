@@ -1,4 +1,4 @@
-<mat-card class="full-height-minus-2sizem border-primary">
+<mat-card class="full-height-minus-2sizem border-primary training-card">
     <h3 class="card-header d-flex g-m flex-wrap ">
         <span class="bg-mode  ">
             <img class="svg-icon" src="assets/img/training.svg"> {{training.date|date:'short' }} ({{ training.duration}}
@@ -8,6 +8,10 @@
             <mat-icon color="accent"> pets </mat-icon> {{ training.dogName }}
         </span>
     </h3>
+
+    <button class="edit-btn" mat-icon-button (click)="editTraining()" title="edit training data">
+        <mat-icon>edit</mat-icon>
+    </button>
 
     <mat-card-content class="mt-s">
         <span class="bg-mode hide-above-460 ">

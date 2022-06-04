@@ -13,7 +13,7 @@
     margin: var(--size-m);
     overflow: auto;
 
-    @media(max-width:528px) {
+    @media(max-width:1000px) {
         margin: 0;
         height: 100%;
     }

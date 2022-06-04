@@ -1,5 +1,5 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Client } from 'src/models/client.class';
 import { DataService } from 'src/services/data.service';
 
@@ -13,26 +13,35 @@ import { DataService } from 'src/services/data.service';
 export class DialogAddEditClientComponent implements OnInit {
 
 
-  public client = new Client();
+  public client: Client;
   availableNumber: number;
 
   constructor(
     public addClientDialogRef: MatDialogRef<DialogAddEditClientComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: Client, 
+    @Inject(MAT_DIALOG_DATA) public dialogData: Client,
     private Data: DataService
   ) { }
 
 
   ngOnInit(): void {
+
+    if (this.dialogData) {
+      this.client = new Client(this.dialogData);
+    } else {
+      this.client = new Client();
+    }
+
     this.Data.availableNumber$.subscribe(changes => {
       this.availableNumber = changes.availableNumber;
     });
   }
 
   saveClient() {
-    this.client.clientNumber = this.availableNumber;
-    this.Data.saveNumber(this.availableNumber+1);
-    this.Data.saveClient(this.client.toJSON());
+    if (!this.client.clientNumber) {
+      this.client.clientNumber = this.availableNumber;
+      this.Data.saveNumber(this.availableNumber + 1);
+    }
+    this.Data.saveClient(this.client.toJSON(), this.client.clientID);
   }
 
 }

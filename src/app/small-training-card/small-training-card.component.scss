@@ -5,11 +5,26 @@
     padding: 0px 8px;
     margin: 0px -8px;
 
-    img{
+    img {
         width: 24px;
     }
 }
 
+.edit-btn {
+    display: none;
+}
+
+.training-card:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+
+    .edit-btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: rgb(140, 140, 140);
+        display: block;
+    }
+}
 
 .category {
     display: inline-block;

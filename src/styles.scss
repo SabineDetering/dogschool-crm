@@ -101,6 +101,10 @@ body {
   flex-wrap: wrap;
 }
 
+.pos-relative {
+  position: relative;
+}
+
 .p-m {
   padding: var(--size-m);
 }

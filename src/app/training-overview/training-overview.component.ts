@@ -23,7 +23,6 @@ export class TrainingOverviewComponent implements OnInit {
   clients: Client[];
   dogs: Dog[];
   trainings: Training[];
-  // tableTrainings: Training[];
 
   sortProp = 'date';
   sortDir: string = 'desc';
@@ -42,13 +41,7 @@ export class TrainingOverviewComponent implements OnInit {
 
     this.clients = await firstValueFrom(this.Data.clients$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
-    // this.trainings = await firstValueFrom(this.Data.trainings$.pipe(map(changes => {
-    //   let training = new Training(changes);
-    //     training.clientName = this.getClientNameById(training.clientID);
-    //     training.dogName = this.getDogNameById(training.dogID);
-    //     return training;
-    // })));
-
+ 
     this.Data.trainings$.subscribe(changes => {
       this.trainings = changes.map(t => {
         let training = new Training(t);
@@ -56,12 +49,6 @@ export class TrainingOverviewComponent implements OnInit {
         training.dogName = this.getDogNameById(training.dogID);
         return training;
       });
-
-      //by default trainings are displayed with descending date -> newest training on top
-      // if (this.trainings.length > 0) {
-        // not possible to use generateTableData because renderRows is not accepted onInit
-        // this.tableTrainings = this.sortTrainings({ active: 'date', direction: 'desc' });
-      // }
     });
 
     this.filter.filterSource.subscribe(val => {
@@ -99,8 +86,8 @@ export class TrainingOverviewComponent implements OnInit {
   }
 
 
-  openAddTrainingDialog(): void {
-    const addTrainingDialog = this.dialog.open(DialogAddEditTrainingComponent);
+  openAddEditTrainingDialog(): void {
+    this.dialog.open(DialogAddEditTrainingComponent);
   }
 
 

@@ -30,8 +30,9 @@ export class ClientDetailsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-    this.trainings = await firstValueFrom(this.Data.trainings$);
+    // this.trainings = await firstValueFrom(this.Data.trainings$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
+    this.Data.trainings$.subscribe(changes => {this.trainings = changes});
 
     this.route.params.subscribe(params => {
       this.clientID = params['clientID'];
@@ -50,6 +51,10 @@ export class ClientDetailsComponent implements OnInit {
         })[0];
       console.log('client', this.client)
     });
+  }
+
+  ngOnChanges() {
+    console.log(this.trainings);
   }
 
 
@@ -81,53 +86,21 @@ export class ClientDetailsComponent implements OnInit {
    */
   getDogNameById(id: string): string {
     return this.dogs
-      .filter(dog => dog.dogID==id)[0].name;
+      .filter(dog => dog.dogID == id)[0].name;
   }
 
 
   /**
-   * 
-   * @param array 
+   * @param array - JSON array 
    * @param prop  - name of the property to sort
    * @param direction - sorting direction, either 'asc' or 'desc'
-   * @returns 
+   * @returns sorted JSON array 
    */
   sortJSONArray(array: any[], prop: string, direction: 'desc' | 'asc'): any[] {
     return array.sort((a, b) => {
       return (a[prop] < b[prop] ? -1 : 1) * (direction == 'desc' ? -1 : 1)
     });
   }
-
-
-  /**
-   * update client details on firestore and go back to previous page
-   */
-  // saveClient() {
-  //   this.Data.saveClient(this.client.toJSON(), this.client.clientID);
-  //   this.closeDetails();
-  // }
-
-
-  /**
-   * open dialog to get confirmation for deletion or cancel deletion
-   */
-  // openDeleteConfirmationDialog() {
-  //   const confirmationRef = this.dialog.open(DialogDeleteConfirmationComponent);
-  //   confirmationRef.afterClosed().subscribe(result => {
-  //     if (result == 'delete') {
-  //       this.deleteClient();
-  //     }
-  //   });
-  // }
-
-
-  /**
-   * delete client on firestore and go back to previous page
-   */
-  // deleteClient() {
-  //   this.Data.deleteTraining(this.client.clientID);
-  //   this.closeDetails();
-  // }
 
 
   /**
@@ -139,11 +112,10 @@ export class ClientDetailsComponent implements OnInit {
 
 
   /**
-   * open dialog to edit all training details, incl. key data
+   * open dialog to edit all client details
    */
   editClient() {
-    const addEditClientDialog = this.dialog.open(DialogAddEditClientComponent, { data: this.client });
+    this.dialog.open(DialogAddEditClientComponent, { data: this.client });
   }
 
 }
-
