@@ -6,12 +6,6 @@
     align-items: center;
 }
 
-// .wrapper-card {
-//     overflow-y: auto;
-//     min-width: 500px;
-//     width: 50vw;
-//     max-width: 820px;
-// }
 .wrapper-card {
     width: 820px;
     max-width: var(--full-minus-2sizem);
@@ -23,6 +17,7 @@
         margin: 0;
     }
 }
+
 .metadata {
     position: relative;
 
@@ -43,6 +38,7 @@
         }
     }
 }
+
 .details-card {
     min-width: 240px;
     max-width: min(410px, 50%);
@@ -58,7 +54,6 @@ h4 {
     font-weight: 500;
     margin: 8px 0 4px 0;
 }
-
 
 .half-width {
     width: 100%;
