@@ -60,6 +60,7 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 import { SmallDogCardComponent } from './small-dog-card/small-dog-card.component';
 import { SmallClientCardComponent } from './small-client-card/small-client-card.component';
 import { SmallTrainingCardComponent } from './small-training-card/small-training-card.component';
+import { DogDetailsComponent } from './dog-details/dog-details.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { SmallTrainingCardComponent } from './small-training-card/small-training
     ClientDetailsComponent,
     SmallDogCardComponent,
     SmallClientCardComponent,
-    SmallTrainingCardComponent
+    SmallTrainingCardComponent,
+    DogDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,10 @@
 <h2 *ngIf="!client.clientID" mat-dialog-title>Add new client</h2>
 <h2 *ngIf="client.clientID" mat-dialog-title>Edit client</h2>
 
+<button class="close-btn" mat-icon-button mat-dialog-close title="close without saving">
+    <mat-icon>close</mat-icon>
+</button>
+
 <mat-dialog-content>
     <form #addClientForm="ngForm">
         <div class="dialog-container form-group">

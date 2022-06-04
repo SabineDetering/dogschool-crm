@@ -1,6 +1,10 @@
 <h2 *ngIf="!training.trainingID" mat-dialog-title>Add a new training</h2>
 <h2 *ngIf="training.trainingID"mat-dialog-title>Edit training</h2>
 
+<button class="close-btn" mat-icon-button mat-dialog-close title="close without saving">
+    <mat-icon>close</mat-icon>
+</button>
+
 <mat-dialog-content>
     <form #addTrainingForm="ngForm">
         <div class="dialog-container form-group">

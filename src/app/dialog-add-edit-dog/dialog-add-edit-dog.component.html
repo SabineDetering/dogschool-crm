@@ -1,6 +1,10 @@
 <h2 *ngIf="!dog.dogID"mat-dialog-title>Add new dog</h2>
 <h2 *ngIf="dog.dogID" mat-dialog-title>Edit Dog</h2>
 
+<button class="close-btn" mat-icon-button mat-dialog-close title="close without saving">
+    <mat-icon>close</mat-icon>
+</button>
+
 <mat-dialog-content>
     <form #addDogForm="ngForm">
         <div class="dialog-container form-group">
