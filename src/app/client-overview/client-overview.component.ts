@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Client } from 'src/models/client.class';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogAddClientComponent } from '../dialog-add-client/dialog-add-client.component';
+import { DialogAddClientComponent } from '../dialog-add-edit-client/dialog-add-edit-client.component';
 import { firstValueFrom } from 'rxjs';
 import { Sort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';

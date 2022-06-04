@@ -1,0 +1,42 @@
+<mat-card class="full-height-minus-2sizem border-primary">
+    <h3 class="card-header d-flex g-m flex-wrap ">
+        <span class="bg-mode  ">
+            <img class="svg-icon" src="assets/img/training.svg"> {{training.date|date:'short' }} ({{ training.duration}}
+            min)
+        </span>
+        <span class="bg-mode hide-below-460 ">
+            <mat-icon color="accent"> pets </mat-icon> {{ training.dogName }}
+        </span>
+    </h3>
+
+    <mat-card-content class="mt-s">
+        <span class="bg-mode hide-above-460 ">
+            <mat-icon color="accent"> pets </mat-icon> {{ training.dogName }}
+        </span>
+
+        <div class="d-flex flex-wrap">
+            <p class="pr-m">
+                <span class="category">Subject: </span>
+                {{ training.subject }}
+            </p>
+            <p *ngIf="training.topics" class="pr-m">
+                <span class="category">Main Topics: </span>
+                {{ training.topics }}
+            </p>
+            <p *ngIf="training.location" class="pr-m">
+                <span class="category">Location: </span>
+                {{ training.location }}
+            </p>
+        </div>
+
+        <p *ngIf="training.trainingNotes">
+            <span class="category">Notes: </span>
+            {{ training.trainingNotes }}
+        </p>
+        <p *ngIf="training.homework">
+            <span class="category">Homework: </span>
+            {{ training.homework }}
+        </p>
+
+    </mat-card-content>
+</mat-card>

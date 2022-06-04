@@ -7,7 +7,7 @@ import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { Location } from '@angular/common';
 import { DataService } from 'src/services/data.service';
-import { DialogAddClientComponent } from '../dialog-add-client/dialog-add-client.component';
+import { DialogAddClientComponent } from '../dialog-add-edit-client/dialog-add-edit-client.component';
 import { DialogDeleteConfirmationComponent } from '../dialog-delete-confirmation/dialog-delete-confirmation.component';
 
 @Component({
@@ -44,6 +44,7 @@ export class ClientDetailsComponent implements OnInit {
         .map(client => {
           client = new Client(client);
           client.trainingData = this.getTrainingDataByClientId(client.clientID);
+          client.trainingData.forEach(training => training.dogName = this.getDogNameById(training.dogID));
           client.dogData = this.getDogDataByClientId(client.clientID);
           return client;
         })[0];
@@ -74,6 +75,15 @@ export class ClientDetailsComponent implements OnInit {
       .map(dog => new Dog(dog));
   }
 
+  /**
+   * @param id - dogID
+   * @returns dog name for the given dogID
+   */
+  getDogNameById(id: string): string {
+    return this.dogs
+      .filter(dog => dog.dogID==id)[0].name;
+  }
+
 
   /**
    * 
@@ -92,32 +102,32 @@ export class ClientDetailsComponent implements OnInit {
   /**
    * update client details on firestore and go back to previous page
    */
-  saveClient() {
-    this.Data.saveClient(this.client.toJSON(), this.client.clientID);
-    this.closeDetails();
-  }
+  // saveClient() {
+  //   this.Data.saveClient(this.client.toJSON(), this.client.clientID);
+  //   this.closeDetails();
+  // }
 
 
   /**
    * open dialog to get confirmation for deletion or cancel deletion
    */
-  openDeleteConfirmationDialog() {
-    const confirmationRef = this.dialog.open(DialogDeleteConfirmationComponent);
-    confirmationRef.afterClosed().subscribe(result => {
-      if (result == 'delete') {
-        this.deleteClient();
-      }
-    });
-  }
+  // openDeleteConfirmationDialog() {
+  //   const confirmationRef = this.dialog.open(DialogDeleteConfirmationComponent);
+  //   confirmationRef.afterClosed().subscribe(result => {
+  //     if (result == 'delete') {
+  //       this.deleteClient();
+  //     }
+  //   });
+  // }
 
 
   /**
    * delete client on firestore and go back to previous page
    */
-  deleteClient() {
-    this.Data.deleteTraining(this.client.clientID);
-    this.closeDetails();
-  }
+  // deleteClient() {
+  //   this.Data.deleteTraining(this.client.clientID);
+  //   this.closeDetails();
+  // }
 
 
   /**
@@ -132,7 +142,7 @@ export class ClientDetailsComponent implements OnInit {
    * open dialog to edit all training details, incl. key data
    */
   editClient() {
-    const addTrainingDialog = this.dialog.open(DialogAddClientComponent, { data: this.client });
+    const addEditClientDialog = this.dialog.open(DialogAddClientComponent, { data: this.client });
   }
 
 }

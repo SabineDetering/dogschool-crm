@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 
-import { DialogAddClientComponent } from './dialog-add-client.component';
+import { DialogAddClientComponent } from './dialog-add-edit-client.component';
 
 describe('DialogAddClientComponent', () => {
   let component: DialogAddClientComponent;

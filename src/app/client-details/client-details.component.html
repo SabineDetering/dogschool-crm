@@ -17,11 +17,16 @@
             <app-small-client-card [client]="client" class="details-card mt-m mb-m"></app-small-client-card>
 
             <!-- dog data -->
-            <div class="d-flex g-m flex-wrap">
+            <div class="d-flex g-m flex-wrap flex-1">
                 <app-small-dog-card *ngFor="let dog of client.dogData" [dog]="dog" class="details-card mt-m mb-m">
                 </app-small-dog-card>
             </div>
-
         </div>
+
+        <h2>Trainings</h2>
+        
+            <app-small-training-card *ngFor="let training of client.trainingData" [training]="training" class="training-details mt-m  pb-m">
+            </app-small-training-card>
+        
     </mat-card-content>
 </mat-card>

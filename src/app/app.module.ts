@@ -39,7 +39,7 @@ import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
-import { DialogAddClientComponent } from './dialog-add-client/dialog-add-client.component';
+import { DialogAddClientComponent } from './dialog-add-edit-client/dialog-add-edit-client.component';
 import { DialogAddDogComponent } from './dialog-add-dog/dialog-add-dog.component';
 import { DogOverviewComponent } from './dog-overview/dog-overview.component';
 import { PrivacyNoticeComponent } from './privacy-notice/privacy-notice.component';
@@ -59,6 +59,7 @@ import { ModeSwitcherComponent } from './mode-switcher/mode-switcher.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { SmallDogCardComponent } from './small-dog-card/small-dog-card.component';
 import { SmallClientCardComponent } from './small-client-card/small-client-card.component';
+import { SmallTrainingCardComponent } from './small-training-card/small-training-card.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { SmallClientCardComponent } from './small-client-card/small-client-card.
     ModeSwitcherComponent,
     ClientDetailsComponent,
     SmallDogCardComponent,
-    SmallClientCardComponent
+    SmallClientCardComponent,
+    SmallTrainingCardComponent
   ],
   imports: [
     BrowserModule,

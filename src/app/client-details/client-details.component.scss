@@ -15,27 +15,27 @@
 
     @media(max-width:528px) {
         margin: 0;
+        height: 100%;
     }
 }
 
 .metadata {
     position: relative;
+    width: 100%;
+}
+.edit-btn {
+    display: none;
+}
 
+.metadata:hover {
+    background-color: rgba(0, 0, 0, 0.04);
 
     .edit-btn {
         position: absolute;
         top: 0;
         right: 0;
-        color: rgba(0, 0, 0, 0.54);
-        visibility: hidden;
-    }
-
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
-
-        .edit-btn {
-            visibility: visible;
-        }
+        color: rgb(140, 140, 140);
+        display: block;
     }
 }
 
@@ -48,4 +48,8 @@
         width: 100%;
         max-width: unset;
     }
+}
+
+.training-details {
+    display: block;
 }

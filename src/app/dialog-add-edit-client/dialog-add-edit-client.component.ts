@@ -4,9 +4,9 @@ import { Client } from 'src/models/client.class';
 import { DataService } from 'src/services/data.service';
 
 @Component({
-  selector: 'app-dialog-add-client',
-  templateUrl: './dialog-add-client.component.html',
-  styleUrls: ['./dialog-add-client.component.scss']
+  selector: 'app-dialog-add-edit-client',
+  templateUrl: './dialog-add-edit-client.component.html',
+  styleUrls: ['./dialog-add-edit-client.component.scss']
 })
 
 
