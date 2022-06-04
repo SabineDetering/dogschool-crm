@@ -30,9 +30,6 @@ export class DataService {
   private subjectCollection: AngularFirestoreCollection<Subjects>;
   public subjects$: Observable<Subjects>;
 
-  // private scheduleHoursCollection: AngularFirestoreCollection<scheduleHoursI>;
-  // scheduleHours$: Observable<scheduleHoursI>;
-
 
   constructor(private readonly firestore: AngularFirestore) {
 
@@ -58,43 +55,41 @@ export class DataService {
     this.availableNumberCollection.doc('available-number').set({ availableNumber: number });
   }
 
-  saveClient(client:any, id?: string) {
-    this.clientCollection.doc(id).set(client);
+  saveClient(client: any, id?: string) {
+    if (id) {
+      this.clientCollection.doc(id).set(client);
+    } else {
+      this.clientCollection.doc().set(client);
+    }
   }
 
 
-  saveDog(dog:any, id?: string) {
-    this.dogCollection.doc(id).set(dog);
+  saveDog(dog: any, id?: string) {
+    if (id) {
+      this.dogCollection.doc(id).set(dog);
+    } else {
+      this.dogCollection.doc().set(dog);
+    }
   }
 
 
-  saveTraining(training:any,id?:string) {
-    this.trainingCollection.doc(id).set(training);
+  saveTraining(training: any, id?: string) {
+    if (id) {
+      this.trainingCollection.doc(id).set(training);
+    } else {
+      this.trainingCollection.doc().set(training);
+    }
   }
 
 
-  deleteClient(id: string) {
-    this.clientCollection.doc(id).delete();
-  }
-
-
-  deleteDog(id: string) {
-    this.dogCollection.doc(id).delete();
-  }
-
-
-  deleteTraining( id: string) {
+  deleteTraining(id: string) {
     this.trainingCollection.doc(id).delete();
   }
 
 
-  saveSubjects(subjects) {
-    this.subjectCollection.doc('subjects').set(subjects);
-  }
-
-
-  // saveSchedule(schedule) {
-  //   this.scheduleHoursCollection.doc('schedule').set(schedule);
+  // saveSubjects(subjects) {
+  //   this.subjectCollection.doc('subjects').set(subjects);
   // }
+
 
 }

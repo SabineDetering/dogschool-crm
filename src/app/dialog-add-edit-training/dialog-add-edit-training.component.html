@@ -1,5 +1,5 @@
-<h2 *ngIf="!training.trainingID" mat-dialog-title>Add a new training</h2>
-<h2 *ngIf="training.trainingID"mat-dialog-title>Edit training</h2>
+<h2 *ngIf="!!!training.trainingID" mat-dialog-title>Add a new training</h2>
+<h2 *ngIf="!!training.trainingID"mat-dialog-title>Edit training</h2>
 
 <button class="close-btn" mat-icon-button mat-dialog-close title="close without saving">
     <mat-icon>close</mat-icon>
@@ -14,7 +14,7 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Owner</mat-label>
                     <mat-select [(ngModel)]="training.clientID" name="clientID" required
-                        (selectionChange)="applyDogFilter()">
+                        (selectionChange)="filterDogsOfSelectedClient()">
                         <input class="full-width p-m" (keyup)="applyClientFilter($event)">
                         <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
                             {{client.firstName}} {{client.lastName}}
@@ -94,7 +94,7 @@
 
     <mat-dialog-actions>
         <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button mat-dialog-close [disabled]="!addTrainingForm.valid" (click)="saveTraining(training.trainingID)">Save</button>
+        <button mat-button mat-dialog-close [disabled]="!addTrainingForm.valid" (click)="saveTraining()">Save</button>
     </mat-dialog-actions>
 
 

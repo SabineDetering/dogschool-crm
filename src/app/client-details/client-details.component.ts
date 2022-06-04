@@ -8,6 +8,7 @@ import { Training } from 'src/models/training.class';
 import { Location } from '@angular/common';
 import { DataService } from 'src/services/data.service';
 import { DialogAddEditClientComponent } from '../dialog-add-edit-client/dialog-add-edit-client.component';
+import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
 
 @Component({
   selector: 'app-client-details',
@@ -115,6 +116,10 @@ export class ClientDetailsComponent implements OnInit,OnChanges {
    */
   editClient() {
     this.dialog.open(DialogAddEditClientComponent, { data: this.client });
+  }
+
+  openAddEditTrainingDialog(){
+    this.dialog.open(DialogAddEditTrainingComponent, { data: { clientID: this.client.clientID } });
   }
 
 }

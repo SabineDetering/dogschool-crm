@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA,  } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, } from '@angular/material/dialog';
 import { DataService } from 'src/services/data.service';
 import { Training } from 'src/models/training.class';
 import { Client } from 'src/models/client.class';
@@ -25,14 +25,24 @@ export class DialogAddEditTrainingComponent implements OnInit {
 
   constructor(
     public addTrainingDialogRef: MatDialogRef<DialogAddEditTrainingComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: Training,
+    @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private Data: DataService) { }
 
   async ngOnInit(): Promise<void> {
 
     if (this.dialogData) {
-      this.training = new Training(this.dialogData);
-      this.dateInput = new Date(this.dialogData.date - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 19);
+      if (this.dialogData.training) {
+        this.training = new Training(this.dialogData.training);
+        this.dateInput = new Date(this.training.date - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 19);
+      } else {
+        this.training = new Training();
+        if (this.dialogData.clientID) {
+          this.training.clientID = this.dialogData.clientID;
+        }
+        if (this.dialogData.dogID) {
+          this.training.dogID = this.dialogData.dogID;
+        }
+      }
     } else {
       this.training = new Training();
     }
@@ -47,7 +57,7 @@ export class DialogAddEditTrainingComponent implements OnInit {
 
     this.filteredClients = this.clients;
     this.filteredDogs = this.dogs;
-    this.applyDogFilter();
+    this.filterDogsOfSelectedClient();
   }
 
 
@@ -57,12 +67,13 @@ export class DialogAddEditTrainingComponent implements OnInit {
       (client.firstName.toLowerCase().startsWith(filter)) || (client.lastName.toLowerCase().startsWith(filter)));
   }
 
-  applyDogFilter() {
+
+  filterDogsOfSelectedClient() {
     this.filteredDogs = this.dogs.filter(dog => dog.ownerIds.includes(this.training.clientID));
   }
 
 
-  saveTraining(id?: string) {
+  saveTraining() {
     this.training.date = new Date(this.dateInput).getTime();
     console.log(this.training);
     this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
