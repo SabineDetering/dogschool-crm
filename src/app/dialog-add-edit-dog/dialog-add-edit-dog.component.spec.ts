@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 
-import { DialogAddDogComponent } from './dialog-add-dog.component';
+import { DialogAddDogComponent } from './dialog-add-edit-dog.component';
 
 describe('DialogAddDogComponent', () => {
   let component: DialogAddDogComponent;

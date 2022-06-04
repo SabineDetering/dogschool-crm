@@ -5,9 +5,9 @@ import { Client } from 'src/models/client.class';
 import { DataService } from 'src/services/data.service';
 
 @Component({
-  selector: 'app-dialog-add-dog',
-  templateUrl: './dialog-add-dog.component.html',
-  styleUrls: ['./dialog-add-dog.component.scss']
+  selector: 'app-dialog-add-edit-dog',
+  templateUrl: './dialog-add-edit-dog.component.html',
+  styleUrls: ['./dialog-add-edit-dog.component.scss']
 })
   
 export class DialogAddDogComponent implements OnInit {

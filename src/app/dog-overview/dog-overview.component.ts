@@ -7,7 +7,7 @@ import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { DataService } from 'src/services/data.service';
 import { FilterStringService } from 'src/services/filter-string.service';
-import { DialogAddDogComponent } from '../dialog-add-dog/dialog-add-dog.component';
+import { DialogAddDogComponent } from '../dialog-add-edit-dog/dialog-add-edit-dog.component';
 
 
 

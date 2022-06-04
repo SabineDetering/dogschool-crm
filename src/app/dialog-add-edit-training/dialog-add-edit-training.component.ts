@@ -7,9 +7,9 @@ import { Dog } from 'src/models/dog.class';
 import { firstValueFrom } from 'rxjs';
 
 @Component({
-  selector: 'app-dialog-add-training',
-  templateUrl: './dialog-add-training.component.html',
-  styleUrls: ['./dialog-add-training.component.scss']
+  selector: 'app-dialog-add-edit-training',
+  templateUrl: './dialog-add-edit-training.component.html',
+  styleUrls: ['./dialog-add-edit-training.component.scss']
 })
 export class DialogAddTrainingComponent implements OnInit {
 

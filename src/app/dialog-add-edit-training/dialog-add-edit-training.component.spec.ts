@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 
-import { DialogAddTrainingComponent } from './dialog-add-training.component';
+import { DialogAddTrainingComponent } from './dialog-add-edit-training.component';
 
 describe('DialogAddTrainingComponent', () => {
   let component: DialogAddTrainingComponent;

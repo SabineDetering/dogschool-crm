@@ -8,7 +8,7 @@ import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { DataService } from 'src/services/data.service';
 import { DialogDeleteConfirmationComponent } from '../dialog-delete-confirmation/dialog-delete-confirmation.component';
-import { DialogAddTrainingComponent } from '../dialog-add-training/dialog-add-training.component';
+import { DialogAddTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
 
 @Component({
   selector: 'app-training-details',

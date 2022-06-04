@@ -8,7 +8,7 @@ import { Dog } from 'src/models/dog.class';
 import { Training } from 'src/models/training.class';
 import { DataService } from 'src/services/data.service';
 import { FilterStringService } from 'src/services/filter-string.service';
-import { DialogAddTrainingComponent } from '../dialog-add-training/dialog-add-training.component';
+import { DialogAddTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
 
 @Component({
   selector: 'app-training-overview',
