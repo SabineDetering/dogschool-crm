@@ -86,7 +86,7 @@ export class DogDetailsComponent implements OnInit {
    */
   getClientNameById(id: string): string {
     let client = this.clients.filter(client => client.clientID == id)[0];
-    return client.firstName +' ' + client.lastName;
+    return client.firstName + ' ' + client.lastName;
   }
 
 
@@ -111,15 +111,14 @@ export class DogDetailsComponent implements OnInit {
   }
 
 
-  /**
-   * open dialog to edit all dog details
-   */
   editDog() {
     this.dialog.open(DialogAddEditDogComponent, { data: this.dog });
   }
 
-  openAddEditTrainingDialog() {
-    this.dialog.open(DialogAddEditTrainingComponent, { data: { dogID: this.dog.dogID } });
+
+  addTraining() {
+    const dialogRef=this.dialog.open(DialogAddEditTrainingComponent, { data: { dogID: this.dog.dogID } });
+    dialogRef.afterClosed().subscribe(r => window.location.reload());
   }
 
 }
