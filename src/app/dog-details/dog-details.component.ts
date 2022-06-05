@@ -30,9 +30,8 @@ export class DogDetailsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
 
-    // this.trainings = await firstValueFrom(this.Data.trainings$);
+    this.trainings = await firstValueFrom(this.Data.trainings$);
     this.clients = await firstValueFrom(this.Data.clients$);
-    this.Data.trainings$.subscribe(changes => { this.trainings = changes });
 
     this.route.params.subscribe(params => {
       this.dogID = params['dogID'];

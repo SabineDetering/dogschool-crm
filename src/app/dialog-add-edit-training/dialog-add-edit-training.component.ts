@@ -47,24 +47,33 @@ export class DialogAddEditTrainingComponent implements OnInit {
       this.training = new Training();
     }
 
+    // this.Data.subjects$.subscribe(changes => {
+    //   this.subjects = changes.subjectList;
+    // });
+
     this.clients = await firstValueFrom(this.Data.clients$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
-    // this.subjects = await firstValueFrom(this.Data.subjects$);
+    this.subjects = (await firstValueFrom(this.Data.subjects$)).subjectList;
 
-    this.Data.subjects$.subscribe(changes => {
-      this.subjects = changes.subjectList;
-    });
-
-    this.filteredClients = this.clients;
-    this.filteredDogs = this.dogs;
-    this.filterDogsOfSelectedClient();
+    if (this.training.clientID && !this.training.dogID) {
+      this.filteredClients = this.clients.filter(client => client.clientID == this.training.clientID);
+      this.filterDogsOfSelectedClient();
+    } else if (this.training.dogID) {
+      this.filteredDogs = this.dogs.filter(dog => dog.dogID == this.training.dogID);
+      this.filteredClients = this.clients.filter(client => this.filteredDogs[0].ownerIds.includes(client.clientID));
+    } else {
+      this.filteredClients = this.clients;
+      this.filteredDogs = this.dogs;
+    }
   }
+
 
 
   applyClientFilter(event: Event) {
     let filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this.filteredClients = this.clients.filter(client =>
       (client.firstName.toLowerCase().startsWith(filter)) || (client.lastName.toLowerCase().startsWith(filter)));
+    // this.filterDogsOfSelectedClient();
   }
 
 
@@ -77,6 +86,7 @@ export class DialogAddEditTrainingComponent implements OnInit {
     this.training.date = new Date(this.dateInput).getTime();
     console.log(this.training);
     this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
+    this.addTrainingDialogRef.close({ data: this.training });
   }
 
 }

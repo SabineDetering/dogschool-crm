@@ -7,6 +7,10 @@
             <span class="category">Breed: </span>
             {{ dog.breed }}
         </p>
+        <p *ngIf="dog.color">
+            <span class="category">Color: </span>
+            {{ dog.color }}
+        </p>
         <p>
             <span class="category">Gender: </span>
             {{ dog.gender }}{{ dog.castrated ? ', castrated':', intact' }}
@@ -14,6 +18,10 @@
         <p *ngIf="dog.age">
             <span class="category">Age: </span>
             {{ getDetailedAge(dog.age) }}
+        </p>
+        <p *ngIf="dog.chipNumber">
+            <span class="category">Chip-No.: </span>
+            {{ dog.chipNumber }}
         </p>
         <p *ngIf="dog.notes">
             <span class="category">Notes: </span>

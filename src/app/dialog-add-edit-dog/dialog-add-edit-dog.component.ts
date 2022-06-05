@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Dog } from 'src/models/dog.class';
 import { Client } from 'src/models/client.class';
 import { DataService } from 'src/services/data.service';
@@ -9,22 +9,23 @@ import { DataService } from 'src/services/data.service';
   templateUrl: './dialog-add-edit-dog.component.html',
   styleUrls: ['./dialog-add-edit-dog.component.scss']
 })
-  
+
 export class DialogAddEditDogComponent implements OnInit {
 
-  public dog = new Dog();
-  public birthDateInput: Date;
-  public owner1: string;
-  public owner2: string;
-  public twoOwners = false;
-  public today = new Date().toISOString().slice(0,10);
-  public clients: Client[];
-  public filteredClients_1: Client[];
-  public filteredClients_2: Client[];
+  dog: Dog;
+  birthDateInput: string;
+  owner1: string;
+  owner2: string;
+  twoOwners = false;
+  today = new Date().toISOString().slice(0, 10);
+  clients: Client[];
+  filteredClients_1: Client[];
+  filteredClients_2: Client[];
 
 
   constructor(
     public addDogDialogRef: MatDialogRef<DialogAddEditDogComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData: Client,
     private Data: DataService
   ) { }
 
@@ -35,6 +36,22 @@ export class DialogAddEditDogComponent implements OnInit {
       this.filteredClients_1 = this.clients;
       this.filteredClients_2 = this.clients;
     });
+
+    if (this.dialogData) {
+      this.dog = new Dog(this.dialogData);
+      if (this.dog.birthDate) {
+        this.birthDateInput = new Date(this.dog.birthDate - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+        console.log(this.birthDateInput);
+      }
+      for (let i = 1; i < this.dog.ownerIds.length + 1; i++) {
+        this['owner' + i] = this.dog.ownerIds[i - 1];
+      }
+      if (this.owner2) {
+        this.twoOwners = true;
+      }
+    } else {
+      this.dog = new Dog();
+    }
   };
 
 
@@ -44,7 +61,7 @@ export class DialogAddEditDogComponent implements OnInit {
       (client.firstName.toLowerCase().startsWith(filter)) || (client.lastName.toLowerCase().startsWith(filter)));
   }
 
-  
+
   addOwner2() {
     this.twoOwners = true;
   }
@@ -55,11 +72,11 @@ export class DialogAddEditDogComponent implements OnInit {
     if (this.birthDateInput) {
       this.dog.birthDate = new Date(this.birthDateInput).getTime();
     }
-    this.dog.ownerIds.push(this.owner1);
+    this.dog.ownerIds[0]=this.owner1;
     if (this.owner2) {
-      this.dog.ownerIds.push(this.owner2);
+      this.dog.ownerIds[1] = this.owner2;
     }
-    this.Data.saveDog(this.dog.toJSON());
+    this.Data.saveDog(this.dog.toJSON(), this.dog.dogID);
     console.log(this.dog);
   }
 

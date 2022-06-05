@@ -30,9 +30,8 @@ export class ClientDetailsComponent implements OnInit,OnChanges {
 
   async ngOnInit(): Promise<void> {
 
-    // this.trainings = await firstValueFrom(this.Data.trainings$);
+    this.trainings = await firstValueFrom(this.Data.trainings$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
-    this.Data.trainings$.subscribe(changes => {this.trainings = changes});
 
     this.route.params.subscribe(params => {
       this.clientID = params['clientID'];
@@ -119,7 +118,7 @@ export class ClientDetailsComponent implements OnInit,OnChanges {
   }
 
   openAddEditTrainingDialog(){
-    this.dialog.open(DialogAddEditTrainingComponent, { data: { clientID: this.client.clientID } });
+    const dialogRef=this.dialog.open(DialogAddEditTrainingComponent, { data: { clientID: this.client.clientID } });
   }
 
 }

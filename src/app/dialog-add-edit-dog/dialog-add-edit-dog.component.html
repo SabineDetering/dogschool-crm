@@ -78,11 +78,11 @@
                 </div>
                 <div>
                     <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Chip-Number</mat-label>
+                        <mat-label>Chip-No.</mat-label>
                         <input matInput pattern="\d{15}" [(ngModel)]="dog.chipNumber" name="chipNumber"
                             #chipNumber="ngModel">
                         <mat-error *ngIf="chipNumber.invalid && (chipNumber.dirty || chipNumber.touched)">
-                            Chip number must consist of 15 digits
+                            Chip-No. must consist of 15 digits
                         </mat-error>
                     </mat-form-field>
                 </div>

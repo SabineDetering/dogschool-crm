@@ -9,12 +9,12 @@
     <form #addTrainingForm="ngForm">
         <div class="dialog-container form-group">
 
-            <!-- client -->
+            <!-- client & dog -->
             <div class="full-width d-flex justify-between g-m  mb-m">
                 <mat-form-field appearance="outline">
                     <mat-label>Owner</mat-label>
                     <mat-select [(ngModel)]="training.clientID" name="clientID" required
-                        (selectionChange)="filterDogsOfSelectedClient()">
+                       (selectionChange)="filterDogsOfSelectedClient()" >
                         <input class="full-width p-m" (keyup)="applyClientFilter($event)">
                         <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
                             {{client.firstName}} {{client.lastName}}
