@@ -10,7 +10,7 @@
         <div class="dialog-container form-group">
 
             <!-- names -->
-            <div class="full-width d-flex flex-wrap g-m ">
+            <div class="d-flex flex-wrap g-m ">
                 <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Firstname</mat-label>
                     <input [(ngModel)]="client.firstName" name="firstName" #firstName="ngModel" matInput required>
@@ -28,11 +28,11 @@
             </div>
 
             <!-- mobile phone number & whatsApp -->
-            <div class="d-flex g-m align-center">
+            <div class="d-flex flex-wrap g-m align-center">
                 <p class="mt-s">Mobile Phone Number</p>
                 <mat-checkbox [(ngModel)]="client.whatsApp" name="whatsApp">uses WhatsApp</mat-checkbox>
             </div>
-            <div class="full-width d-flex g-m align-center ">
+            <div class="d-flex g-m align-center ">
                 <mat-form-field class="area-code" appearance="outline">
                     <mat-label>Mobile Area Code</mat-label>
                     <input title="Mobile Area Code" matInput pattern="^0\d{2,5}" maxlength="6"
@@ -43,9 +43,6 @@
                         Please enter an area code with leading 0
                     </mat-error>
                 </mat-form-field>
-
-                <span> / </span>
-
                 <mat-form-field appearance="outline" class=" phone-number ">
                     <mat-label>Mobile Phone Number</mat-label>
                     <input matInput pattern="\d{5,10}" maxlength="10" [(ngModel)]="client.mobilePhone.number"
@@ -59,7 +56,7 @@
 
             <!-- landline phone number -->
             <p class="mt-s">Landline Phone Number</p>
-            <div class="full-width d-flex g-m align-center ">
+            <div class="d-flex g-m align-center ">
                 <mat-form-field class="area-code" appearance="outline">
                     <mat-label>Landline Area Code</mat-label>
                     <input title="Landline Area Code" matInput pattern="^0\d{2,5}" maxlength="6"
@@ -69,9 +66,6 @@
                         Please enter an area code with leading 0
                     </mat-error>
                 </mat-form-field>
-
-                <span> / </span>
-
                 <mat-form-field appearance="outline" class="phone-number ">
                     <mat-label>Landline Phone Number</mat-label>
                     <input matInput pattern="\d{5,10}" maxlength="10" [(ngModel)]="client.landlinePhone.number"
@@ -84,26 +78,22 @@
             </div>
 
             <!-- email   -->
-            <div>
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Email</mat-label>
-                    <input matInput pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
-                        [(ngModel)]="client.email" name="email" #email="ngModel">
-                    <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-                        Please enter a valid email address
-                    </mat-error>
-                </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                    [(ngModel)]="client.email" name="email" #email="ngModel">
+                <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
 
             <!-- address -->
-            <div>
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Street + House Number</mat-label>
-                    <input matInput [(ngModel)]="client.street" name="street">
-                </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Street + House Number</mat-label>
+                <input matInput [(ngModel)]="client.street" name="street">
+            </mat-form-field>
 
-            <div class="full-width d-flex g-m">
+            <div class="d-flex g-m">
                 <mat-form-field appearance="outline" class="area-code">
                     <mat-label>Zip-Code</mat-label>
                     <input matInput [(ngModel)]="client.zipCode" name="zipCode" pattern="\d{5}" maxlength="5">
@@ -113,8 +103,6 @@
                     <input matInput [(ngModel)]="client.city" name="city">
                 </mat-form-field>
             </div>
-
-
         </div>
     </form>
 </mat-dialog-content>

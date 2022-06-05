@@ -1,4 +1,4 @@
-<h2 *ngIf="!dog.dogID"mat-dialog-title>Add new dog</h2>
+<h2 *ngIf="!dog.dogID" mat-dialog-title>Add new dog</h2>
 <h2 *ngIf="dog.dogID" mat-dialog-title>Edit Dog</h2>
 
 <button class="close-btn" mat-icon-button mat-dialog-close title="close without saving">
@@ -10,8 +10,8 @@
         <div class="dialog-container form-group">
 
             <!-- name & birthdate -->
-            <div class="full-width d-flex g-m ">
-                <mat-form-field appearance="outline">
+            <div class=" d-flex flex-wrap g-m ">
+                <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Name</mat-label>
                     <input [(ngModel)]="dog.name" name="name" #name="ngModel" matInput required>
                     <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
@@ -19,34 +19,27 @@
                     </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Date of birth</mat-label>
-                    <input matInput type="date" [(ngModel)]="birthDateInput" name="birthDate"  [max]="today">
-                    <!-- <input [matDatepicker]="picker" [(ngModel)]="birthDateInput" name="birthDate" #birthDate="ngModel"
-                        matInput [max]="today">
-                    <mat-hint>MM/DD/YYYY (estimate if unknown)</mat-hint>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker startView="year"></mat-datepicker> -->
+                    <input matInput type="date" [(ngModel)]="birthDateInput" name="birthDate" [max]="today">
                 </mat-form-field>
             </div>
 
             <!-- breed -->
-            <div>
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Breed</mat-label>
-                    <input matInput [(ngModel)]="dog.breed" name="breed" #breed="ngModel" required>
-                    <mat-error *ngIf="breed.invalid && (breed.dirty || breed.touched)">
-                        Please enter a breed (or mix)
-                    </mat-error>
-                </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="full-width ">
+                <mat-label>Breed</mat-label>
+                <input matInput [(ngModel)]="dog.breed" name="breed" #breed="ngModel" required>
+                <mat-error *ngIf="breed.invalid && (breed.dirty || breed.touched)">
+                    Please enter a breed (or mix)
+                </mat-error>
+            </mat-form-field>
 
             <!-- owner -->
-            <div class="full-width d-flex g-m  mb-m" [class.justify-between]="twoOwners">
-                <mat-form-field appearance="fill">
+            <div class="d-flex flex-wrap g-m  mb-m" [class.justify-between]="twoOwners">
+                <mat-form-field appearance="fill" class="flex-1">
                     <mat-label>Owner</mat-label>
                     <mat-select [(ngModel)]="owner1" name="owner" required>
-                        <input class="full-width p-m" (keyup)="applyFilter(1,$event)">
+                        <input class=" p-m" (keyup)="applyFilter(1,$event)">
                         <mat-option *ngFor="let client of filteredClients_1" [value]="client.clientID">
                             {{client.firstName}} {{client.lastName}}
                         </mat-option>
@@ -57,10 +50,10 @@
                     <mat-icon>add</mat-icon>
                 </button>
 
-                <mat-form-field *ngIf="twoOwners" appearance="fill">
+                <mat-form-field *ngIf="twoOwners" appearance="fill" class="flex-1 ">
                     <mat-label>Second owner</mat-label>
                     <mat-select [(ngModel)]="owner2" name="owner2">
-                        <input  class="full-width p-m" (keyup)="applyFilter(2,$event)">
+                        <input class="p-m" (keyup)="applyFilter(2,$event)">
                         <mat-option *ngFor="let client of filteredClients_2" [value]="client.clientID">
                             {{client.firstName}} {{client.lastName}}
                         </mat-option>
@@ -69,27 +62,24 @@
             </div>
 
             <!-- color& chip number -->
-            <div class="full-width d-flex g-m justify-between mb-m">
-                <div>
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Color</mat-label>
-                        <input matInput [(ngModel)]="dog.color" name="color" #color="ngModel">
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Chip-No.</mat-label>
-                        <input matInput pattern="\d{15}" [(ngModel)]="dog.chipNumber" name="chipNumber"
-                            #chipNumber="ngModel">
-                        <mat-error *ngIf="chipNumber.invalid && (chipNumber.dirty || chipNumber.touched)">
-                            Chip-No. must consist of 15 digits
-                        </mat-error>
-                    </mat-form-field>
-                </div>
+            <div class="d-flex flex-wrap g-m mb-m">
+                <mat-form-field appearance="outline" class="flex-1">
+                    <mat-label>Color</mat-label>
+                    <input matInput [(ngModel)]="dog.color" name="color" #color="ngModel">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="flex-1">
+                    <mat-label>Chip-No.</mat-label>
+                    <input matInput pattern="\d{15}" [(ngModel)]="dog.chipNumber" name="chipNumber"
+                        #chipNumber="ngModel">
+                    <mat-error *ngIf="chipNumber.invalid && (chipNumber.dirty || chipNumber.touched)">
+                        Chip-No. must consist of 15 digits
+                    </mat-error>
+                </mat-form-field>
             </div>
 
             <!-- gender & castration -->
-            <div class="full-width d-flex g-m justify-between mb-m">
+            <div class="d-flex flex-wrap g-m justify-around mb-m">
                 <div class="d-flex flex-column">
                     <mat-label id="gender-label">Gender</mat-label>
                     <mat-radio-group aria-labelledby="gender-label" [(ngModel)]="dog.gender" name="gender"
@@ -98,7 +88,7 @@
                         <mat-radio-button value="female">female</mat-radio-button>
                     </mat-radio-group>
                     <mat-error *ngIf="gender.invalid ">
-                       Select the gender
+                        Select the gender
                     </mat-error>
                 </div>
                 <div class="d-flex flex-column">
@@ -120,11 +110,9 @@
 
         </div>
     </form>
-
-    <mat-dialog-actions>
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button mat-dialog-close [disabled]="!addDogForm.valid" (click)="saveDog()">Save</button>
-    </mat-dialog-actions>
-
-
 </mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close [disabled]="!addDogForm.valid" (click)="saveDog()">Save</button>
+</mat-dialog-actions>

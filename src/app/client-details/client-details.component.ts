@@ -15,7 +15,7 @@ import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dial
   templateUrl: './client-details.component.html',
   styleUrls: ['./client-details.component.scss']
 })
-export class ClientDetailsComponent implements OnInit,OnChanges {
+export class ClientDetailsComponent implements OnInit, OnChanges {
 
   client: Client;
   clientID: string;
@@ -53,7 +53,7 @@ export class ClientDetailsComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges() {
-    console.log('changes',this.trainings);
+    console.log('changes', this.trainings);
   }
 
 
@@ -114,16 +114,20 @@ export class ClientDetailsComponent implements OnInit,OnChanges {
    * open dialog to edit all client details
    */
   editClient() {
-    this.dialog.open(DialogAddEditClientComponent, { data: this.client });
+    this.dialog.open(DialogAddEditClientComponent, {
+      height: '90vh',
+      width: '600px',
+      data: this.client
+    });
   }
 
-  addTraining(){
+  addTraining() {
     const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
       height: '90vh',
       width: '600px',
       data: { clientID: this.client.clientID }
     });
-    dialogRef.afterClosed().subscribe(r=>window.location.reload());
+    dialogRef.afterClosed().subscribe(r => window.location.reload());
   }
 
 }

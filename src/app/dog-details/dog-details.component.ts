@@ -112,7 +112,11 @@ export class DogDetailsComponent implements OnInit {
 
 
   editDog() {
-    this.dialog.open(DialogAddEditDogComponent, { data: this.dog });
+    this.dialog.open(DialogAddEditDogComponent, {
+      height: '90vh',
+      width: '600px',
+      data: this.dog
+    });
   }
 
 

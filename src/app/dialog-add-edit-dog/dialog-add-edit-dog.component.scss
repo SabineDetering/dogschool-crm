@@ -2,6 +2,14 @@
     position: relative;
 }
 
+.mat-dialog-content {
+    max-height: 68vh;
+}
+
+.mat-form-field {
+    max-width: 100%;
+}
+
 .close-btn {
     position: absolute;
     top: 0;

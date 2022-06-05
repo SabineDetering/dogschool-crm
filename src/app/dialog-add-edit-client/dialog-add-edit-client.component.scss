@@ -6,8 +6,12 @@
     max-height: 68vh;
 }
 
+.mat-form-field {
+    max-width: 100%;
+}
+
 .area-code {
-    min-width: 80px;
+    min-width: 70px;
     flex: 0.5 1 auto;
 }
 
