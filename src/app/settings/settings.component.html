@@ -1,5 +1,20 @@
-<div class="mode-switcher">
+<div class="mb-l">
     <h2>Mode</h2>
     <p>Switch between light and dark mode.</p>
-    <app-mode-switcher ngClass="mode-icon"></app-mode-switcher>
+    <app-mode-switcher class="mode-icon "></app-mode-switcher>
+</div>
+
+<h2>Customise Subjects</h2>
+<p>You can change, add or delete subjects or change their order by drag & drop. Only trainings that will be created or
+    edited after the changes will be affected.
+</p>
+
+<div cdkDropList [cdkDropListData]="subjects" class="subject-container" (cdkDropListDropped)="drop($event)">
+    <div class="drag-item bg-mode" *ngFor="let subject of subjects" cdkDrag [cdkDragData]="subject">
+        {{subject}}
+    </div>
+</div>
+<div class="d-flex g-m m-m">
+    <button>Discard Changes</button>
+    <button (click)="saveSubjects()">Save Changes</button>
 </div>

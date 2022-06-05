@@ -28,6 +28,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { FormsModule } from '@angular/forms';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -115,6 +116,7 @@ import { DogDetailsComponent } from './dog-details/dog-details.component';
     MatTabsModule,
     MatCardModule,
     MatSnackBarModule,
+    DragDropModule,
 
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

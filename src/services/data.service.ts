@@ -8,7 +8,6 @@ import { Training } from 'src/models/training.class';
 
 export interface AvailableNumberI { availableNumber: number; }
 export interface Subjects { subjectList: string[]; }
-// export interface scheduleHoursI { min: number; max: number; }
 
 @Injectable({
   providedIn: 'root'
@@ -52,7 +51,7 @@ export class DataService {
 
 
   saveNumber(number) {
-    this.availableNumberCollection.doc('available-number').set({ availableNumber: number });
+    this.availableNumberCollection.doc('available-number').set({ 'availableNumber': number });
   }
 
   saveClient(client: any, id?: string) {
@@ -87,9 +86,9 @@ export class DataService {
   }
 
 
-  // saveSubjects(subjects) {
-  //   this.subjectCollection.doc('subjects').set(subjects);
-  // }
+  saveSubjects(subjects: string[]) {
+    this.subjectCollection.doc('subjects').set({ 'subjectList': subjects });
+  }
 
 
 }
