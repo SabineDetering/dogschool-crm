@@ -117,7 +117,11 @@ export class DogDetailsComponent implements OnInit {
 
 
   addTraining() {
-    const dialogRef=this.dialog.open(DialogAddEditTrainingComponent, { data: { dogID: this.dog.dogID } });
+    const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
+      height: '90vh',
+      width: '600px',
+      data: { dogID: this.dog.dogID }
+    });
     dialogRef.afterClosed().subscribe(r => window.location.reload());
   }
 

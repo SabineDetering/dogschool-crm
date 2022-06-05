@@ -23,7 +23,11 @@ export class SmallTrainingCardComponent implements OnInit {
    * open dialog to edit all training details, incl. key data
    */
   editTraining() {
-    const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, { data: { training: this.training } });
+    const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
+      height: '90vh',
+      width: '600px',
+      data: { training: this.training }
+    });
     dialogRef.afterClosed().subscribe(result => {
       if (result) { this.training = result.data }
     });

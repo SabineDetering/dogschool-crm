@@ -87,7 +87,7 @@ export class TrainingOverviewComponent implements OnInit {
 
 
   openAddEditTrainingDialog(): void {
-    this.dialog.open(DialogAddEditTrainingComponent,);
+    this.dialog.open(DialogAddEditTrainingComponent, { height: '90vh', width: '600px' });
   }
 
 }

@@ -8,6 +8,7 @@ import { MatTable } from '@angular/material/table';
 import { Dog } from 'src/models/dog.class';
 import { DataService } from 'src/services/data.service';
 import { FilterStringService } from 'src/services/filter-string.service';
+import { min } from 'cypress/types/lodash';
 
 
 @Component({
@@ -30,7 +31,11 @@ export class ClientOverviewComponent implements OnInit {
 
   tableColumns = ['clientNumber', 'firstName', 'lastName', 'phone', 'whatsApp', 'email', 'ownedDogs'];
 
-  constructor(public dialog: MatDialog, public Data: DataService, public filter: FilterStringService) { }
+  constructor(
+    public dialog: MatDialog,
+    public Data: DataService,
+    public filter: FilterStringService
+  ) { }
 
 
   async ngOnInit(): Promise<void> {
@@ -65,7 +70,7 @@ export class ClientOverviewComponent implements OnInit {
 
 
   openAddClientDialog(): void {
-    this.dialog.open(DialogAddEditClientComponent);
+      this.dialog.open(DialogAddEditClientComponent, { height: '90vh', width: '600px' });
   }
 
 }

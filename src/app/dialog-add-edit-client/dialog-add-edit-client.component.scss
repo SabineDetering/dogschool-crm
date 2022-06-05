@@ -1,9 +1,23 @@
-:host{
+:host {
     position: relative;
 }
 
-.close-btn{
-    position:absolute;
-    top:0;
-    right:0;
+.mat-dialog-content {
+    max-height: 68vh;
+}
+
+.area-code {
+    min-width: 80px;
+    flex: 0.5 1 auto;
+}
+
+.phone-number {
+    min-width: 100px;
+    flex: 1 0.5 auto;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
 }

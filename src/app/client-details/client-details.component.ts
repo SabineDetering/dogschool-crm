@@ -118,7 +118,11 @@ export class ClientDetailsComponent implements OnInit,OnChanges {
   }
 
   addTraining(){
-    const dialogRef=this.dialog.open(DialogAddEditTrainingComponent, { data: { clientID: this.client.clientID } });
+    const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
+      height: '90vh',
+      width: '600px',
+      data: { clientID: this.client.clientID }
+    });
     dialogRef.afterClosed().subscribe(r=>window.location.reload());
   }
 

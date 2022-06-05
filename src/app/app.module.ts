@@ -124,7 +124,7 @@ import { DogDetailsComponent } from './dog-details/dog-details.component';
     provideAuth(() => getAuth()),
   ],
   providers: [
-    { provide: PERSISTENCE, useValue: 'local' },
+    { provide: PERSISTENCE, useValue: 'session' },
     AuthGuardService, { provide: LOCALE_ID, useValue: 'de-de' }
   ],
   bootstrap: [AppComponent]
