@@ -1,5 +1,5 @@
 <h2 *ngIf="!!!training.trainingID" mat-dialog-title>Add a new training</h2>
-<h2 *ngIf="!!training.trainingID"mat-dialog-title>Edit training</h2>
+<h2 *ngIf="!!training.trainingID" mat-dialog-title>Edit training</h2>
 
 <button class="close-btn" mat-icon-button mat-dialog-close title="close without saving">
     <mat-icon>close</mat-icon>
@@ -10,11 +10,11 @@
         <div class="dialog-container form-group">
 
             <!-- client & dog -->
-            <div class="full-width d-flex justify-between g-m  mb-m">
-                <mat-form-field appearance="outline">
+            <div class="d-flex flex-wrap justify-between g-m  mb-m">
+                <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Owner</mat-label>
                     <mat-select [(ngModel)]="training.clientID" name="clientID" required
-                       (selectionChange)="filterDogsOfSelectedClient()" >
+                        (selectionChange)="filterDogsOfSelectedClient()">
                         <input class="full-width p-m" (keyup)="applyClientFilter($event)">
                         <mat-option *ngFor="let client of filteredClients" [value]="client.clientID">
                             {{client.firstName}} {{client.lastName}}
@@ -22,7 +22,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Dog</mat-label>
                     <mat-select [(ngModel)]="training.dogID" name="dogID" required>
                         <mat-option *ngFor="let dog of filteredDogs" [value]="dog.dogID">
@@ -33,13 +33,13 @@
             </div>
 
             <!-- date & duration-->
-            <div class="full-width d-flex justify-between g-m  mb-m">
-                <mat-form-field appearance="outline">
+            <div class="d-flex flex-wrap justify-between g-m  mb-m">
+                <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Date & time </mat-label>
-                    <input matInput type="datetime-local" [(ngModel)]="dateInput" name="hours" step ="900" required>
+                    <input matInput type="datetime-local" [(ngModel)]="dateInput" name="hours" step="900" required>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Duration</mat-label>
                     <mat-select [(ngModel)]="training.duration" name="duration" required>
                         <mat-option *ngFor="let duration of durationArray" value="{{ duration }}">
@@ -57,8 +57,8 @@
             </mat-form-field>
 
             <!-- subject & topics -->
-            <div class="full-width d-flex justify-between g-m  mb-m">
-                <mat-form-field appearance="outline" >
+            <div class="d-flex flex-wrap justify-between g-m  mb-m">
+                <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Subject</mat-label>
                     <mat-select [(ngModel)]="training.subject" name="subject" required>
                         <mat-option *ngFor="let subject of subjects" value="{{ subject }}">
@@ -67,7 +67,7 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline" >
+                <mat-form-field appearance="outline" class="flex-1">
                     <mat-label>Main topics </mat-label>
                     <input matInput [(ngModel)]="training.topics" name="topics" max-length="30">
                 </mat-form-field>
@@ -89,13 +89,10 @@
                             </textarea>
             </mat-form-field>
         </div>
-
     </form>
-
-    <mat-dialog-actions>
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button mat-dialog-close [disabled]="!addTrainingForm.valid" (click)="saveTraining()">Save</button>
-    </mat-dialog-actions>
-
-
 </mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close [disabled]="!addTrainingForm.valid" (click)="saveTraining()">Save</button>
+</mat-dialog-actions>
