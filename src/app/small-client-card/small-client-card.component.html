@@ -1,7 +1,11 @@
 <mat-card class="full-height-minus-2sizem  flex-1  border-primary card ">
-    <h3 class="bg-mode card-header">
-        <mat-icon color="primary"> person </mat-icon> {{ client.firstName }} {{
-        client.lastName }}
+    <h3 class="card-header">
+        <div class="bg-mode pl-s pr-s d-flex align-center ">
+            <mat-icon color="primary" class="pr-xs"> person </mat-icon>
+            <span>
+                {{ client.firstName }} {{ client.lastName }}
+            </span>
+        </div>
     </h3>
 
     <mat-card-content class="mt-s">

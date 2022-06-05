@@ -1,6 +1,11 @@
 <mat-card class="full-height-minus-2sizem flex-1 border-accent">
-    <h3 class="bg-mode card-header">
-        <mat-icon color="accent"> pets </mat-icon> {{ dog.name }}
+    <h3 class="card-header">
+        <div class="bg-mode pl-s pr-s d-flex align-center ">
+            <mat-icon color="accent" class="pr-xs"> pets </mat-icon>
+            <span>
+                {{ dog.name }}
+            </span>
+        </div>
     </h3>
     <mat-card-content class="mt-s">
         <p>

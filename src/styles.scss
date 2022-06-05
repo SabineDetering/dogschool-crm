@@ -37,6 +37,7 @@ $dogschool-crm-dark-theme: mat.define-dark-theme((color: (primary: $dogschool-cr
   --primary: #00bcd4;
   --accent: #ffa726;
   --dark: #424242;
+  --size-xs: 4px;
   --size-s: 8px;
   --size-m: 16px;
   --size-l: 32px;
@@ -121,6 +122,18 @@ body {
   padding-top: var(--size-l);
 }
 
+.pl-s {
+  padding-left: var(--size-s);
+}
+
+.pr-xs {
+  padding-right: var(--size-xs);
+}
+
+.pr-s {
+  padding-right: var(--size-s);
+}
+
 .pr-m {
   padding-right: var(--size-m);
 }
@@ -201,7 +214,7 @@ body {
 
 @media (max-width:460px) {
   .hide-below-460 {
-    display: none;
+    display: none!important;
   }
 }
 

@@ -1,15 +1,23 @@
 <mat-card class="full-height-minus-2sizem border-primary training-card">
     <h3 class="card-header d-flex g-m flex-wrap align-center ">
-        <span class="bg-mode  ">
-            <img class="svg-icon" src="assets/img/training.svg"> {{training.date|date:'short' }} ({{ training.duration}}
-            min)
-        </span>
-        <span *ngIf="view=='dog'" class="bg-mode hide-below-460 ">
-            <mat-icon color="primary"> person </mat-icon> {{ training.clientName }}
-        </span>
-        <span *ngIf="view=='client'" class="bg-mode hide-below-460 ">
-            <mat-icon color="accent"> pets </mat-icon> {{ training.dogName }}
-        </span>
+        <div class="bg-mode pl-s pr-s d-flex align-center  ">
+            <img class="svg-icon pr-xs" src="assets/img/training.svg">
+            <span>
+                {{training.date|date:'short' }} ({{ training.duration}} min)
+            </span>
+        </div>
+        <div *ngIf="view=='dog'" class="bg-mode pl-s pr-s d-flex align-center hide-below-460 ">
+            <mat-icon color="primary" class="pr-xs"> person </mat-icon>
+            <span>
+                {{ training.clientName }}
+            </span>
+        </div>
+        <div *ngIf="view=='client'" class="bg-mode pl-s pr-s d-flex align-center hide-below-460 ">
+            <mat-icon color="accent" class="pr-xs"> pets </mat-icon>
+            <span>
+                {{ training.dogName }}
+            </span>
+        </div>
     </h3>
 
     <button class="edit-btn" mat-icon-button (click)="editTraining()" title="edit training data">
@@ -17,11 +25,11 @@
     </button>
 
     <mat-card-content class="mt-s">
-        <span  *ngIf="view=='dog'" class="bg-mode hide-above-460 ">
-            <mat-icon color="primary"> person </mat-icon> {{ training.clientName }}
+        <span *ngIf="view=='dog'" class="bg-mode hide-above-460 ">
+            <mat-icon color="primary" class="pr-xs"> person </mat-icon> {{ training.clientName }}
         </span>
         <span *ngIf="view=='client'" class="bg-mode hide-above-460 ">
-            <mat-icon color="accent"> pets </mat-icon> {{ training.dogName }}
+            <mat-icon color="accent" class="pr-xs"> pets </mat-icon> {{ training.dogName }}
         </span>
 
         <div class="d-flex flex-wrap">
