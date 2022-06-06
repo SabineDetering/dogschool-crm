@@ -41,7 +41,6 @@ export class ClientOverviewComponent implements OnInit {
   async ngOnInit(): Promise<void> {
 
     this.dogs = await firstValueFrom(this.Data.dogs$);
-    console.log('dogs for clients', this.dogs);
 
     this.Data.clients$.subscribe(changes => {
       this.clients = changes.map(c => {

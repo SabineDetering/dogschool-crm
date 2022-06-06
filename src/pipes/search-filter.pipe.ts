@@ -25,7 +25,6 @@ export class SearchFilterPipe implements PipeTransform {
           }
       }
       }
-      console.log(dataString);
       return dataString.includes(searchString);
     });
 

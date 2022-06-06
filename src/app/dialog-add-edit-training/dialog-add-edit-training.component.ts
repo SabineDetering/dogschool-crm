@@ -84,7 +84,7 @@ export class DialogAddEditTrainingComponent implements OnInit {
 
   saveTraining() {
     this.training.date = new Date(this.dateInput).getTime();
-    console.log(this.training);
+    console.log('saved training',this.training);
     this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
     this.addTrainingDialogRef.close({ data: this.training });
   }

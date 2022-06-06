@@ -43,7 +43,6 @@ export class DogDetailsComponent implements OnInit {
         .filter((d) => (d.dogID == this.dogID))
         .map(dog => {
           dog = new Dog(dog);
-          console.log('dog', dog);
           dog.trainingData = this.getTrainingDataByDogId(dog.dogID);
           dog.trainingData.forEach(training => training.clientName = this.getClientNameById(training.clientID));
           for (let i = 0; i < dog.ownerIds.length; i++) {
@@ -53,10 +52,6 @@ export class DogDetailsComponent implements OnInit {
         })[0];
       console.log('dog', this.dog);
     });
-  }
-
-  ngOnChanges() {
-    console.log('changes', this.trainings);
   }
 
 

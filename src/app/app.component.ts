@@ -23,7 +23,6 @@ export class AppComponent {
     
     //check if screen width is too small for showing sidenav
     this.mobileQuery = media.matchMedia('(max-width: 870px)');
-    console.log('mobileQuery',this.mobileQuery);
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
   }

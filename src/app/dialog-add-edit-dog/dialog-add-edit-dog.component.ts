@@ -41,7 +41,6 @@ export class DialogAddEditDogComponent implements OnInit {
       this.dog = new Dog(this.dialogData);
       if (this.dog.birthDate) {
         this.birthDateInput = new Date(this.dog.birthDate - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10);
-        console.log(this.birthDateInput);
       }
       for (let i = 1; i < this.dog.ownerIds.length + 1; i++) {
         this['owner' + i] = this.dog.ownerIds[i - 1];
@@ -68,7 +67,6 @@ export class DialogAddEditDogComponent implements OnInit {
 
 
   saveDog() {
-    console.log(this.birthDateInput);
     if (this.birthDateInput) {
       this.dog.birthDate = new Date(this.birthDateInput).getTime();
     }
@@ -77,7 +75,7 @@ export class DialogAddEditDogComponent implements OnInit {
       this.dog.ownerIds[1] = this.owner2;
     }
     this.Data.saveDog(this.dog.toJSON(), this.dog.dogID);
-    console.log(this.dog);
+    console.log('saved dog',this.dog);
   }
 
 }

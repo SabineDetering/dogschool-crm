@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
@@ -15,7 +15,7 @@ import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dial
   templateUrl: './client-details.component.html',
   styleUrls: ['./client-details.component.scss']
 })
-export class ClientDetailsComponent implements OnInit, OnChanges {
+export class ClientDetailsComponent implements OnInit {
 
   client: Client;
   clientID: string;
@@ -50,10 +50,6 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
         })[0];
       console.log('client', this.client)
     });
-  }
-
-  ngOnChanges() {
-    console.log('changes', this.trainings);
   }
 
 

@@ -68,7 +68,6 @@ export class DogOverviewComponent implements OnInit {
 
 
   setSorting(sorting: Sort) {
-    console.log(sorting);
     this.sortProp = sorting.active;
     this.sortDir = sorting.direction;
     this.table.renderRows();
