@@ -1,8 +1,8 @@
-<div class="mode-toggle">
-    <img  src="assets/img/light_mode_white.svg" title="light mode">
+<div class="d-flex ">
+    <img  src="assets/img/light_mode_white.svg" class="pr-xs" title="light mode">
     <mat-slide-toggle aria-label="switch between light and dark mode" 
     [(ngModel)]="darkService.darkMode" 
         (change)="toggleMode($event)">
-        <img src="assets/img/dark_mode_white.svg" title="dark mode">
+        <img src="assets/img/dark_mode_white.svg" class="pl-xs" title="dark mode">
     </mat-slide-toggle>
 </div>

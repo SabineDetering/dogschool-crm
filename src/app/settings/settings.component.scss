@@ -7,42 +7,29 @@
     filter: invert(0.5);
 }
 
-.new-subject-container{
-    width: 272px;
+.subjects-wrapper {
+    width: max-content;
+    max-width: 100%;
 }
 
 .subject-container {
-    width: max-content;
-    min-width: 272px;
-    max-width: 100%;
-    // display:flex;
-    // flex-direction: column;
     border: solid 1px #ccc;
     min-height: 60px;
-    // display: block;
-    // background: white;
     border-radius: 4px;
     overflow: hidden;
+
+    @media(max-width:320px) {
+        min-width: 100%;
+    }
 }
 
 .drag-item {
-    padding:  var(--size-s);
+    padding: var(--size-s);
     border-bottom: solid 1px #ccc;
-    // color: rgba(0, 0, 0, 0.87);
-    // display: flex;
-    // flex-direction: row;
-    // align-items: center;
-    // justify-content: space-between;
-    // box-sizing: border-box;
     cursor: move;
 
-    // background: white;
-    // font-size: 14px;.
     &:last-child {
         border: none;
-    }
-    mat-icon{
-        
     }
 }
 
@@ -65,7 +52,7 @@
 
 .subject-container.cdk-drop-list-dragging {
     .drag-item {
-       &:not(.cdk-drag-placeholder) {
+        &:not(.cdk-drag-placeholder) {
             transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
         }
     }

@@ -9,26 +9,27 @@
     edited after the changes will be affected.
 </p>
 
-<div class="d-flex align-center new-subject-container">
-    <mat-form-field  class="flex-1">
-        <input matInput  placeholder="New Subject" maxlength="30" [(ngModel)]="newSubject">
-    </mat-form-field>
-    <button class="material-icons" (click)="addSubject()" [disabled]="newSubject.length==0">
-        <mat-icon>add</mat-icon>
-    </button>
-</div>
-
-
-<div cdkDropList [cdkDropListData]="subjects" class="subject-container" (cdkDropListDropped)="drop($event)">
-    <div class="d-flex g-m align-center justify-between drag-item bg-mode" *ngFor="let subject of subjects;let i=index;"
-        cdkDrag [cdkDragData]="subject">
-        <span class="p-s"> {{subject}}</span>
-        <button mat-icon-button (click)="deleteSubject(i)">
-            <mat-icon>delete</mat-icon>
+<div class="d-flex flex-column subjects-wrapper">
+    <div class="d-flex align-center new-subject-container">
+        <mat-form-field class="flex-1">
+            <input matInput placeholder="New Subject" maxlength="30" [(ngModel)]="newSubject">
+        </mat-form-field>
+        <button class="material-icons" (click)="addSubject()" [disabled]="newSubject.length==0">
+            <mat-icon>add</mat-icon>
         </button>
     </div>
-</div>
-<div class="d-flex g-m mt-m mb-m">
-    <button mat-stroked-button (click)="discardChanges()">Discard Changes</button>
-    <button mat-stroked-button (click)="saveSubjects()">Save Changes</button>
+
+    <div cdkDropList [cdkDropListData]="subjects" class="subject-container" (cdkDropListDropped)="drop($event)">
+        <div class="d-flex g-m align-center justify-between drag-item bg-mode"
+            *ngFor="let subject of subjects;let i=index;" cdkDrag [cdkDragData]="subject">
+            <span class="p-s"> {{subject}}</span>
+            <button mat-icon-button (click)="deleteSubject(i)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="d-flex justify-between flex-wrap g-m mt-m mb-m">
+        <button mat-stroked-button (click)="discardChanges()">Discard Changes</button>
+        <button mat-stroked-button (click)="saveSubjects()">Save Changes</button>
+    </div>
 </div>

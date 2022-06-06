@@ -138,6 +138,10 @@ body {
   padding-left: var(--size-s);
 }
 
+.pl-xs {
+  padding-left: var(--size-xs);
+}
+
 .pr-xs {
   padding-right: var(--size-xs);
 }
@@ -184,6 +188,14 @@ body {
 
 .ml-l {
   margin-left: var(--size-l);
+}
+
+.g-xs {
+  gap: var(--size-xs);
+}
+
+.g-s {
+  gap: var(--size-s);
 }
 
 .g-m {
