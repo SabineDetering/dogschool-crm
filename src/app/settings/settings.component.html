@@ -5,16 +5,17 @@
 </div>
 
 <h2>Customise Subjects</h2>
-<p>You can change, add or delete subjects or change their order by drag & drop. Only trainings that will be created or
+<p>You can add or delete subjects or change their order by drag & drop. Only trainings that will be created or
     edited after the changes will be affected.
 </p>
 
 <div cdkDropList [cdkDropListData]="subjects" class="subject-container" (cdkDropListDropped)="drop($event)">
     <div class="drag-item bg-mode" *ngFor="let subject of subjects" cdkDrag [cdkDragData]="subject">
-        {{subject}}
+       <span> {{subject}}</span>
+       <mat-icon>delete</mat-icon>
     </div>
 </div>
-<div class="d-flex g-m m-m">
-    <button>Discard Changes</button>
-    <button (click)="saveSubjects()">Save Changes</button>
+<div class="d-flex g-m mt-m mb-m">
+    <button mat-stroked-button>Discard Changes</button>
+    <button mat-stroked-button (click)="saveSubjects()">Save Changes</button>
 </div>
