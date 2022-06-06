@@ -1,0 +1,31 @@
+//custom material theme 
+@use '@angular/material' as mat;
+
+@import '~material-icons-font/sass/variables';
+@import '~material-icons-font/sass/mixins';
+$MaterialIcons_FontPath: "~material-icons-font/fonts";
+@import '~material-icons-font/sass/main';
+@import '~material-icons-font/sass/Regular';
+
+@include mat.core();
+
+$dogschool-crm-primary: mat.define-palette(mat.$cyan-palette);
+$dogschool-crm-accent: mat.define-palette(mat.$orange-palette, A200, A100, A400);
+
+$dogschool-crm-warn: mat.define-palette(mat.$red-palette);
+
+$dogschool-crm-theme: mat.define-light-theme((color: (primary: $dogschool-crm-primary,
+                accent: $dogschool-crm-accent,
+                warn: $dogschool-crm-warn,
+            )));
+
+$dogschool-crm-dark-theme: mat.define-dark-theme((color: (primary: $dogschool-crm-primary,
+                accent: $dogschool-crm-accent,
+                warn: $dogschool-crm-warn,
+            )));
+
+@include mat.all-component-themes($dogschool-crm-theme);
+
+.dark-mode {
+    @include mat.all-component-colors($dogschool-crm-dark-theme);
+}
