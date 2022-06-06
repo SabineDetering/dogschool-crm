@@ -110,6 +110,14 @@ body {
   position: relative;
 }
 
+.p-xs {
+  padding: var(--size-xs);
+}
+
+.p-s {
+  padding: var(--size-s);
+}
+
 .p-m {
   padding: var(--size-m);
 }

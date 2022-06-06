@@ -11,6 +11,7 @@ import { DataService } from 'src/services/data.service';
 export class SettingsComponent implements OnInit {
 
   subjects: string[];
+  newSubject: string='';
 
   constructor(public Data: DataService) { }
   
@@ -20,12 +21,32 @@ export class SettingsComponent implements OnInit {
   }
 
 
+  /**
+   * moves the dragged item into the new position in the array
+   * @param event 
+   */
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.subjects, event.previousIndex, event.currentIndex);
-    console.log(this.subjects);
   }
 
+
+  addSubject() {
+    this.subjects.unshift(this.newSubject.trim());
+    this.newSubject = '';
+   }
+  
+
+  deleteSubject(i:number) {
+    this.subjects.splice(i, 1);
+  }
+
+
   saveSubjects() {
+    console.log('saved subjects', this.subjects);
     this.Data.saveSubjects(this.subjects);
+  }
+
+  discardChanges() {
+    window.location.reload();
   }
 }

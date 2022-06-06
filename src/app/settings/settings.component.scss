@@ -7,9 +7,14 @@
     filter: invert(0.5);
 }
 
+.new-subject-container{
+    width: 272px;
+}
+
 .subject-container {
-    width: 500px;
-    // max-width: 100%;
+    width: max-content;
+    min-width: 272px;
+    max-width: 100%;
     // display:flex;
     // flex-direction: column;
     border: solid 1px #ccc;
@@ -21,7 +26,7 @@
 }
 
 .drag-item {
-    padding: 20px 10px;
+    padding:  var(--size-s);
     border-bottom: solid 1px #ccc;
     // color: rgba(0, 0, 0, 0.87);
     // display: flex;
@@ -35,6 +40,9 @@
     // font-size: 14px;.
     &:last-child {
         border: none;
+    }
+    mat-icon{
+        
     }
 }
 
