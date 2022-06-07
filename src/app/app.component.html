@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="search p-m">
+    <div *ngIf="routeWithSearch" class="search p-m">
         <span class="material-icons">search</span>
         <input id="searchField" type="text" [(ngModel)]="searchString" placeholder="Search" (keyup)="changeFilter()">
         <button class="material-icons" (click)="deleteSearch()" [disabled]="searchString.length==0">

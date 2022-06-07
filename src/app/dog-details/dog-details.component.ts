@@ -21,6 +21,7 @@ export class DogDetailsComponent implements OnInit {
   dogID: string;
   clients: Client[];
   trainings: Training[];
+
   constructor(
     private route: ActivatedRoute,
     private Data: DataService,
@@ -121,7 +122,8 @@ export class DogDetailsComponent implements OnInit {
       width: '600px',
       data: { dogID: this.dog.dogID }
     });
-    dialogRef.afterClosed().subscribe(r => window.location.reload());
+    this.trainings=this.getTrainingDataByDogId(this.dog.dogID)
   }
+
 
 }
