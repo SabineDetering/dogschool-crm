@@ -4,11 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 
-import { DialogAddTrainingComponent } from './dialog-add-edit-training.component';
+import { DialogAddEditTrainingComponent } from './dialog-add-edit-training.component';
 
-describe('DialogAddTrainingComponent', () => {
-  let component: DialogAddTrainingComponent;
-  let fixture: ComponentFixture<DialogAddTrainingComponent>;
+describe('DialogAddEditTrainingComponent', () => {
+  let component: DialogAddEditTrainingComponent;
+  let fixture: ComponentFixture<DialogAddEditTrainingComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,7 +16,7 @@ describe('DialogAddTrainingComponent', () => {
         MatDialogModule,
         FormsModule,
         AngularFireModule.initializeApp(environment.firebase)],
-      declarations: [DialogAddTrainingComponent],
+      declarations: [DialogAddEditTrainingComponent],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} }
@@ -26,7 +26,7 @@ describe('DialogAddTrainingComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogAddTrainingComponent);
+    fixture = TestBed.createComponent(DialogAddEditTrainingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

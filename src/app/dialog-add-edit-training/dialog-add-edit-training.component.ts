@@ -47,10 +47,6 @@ export class DialogAddEditTrainingComponent implements OnInit {
       this.training = new Training();
     }
 
-    // this.Data.subjects$.subscribe(changes => {
-    //   this.subjects = changes.subjectList;
-    // });
-
     this.clients = await firstValueFrom(this.Data.clients$);
     this.dogs = await firstValueFrom(this.Data.dogs$);
     this.subjects = (await firstValueFrom(this.Data.subjects$)).subjectList;
@@ -66,7 +62,6 @@ export class DialogAddEditTrainingComponent implements OnInit {
       this.filteredDogs = this.dogs;
     }
   }
-
 
 
   applyClientFilter(event: Event) {

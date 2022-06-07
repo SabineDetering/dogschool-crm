@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire/compat';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -15,7 +16,8 @@ describe('LoginComponent', () => {
       imports: [
         RouterModule.forRoot([]),
         FormsModule,
-        AngularFireModule.initializeApp(environment.firebase)
+        AngularFireModule.initializeApp(environment.firebase),
+        MatSnackBarModule
       ],
       declarations: [LoginComponent]
     })

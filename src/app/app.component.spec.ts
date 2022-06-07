@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire/compat';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterTestingModule } from '@angular/router/testing';
 import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
@@ -9,7 +10,8 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        AngularFireModule.initializeApp(environment.firebase)
+        AngularFireModule.initializeApp(environment.firebase),
+        MatSnackBarModule
       ],
       declarations: [
         AppComponent

@@ -54,7 +54,7 @@ export class DialogAddEditDogComponent implements OnInit {
   };
 
 
-  applyFilter(index, event: Event) {
+  applyFilter(index:number, event: Event) {
     let filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this['filteredClients_' + index] = this.clients.filter(client =>
       (client.firstName.toLowerCase().startsWith(filter)) || (client.lastName.toLowerCase().startsWith(filter)));

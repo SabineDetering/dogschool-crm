@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire/compat';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -12,7 +13,8 @@ describe('AuthGuardService', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterModule.forRoot([]),
-        AngularFireModule.initializeApp(environment.firebase)
+        AngularFireModule.initializeApp(environment.firebase),
+        MatSnackBarModule
       ]
     });
     service = TestBed.inject(AuthGuardService);
