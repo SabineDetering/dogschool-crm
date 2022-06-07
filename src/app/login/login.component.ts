@@ -16,24 +16,25 @@ export class LoginComponent implements OnInit {
   guest: boolean;
   userID: string;
 
-  constructor(public myAuth:AuthenticationService) {
+  constructor(public myAuth: AuthenticationService) {
   }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
 
   login() {
-    this.myAuth.login(this.loginEmail, this.loginPassword);    
+    this.myAuth.login(this.loginEmail, this.loginPassword);
   }
 
 
-  signin() {
-    if (this.guest) {
-      this.myAuth.guestLogin();
-    } else {
-      this.myAuth.signup(this.signinEmail, this.signinPassword);
-    }
+  signup() {
+    this.myAuth.signup(this.signinEmail, this.signinPassword);
+  }
+
+
+  guestLogin() {
+    this.myAuth.guestLogin();
   }
 
 

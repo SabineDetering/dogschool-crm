@@ -1,71 +1,124 @@
 <div *ngIf="myAuth.auth.user | async as user; else showLogin">
-    <p> userid {{user.uid }}</p>
-    <h1> You are logged in as {{ user.email ? user.email :'guest' }}.</h1>
-    <button mat-stroked-button (click)="logout()">Logout</button>
+  <p>userid {{ user.uid }}</p>
+  <h1>You are logged in as {{ user.email ? user.email : "guest" }}.</h1>
+  <button mat-stroked-button (click)="logout()">Logout</button>
 </div>
 
 <ng-template #showLogin>
-    <div class="login-container">
-        <mat-card class="login-card mt-m mb-m">
-            <mat-card-title>
-                <p> Are you already registered?</p>
-                <p>Please log in.</p>
-            </mat-card-title>
-            <mat-card-content>
-                <form #loginForm="ngForm">
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Email</mat-label>
-                        <input matInput autocomplete="username"
-                            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
-                            [(ngModel)]="loginEmail" name="email" id="loginEmail">
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Password</mat-label>
-                        <input matInput type="password" autocomplete="current-password" [(ngModel)]="loginPassword"
-                            name="password" id="loginPassword">
-                    </mat-form-field>
-                </form>
-            </mat-card-content>
-            <mat-card-actions align="end">
-                <button mat-stroked-button (click)="login()">Log in </button>
-            </mat-card-actions>
-        </mat-card>
+  <div class="login-container pt-m pb-m">
+    <mat-card class="login-card">
+      <mat-tab-group
+        mat-align-tabs="center"
+        mat-stretch-tabs
+        selectedIndex="1"
+        animationDuration="0ms"
+        class="p-m"
+      >
+        <mat-tab label="Log in">
+          <mat-card-title class="mt-l">
+            <p>Log in</p>
+          </mat-card-title>
+          <mat-card-content>
+            <form #loginForm="ngForm">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  autocomplete="username"
+                  pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                  [(ngModel)]="loginEmail"
+                  name="email"
+                  id="loginEmail"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  autocomplete="current-password"
+                  [(ngModel)]="loginPassword"
+                  name="password"
+                  id="loginPassword"
+                  required
+                />
+              </mat-form-field>
+            </form>
 
+            <button
+              mat-flat-button
+              (click)="login()"
+              [disabled]="!loginForm.valid"
+              class="full-width"
+            >
+              Log in
+            </button>
+          </mat-card-content>
+        </mat-tab>
 
-        <mat-card class="login-card mt-m mb-m">
-            <mat-card-title>
-                <p> Not yet registered?</p>
-                <p>Please sign in or log in as guest.</p>
-            </mat-card-title>
-            <mat-card-content>
-                <form #signupForm="ngForm">
-                    <div>
-                        <mat-form-field appearance="outline" class="full-width">
-                            <mat-label>Email</mat-label>
-                            <input matInput autocomplete="username"
-                                pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
-                                [(ngModel)]="signinEmail" #email="ngModel" name="email" id="signinEmail"
-                                [disabled]="guest">
-                            <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-                                Please enter a valid email address
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
-                    <mat-form-field appearance="outline" class="full-width">
-                        <mat-label>Password</mat-label>
-                        <input matInput type="password" autocomplete="new-password" pattern=".{6,}"
-                            [(ngModel)]="signinPassword" name="password" id="signinPassword" [disabled]="guest">
-                    </mat-form-field>
+        <mat-tab label="Register ">
+          <mat-card-title class="mt-l">
+            <p>Register or continue as guest</p>
+          </mat-card-title>
+          <mat-card-content>
+            <form #signupForm="ngForm" class="mb-m">
+              <div>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Email</mat-label>
+                  <input
+                    matInput
+                    autocomplete="username"
+                    pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                    [(ngModel)]="signinEmail"
+                    #email="ngModel"
+                    name="email"
+                    id="signinEmail"
+                    [disabled]="guest"
+                    required
+                  />
+                  <mat-error
+                    *ngIf="email.invalid && (email.dirty || email.touched)"
+                  >
+                    Please enter a valid email address
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  autocomplete="new-password"
+                  pattern=".{6,}"
+                  [(ngModel)]="signinPassword"
+                  name="password"
+                  id="signinPassword"
+                  [disabled]="guest"
+                  required
+                />
+              </mat-form-field>
 
-                    <mat-checkbox [(ngModel)]="guest" name="guest" id="guestLogin" data-cy="guestLogin">Login as guest
-                    </mat-checkbox>
+              <button
+                mat-flat-button
+                (click)="signup()"
+                [disabled]="!signupForm.valid"
+                class="full-width"
+              >
+                Register
+              </button>
+            </form>
 
-                </form>
-            </mat-card-content>
-            <mat-card-actions align="end">
-                <button mat-stroked-button (click)="signin()">Sign in </button>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-
+            <button
+              mat-button
+              (click)="guestLogin()"
+              class="full-width"
+            >
+              Continue as guest
+            </button>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
 </ng-template>
