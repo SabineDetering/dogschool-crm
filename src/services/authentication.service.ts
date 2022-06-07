@@ -85,7 +85,7 @@ export class AuthenticationService {
     this.userID = '';
     this.openSnackBar('You were logged out.');
     //delete user from firebase if anonymous
-    if (!!!user.email ) {
+    if (!user.email ) {
       deleteUser(user).then(() => {
         console.log('guest user deleted');
       }).catch((error) => {

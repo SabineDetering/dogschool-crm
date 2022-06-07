@@ -1,5 +1,4 @@
 <div *ngIf="myAuth.auth.user | async as user; else showLogin">
-  <p>userid {{ user.uid }}</p>
   <h1>You are logged in as {{ user.email ? user.email : "guest" }}.</h1>
   <button mat-stroked-button (click)="logout()">Logout</button>
 </div>

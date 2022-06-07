@@ -127,7 +127,8 @@ import { DogDetailsComponent } from './dog-details/dog-details.component';
   ],
   providers: [
     { provide: PERSISTENCE, useValue: 'local' },
-    AuthGuardService, { provide: LOCALE_ID, useValue: 'de-de' }
+    AuthGuardService,
+    { provide: LOCALE_ID, useValue: 'de-de' }
   ],
   bootstrap: [AppComponent]
 })

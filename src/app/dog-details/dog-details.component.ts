@@ -122,7 +122,8 @@ export class DogDetailsComponent implements OnInit {
       width: '600px',
       data: { dogID: this.dog.dogID }
     });
-    this.trainings=this.getTrainingDataByDogId(this.dog.dogID)
+    // this.trainings=this.getTrainingDataByDogId(this.dog.dogID)
+    dialogRef.afterClosed().subscribe(r => window.location.reload());
   }
 
 

@@ -123,7 +123,7 @@ export class ClientDetailsComponent implements OnInit {
       width: '600px',
       data: { clientID: this.client.clientID }
     });
-    // dialogRef.afterClosed().subscribe(r => window.location.reload());
+    dialogRef.afterClosed().subscribe(r => window.location.reload());
   }
 
 }
