@@ -119,6 +119,10 @@ export class ClientDetailsComponent implements OnInit {
     });
   }
 
+
+  /**
+   * calls dialog to create new training and updates view if training was saved
+   */
   addTraining() {
     const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
       height: '90vh',
