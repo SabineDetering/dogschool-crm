@@ -31,6 +31,7 @@ export class ClientDetailsComponent implements OnInit {
   async ngOnInit(): Promise<void> {
 
     this.trainings = await firstValueFrom(this.Data.trainings$);
+    this.Data.trainings$.subscribe(changes => this.trainings = changes);
     this.dogs = await firstValueFrom(this.Data.dogs$);
 
     this.route.params.subscribe(params => {
@@ -44,7 +45,6 @@ export class ClientDetailsComponent implements OnInit {
         .map(client => {
           client = new Client(client);
           client.trainingData = this.getTrainingDataByClientId(client.clientID);
-          client.trainingData.forEach(training => training.dogName = this.getDogNameById(training.dogID));
           client.dogData = this.getDogDataByClientId(client.clientID);
           return client;
         })[0];
@@ -60,7 +60,9 @@ export class ClientDetailsComponent implements OnInit {
    */
   getTrainingDataByClientId(id: string): Training[] {
     let trainingData = this.trainings.filter(training => training.clientID == id);
-    return this.sortJSONArray(trainingData, 'date', 'desc');
+    trainingData = this.sortJSONArray(trainingData, 'date', 'desc');
+    trainingData.forEach(training => training.dogName = this.getDogNameById(training.dogID));
+    return trainingData;
   }
 
 
@@ -123,7 +125,13 @@ export class ClientDetailsComponent implements OnInit {
       width: '600px',
       data: { clientID: this.client.clientID }
     });
-    dialogRef.afterClosed().subscribe(r => window.location.reload());
+    // dialogRef.afterClosed().subscribe(r => window.location.reload());
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 'saved') {
+        this.client.trainingData = this.getTrainingDataByClientId(this.client.clientID);
+        console.log('trainingdata', this.client.trainingData);
+      }
+    })
   }
 
 }
