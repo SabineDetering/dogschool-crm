@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { firstValueFrom } from 'rxjs';
 import { DataService } from 'src/services/data.service';
 
@@ -11,13 +12,21 @@ import { DataService } from 'src/services/data.service';
 export class SettingsComponent implements OnInit {
 
   subjects: string[];
-  newSubject: string='';
+  newSubject: string = '';
 
-  constructor(public Data: DataService) { }
-  
+  constructor(
+    public Data: DataService,
+    private _snackBar: MatSnackBar
+  ) { }
+
 
   async ngOnInit(): Promise<void> {
     this.subjects = (await firstValueFrom(this.Data.subjects$)).subjectList;
+  }
+
+
+  openSnackBar(message: string, action?: string) {
+    this._snackBar.open(message, action, { duration: 3000 });
   }
 
 
@@ -33,10 +42,10 @@ export class SettingsComponent implements OnInit {
   addSubject() {
     this.subjects.unshift(this.newSubject.trim());
     this.newSubject = '';
-   }
-  
+  }
 
-  deleteSubject(i:number) {
+
+  deleteSubject(i: number) {
     this.subjects.splice(i, 1);
   }
 
@@ -44,9 +53,11 @@ export class SettingsComponent implements OnInit {
   saveSubjects() {
     console.log('saved subjects', this.subjects);
     this.Data.saveSubjects(this.subjects);
+    this.openSnackBar('Changes have been saved.');
   }
 
   discardChanges() {
     window.location.reload();
+    this.openSnackBar('Changes have been discarded.');
   }
 }

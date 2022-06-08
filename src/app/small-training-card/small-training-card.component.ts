@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Training } from 'src/models/training.class';
 import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
 
@@ -12,7 +13,7 @@ export class SmallTrainingCardComponent implements OnInit {
 
   @Input() training: Training;
   @Input() view: string;
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,private router:Router) {
   }
 
   ngOnInit(): void {
@@ -23,14 +24,15 @@ export class SmallTrainingCardComponent implements OnInit {
    * open dialog to edit all training details, incl. key data
    */
   editTraining() {
-    const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
-      height: '90vh',
-      width: '600px',
-      data: { training: this.training }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) { this.training = result.data }
-    });
+    this.router.navigate(['/training/'+  this.training.trainingID ]);
+    // const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
+    //   height: '90vh',
+    //   width: '600px',
+    //   data: { training: this.training }
+    // });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) { this.training = result.data }
+    // });
   }
 
 }

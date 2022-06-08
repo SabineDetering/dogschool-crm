@@ -9,6 +9,7 @@ import { Training } from 'src/models/training.class';
 import { DataService } from 'src/services/data.service';
 import { DialogDeleteConfirmationComponent } from '../dialog-delete-confirmation/dialog-delete-confirmation.component';
 import { DialogAddEditTrainingComponent } from '../dialog-add-edit-training/dialog-add-edit-training.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-training-details',
@@ -26,8 +27,9 @@ export class TrainingDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private Data: DataService,
     public dialog: MatDialog,
-    private location: Location) { }
-  
+    private location: Location,
+    private _snackBar: MatSnackBar) { }
+
 
   async ngOnInit(): Promise<void> {
 
@@ -91,12 +93,17 @@ export class TrainingDetailsComponent implements OnInit {
   }
 
 
+  openSnackBar(message: string, action?: string) {
+    this._snackBar.open(message, action, { duration: 3000 });
+  }
+
   /**
    * update training details on firestore and go back to previous page
    */
   saveTraining() {
     this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
     this.closeTraining();
+    this.openSnackBar('Changes have been saved.');
   }
 
 
@@ -119,6 +126,12 @@ export class TrainingDetailsComponent implements OnInit {
   deleteTraining() {
     this.Data.deleteTraining(this.training.trainingID);
     this.closeTraining();
+    this.openSnackBar('Training has been deleted.');
+  }
+
+  cancelChanges() {
+    this.closeTraining();
+    this.openSnackBar('Changes have been discarded.');
   }
 
 
@@ -134,10 +147,12 @@ export class TrainingDetailsComponent implements OnInit {
    * open dialog to edit all training details, incl. key data
    */
   editTraining() {
-    this.dialog.open(DialogAddEditTrainingComponent, {
+    const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
       height: '90vh',
       width: '600px',
-      data: { training: this.training }  });
+      data: { training: this.training }
+    });
+    dialogRef.afterClosed().subscribe(result => this.closeTraining())
   }
 
 }

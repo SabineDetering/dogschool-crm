@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Client } from 'src/models/client.class';
 import { DataService } from 'src/services/data.service';
 
@@ -19,7 +20,8 @@ export class DialogAddEditClientComponent implements OnInit {
   constructor(
     public addClientDialogRef: MatDialogRef<DialogAddEditClientComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: Client,
-    private Data: DataService
+    private Data: DataService,
+    private _snackBar: MatSnackBar
   ) { }
 
 
@@ -36,10 +38,19 @@ export class DialogAddEditClientComponent implements OnInit {
     });
   }
 
+
+  openSnackBar(message: string, action?: string) {
+    this._snackBar.open(message, action, { duration: 3000 });
+  }
+
+  
   saveClient() {
     if (!this.client.clientNumber) {
       this.client.clientNumber = this.availableNumber;
       this.Data.saveNumber(this.availableNumber + 1);
+      this.openSnackBar('New client has been saved.');
+    } else {
+      this.openSnackBar('Client changes have been saved.');
     }
     this.Data.saveClient(this.client.toJSON(), this.client.clientID);
   }

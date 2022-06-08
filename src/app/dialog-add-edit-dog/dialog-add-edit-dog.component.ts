@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Dog } from 'src/models/dog.class';
 import { Client } from 'src/models/client.class';
 import { DataService } from 'src/services/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog-add-edit-dog',
@@ -26,7 +27,8 @@ export class DialogAddEditDogComponent implements OnInit {
   constructor(
     public addDogDialogRef: MatDialogRef<DialogAddEditDogComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: Client,
-    private Data: DataService
+    private Data: DataService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -66,6 +68,11 @@ export class DialogAddEditDogComponent implements OnInit {
   }
 
 
+  openSnackBar(message: string, action?: string) {
+    this._snackBar.open(message, action, { duration: 3000 });
+  }
+
+
   saveDog() {
     if (this.birthDateInput) {
       this.dog.birthDate = new Date(this.birthDateInput).getTime();
@@ -73,6 +80,11 @@ export class DialogAddEditDogComponent implements OnInit {
     this.dog.ownerIds[0]=this.owner1;
     if (this.owner2) {
       this.dog.ownerIds[1] = this.owner2;
+    }
+    if (this.dog.dogID) {
+      this.openSnackBar('New dog has been saved.');
+    } else {
+      this.openSnackBar('Dog changes have been saved.');
     }
     this.Data.saveDog(this.dog.toJSON(), this.dog.dogID);
     console.log('saved dog',this.dog);
