@@ -5,6 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchFilterPipe implements PipeTransform {
 
+  /**
+   * the data of each JSON in the array is reduced to a string 
+   * if searchString is included in this string, the JSON is included in the result 
+   * @param array - JSON array with table data
+   * @param searchString  - the string to match
+   * @returns - filtered JSON array
+   */
   transform(array: any[], searchString: string): any[] {
 
     return array?.filter(dataRow => {
