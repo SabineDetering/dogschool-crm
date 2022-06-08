@@ -32,6 +32,7 @@ export class DogDetailsComponent implements OnInit {
   async ngOnInit(): Promise<void> {
 
     this.trainings = await firstValueFrom(this.Data.trainings$);
+    this.Data.trainings$.subscribe(changes => this.trainings = changes);
     this.clients = await firstValueFrom(this.Data.clients$);
 
     this.route.params.subscribe(params => {
@@ -45,7 +46,6 @@ export class DogDetailsComponent implements OnInit {
         .map(dog => {
           dog = new Dog(dog);
           dog.trainingData = this.getTrainingDataByDogId(dog.dogID);
-          dog.trainingData.forEach(training => training.clientName = this.getClientNameById(training.clientID));
           for (let i = 0; i < dog.ownerIds.length; i++) {
             dog.ownerData.push(this.getClientDataById(dog.ownerIds[i]));
           }
@@ -63,7 +63,10 @@ export class DogDetailsComponent implements OnInit {
    */
   getTrainingDataByDogId(id: string): Training[] {
     let trainingData = this.trainings.filter(training => training.dogID == id);
-    return this.sortJSONArray(trainingData, 'date', 'desc');
+    trainingData = this.sortJSONArray(trainingData, 'date', 'desc');
+    trainingData.forEach(training => training.clientName = this.getClientNameById(training.clientID));
+
+    return trainingData;
   }
 
 
@@ -116,15 +119,21 @@ export class DogDetailsComponent implements OnInit {
   }
 
 
+  /**
+   * calls dialog to create new training and updates view if training was saved
+   */
   addTraining() {
     const dialogRef = this.dialog.open(DialogAddEditTrainingComponent, {
       height: '90vh',
       width: '600px',
       data: { dogID: this.dog.dogID }
     });
-    // this.trainings=this.getTrainingDataByDogId(this.dog.dogID)
-    dialogRef.afterClosed().subscribe(r => window.location.reload());
+    dialogRef.afterClosed().subscribe(result => {
+      if (result=='saved'){
+      this.dog.trainingData = this.getTrainingDataByDogId(this.dog.dogID);
+        console.log('trainingdata', this.dog.trainingData);
+      }
+    })
   }
-
 
 }

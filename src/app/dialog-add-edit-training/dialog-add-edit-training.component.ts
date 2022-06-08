@@ -95,7 +95,7 @@ export class DialogAddEditTrainingComponent implements OnInit {
     } else {
       this.openSnackBar('New training has been saved.');
     }
-    this.addTrainingDialogRef.close({ data: this.training });
+    this.addTrainingDialogRef.close('saved');
   }
 
 }
