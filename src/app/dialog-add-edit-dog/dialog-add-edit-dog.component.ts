@@ -56,7 +56,7 @@ export class DialogAddEditDogComponent implements OnInit {
   };
 
 
-  applyFilter(index:number, event: Event) {
+  applyFilter(index: number, event: Event) {
     let filter = (event.target as HTMLInputElement).value.trim().toLowerCase();
     this['filteredClients_' + index] = this.clients.filter(client =>
       (client.firstName.toLowerCase().startsWith(filter)) || (client.lastName.toLowerCase().startsWith(filter)));
@@ -77,17 +77,17 @@ export class DialogAddEditDogComponent implements OnInit {
     if (this.birthDateInput) {
       this.dog.birthDate = new Date(this.birthDateInput).getTime();
     }
-    this.dog.ownerIds[0]=this.owner1;
+    this.dog.ownerIds[0] = this.owner1;
     if (this.owner2) {
       this.dog.ownerIds[1] = this.owner2;
     }
     if (this.dog.dogID) {
-      this.openSnackBar('New dog has been saved.');
-    } else {
       this.openSnackBar('Dog changes have been saved.');
+    } else {
+      this.openSnackBar('New dog has been saved.');
     }
     this.Data.saveDog(this.dog.toJSON(), this.dog.dogID);
-    console.log('saved dog',this.dog);
+    console.log('saved dog', this.dog);
   }
 
 }

@@ -5,6 +5,7 @@ import { Training } from 'src/models/training.class';
 import { Client } from 'src/models/client.class';
 import { Dog } from 'src/models/dog.class';
 import { firstValueFrom } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dialog-add-edit-training',
@@ -26,7 +27,9 @@ export class DialogAddEditTrainingComponent implements OnInit {
   constructor(
     public addTrainingDialogRef: MatDialogRef<DialogAddEditTrainingComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
-    private Data: DataService) { }
+    private Data: DataService,
+    private _snackBar: MatSnackBar
+  ) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -77,10 +80,21 @@ export class DialogAddEditTrainingComponent implements OnInit {
   }
 
 
+  openSnackBar(message: string, action?: string) {
+    this._snackBar.open(message, action, { duration: 3000 });
+  }
+
+
   saveTraining() {
     this.training.date = new Date(this.dateInput).getTime();
     console.log('saved training',this.training);
     this.Data.saveTraining(this.training.toJSON(), this.training.trainingID);
+
+    if (this.training.trainingID) {
+      this.openSnackBar('Training changes have been saved.');
+    } else {
+      this.openSnackBar('New training has been saved.');
+    }
     this.addTrainingDialogRef.close({ data: this.training });
   }
 

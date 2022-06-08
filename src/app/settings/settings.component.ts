@@ -56,6 +56,7 @@ export class SettingsComponent implements OnInit {
     this.openSnackBar('Changes have been saved.');
   }
 
+  
   discardChanges() {
     window.location.reload();
     this.openSnackBar('Changes have been discarded.');
