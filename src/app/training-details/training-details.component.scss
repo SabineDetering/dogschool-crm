@@ -57,5 +57,12 @@ h4 {
 }
 
 .half-width {
-    width: 100%;
+    min-width: 240px;
+    max-width: min(410px, 50%);
+    flex: 1;
+
+    @media (max-width:528px) {
+        width: 100%;
+        max-width: unset;
+    }
 }
