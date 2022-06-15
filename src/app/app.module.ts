@@ -13,7 +13,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
@@ -38,6 +38,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { PERSISTENCE } from '@angular/fire/compat/auth';
+
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 import { ClientOverviewComponent } from './client-overview/client-overview.component';
 import { DialogAddEditClientComponent } from './dialog-add-edit-client/dialog-add-edit-client.component';
@@ -124,6 +126,32 @@ import { DogDetailsComponent } from './dog-details/dog-details.component';
     AngularFireModule.initializeApp(environment.firebase),
     provideDatabase(() => getDatabase()),
     provideAuth(() => getAuth()),
+    NgxAuthFirebaseUIModule.forRoot({
+      apiKey: 'AIzaSyDQ0ZYkHfJIVpKqY4vcA8vSkH7FDmXwFY0',
+      authDomain: 'dogschool-crm.firebaseapp.com',
+      databaseURL: 'https://dogschool-crm-default-rtdb.europe-west1.firebasedatabase.app',
+      projectId: 'dogschool-crm',
+      storageBucket: 'dogschool-crm.appspot.com',
+      messagingSenderId: '760137668035'
+    },
+      () => 'your_app_name_factory',
+      {
+        enableFirestoreSync: true, // enable/disable autosync users with firestore
+        toastMessageOnAuthSuccess: true, // whether to open/show a snackbar message on auth success - default : true
+        toastMessageOnAuthError: true, // whether to open/show a snackbar message on auth error - default : true
+        authGuardFallbackURL: '/loggedout', // url for unauthenticated users - to use in combination with canActivate feature on a route
+        authGuardLoggedInURL: '/loggedin', // url for authenticated users - to use in combination with canActivate feature on a route
+        passwordMaxLength: 30, // `min/max` input parameters in components should be within this range.
+        passwordMinLength: 6, // Password length min/max in forms independently of each componenet min/max.
+        // Same as password but for the name
+        nameMaxLength: 50,
+        nameMinLength: 2,
+        // If set, sign-in/up form is not available until email has been verified.
+        // Plus protected routes are still protected even though user is connected.
+        guardProtectedRoutesUntilEmailIsVerified: false,
+        enableEmailVerification: false, // default: true
+        useRawUserCredential: false, // If set to true outputs the UserCredential object instead of firebase.User after login and signup - Default: false
+      }),
   ],
   providers: [
     { provide: PERSISTENCE, useValue: 'local' },

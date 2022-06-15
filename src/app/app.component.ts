@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { FilterStringService } from 'src/services/filter-string.service';
+import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
 
 @Component({
   selector: 'app-root',
@@ -47,7 +48,8 @@ export class AppComponent {
   /**
    * toggles between showing and hiding second level nav items
    */
-  toggleSubItems() {
+  toggleSubItems(event:Event) {
+    event.stopPropagation();
     this.subItems = !this.subItems;
   }
 

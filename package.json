@@ -28,6 +28,7 @@
     "firebaseui": "^6.0.1",
     "material-icons-font": "^2.1.0",
     "moment": "^2.29.3",
+    "ngx-auth-firebaseui": "^6.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

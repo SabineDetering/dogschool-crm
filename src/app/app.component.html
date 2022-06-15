@@ -40,7 +40,7 @@
     [mode]="mobileQuery.matches ? 'over' : 'side'"
     [opened]="!mobileQuery.matches"
   >
-    <mat-nav-list>
+    <mat-nav-list (click)="mobileQuery.matches?drawer.toggle():null">
       <mat-list-item [routerLink]="'/dashboard'" (click)="closeSubItems()">
         <mat-icon matListIcon> dashboard </mat-icon>
         <span> Dashboard </span>
@@ -68,7 +68,7 @@
         <mat-icon matListIcon> help </mat-icon>
         <span> Help </span>
       </mat-list-item>
-      <mat-list-item (click)="toggleSubItems()">
+      <mat-list-item (click)="toggleSubItems($event)">
         <mat-icon matListIcon> receipt_long </mat-icon>
         <span> Legal </span>
       </mat-list-item>
