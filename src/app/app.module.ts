@@ -64,6 +64,7 @@ import { SmallDogCardComponent } from './small-dog-card/small-dog-card.component
 import { SmallClientCardComponent } from './small-client-card/small-client-card.component';
 import { SmallTrainingCardComponent } from './small-training-card/small-training-card.component';
 import { DogDetailsComponent } from './dog-details/dog-details.component';
+import { LoginNgxAuthComponent } from './login-ngx-auth/login-ngx-auth.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { DogDetailsComponent } from './dog-details/dog-details.component';
     SmallDogCardComponent,
     SmallClientCardComponent,
     SmallTrainingCardComponent,
-    DogDetailsComponent
+    DogDetailsComponent,
+    LoginNgxAuthComponent
   ],
   imports: [
     BrowserModule,

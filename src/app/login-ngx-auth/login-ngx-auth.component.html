@@ -1,0 +1,11 @@
+<div class="login-container">
+    <ngx-auth-firebaseui
+      appearance="outline"
+      [providers]="[]"
+      [tabindex]="1"
+      [resetPasswordEnabled]="true"
+      (onSuccess)="printUser($event)"
+      (onError)="printError($event)"
+    >
+    </ngx-auth-firebaseui>
+</div>
